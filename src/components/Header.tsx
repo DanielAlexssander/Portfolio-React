@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Heading, Text, Link, Button, Image, Select } from '@chakra-ui/react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { Box, Flex, Heading, Text, Link, Button, Image, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
+import BrazilIcon from './Icons/BrazilIcon';
+import UsaIcon from './Icons/UsaIcon';
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -45,21 +47,50 @@ const Header = () => {
         letterSpacing="1px"
         zIndex={2}
       >
-        <Select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value as 'pt' | 'en')}
-          w="fit-content"
-          position="absolute"
-          left={2}
-          bg="transparent"
-          border="1px solid rgba(255,255,255,0.3)"
-          color="white"
-          fontSize="14px"
-          _focus={{ borderColor: 'rgb(0, 59, 187)' }}
-        >
-          <option value="pt" style={{ background: '#002d54', color: 'white' }}>🇧🇷 Português</option>
-          <option value="en" style={{ background: '#002d54', color: 'white' }}>🇺🇸 English</option>
-        </Select>
+        <Menu>
+          <MenuButton
+            as={Button}
+            rightIcon={<FaChevronDown />}
+            position="absolute"
+            left={2}
+            bg="transparent"
+            border="1px solid rgba(255,255,255,0.3)"
+            color="white"
+            fontSize="14px"
+            _hover={{ bg: 'rgba(255,255,255,0.1)' }}
+            _active={{ bg: 'rgba(255,255,255,0.1)' }}
+            size="sm"
+          >
+            <Flex align="center" gap={2}>
+              {language === 'pt' ? <BrazilIcon width="18px" height="18px" /> : <UsaIcon width="18px" height="18px" />}
+              {language === 'pt' ? 'Português' : 'English'}
+            </Flex>
+          </MenuButton>
+          <MenuList bg="#002d54" border="1px solid rgba(255,255,255,0.3)">
+            <MenuItem
+              onClick={() => setLanguage('pt')}
+              bg={language === 'pt' ? 'rgba(0, 59, 187, 0.3)' : 'transparent'}
+              color="white"
+              _hover={{ bg: 'rgba(0, 59, 187, 0.5)' }}
+            >
+              <Flex align="center" gap={2}>
+                <BrazilIcon width="16px" height="16px" />
+                Português
+              </Flex>
+            </MenuItem>
+            <MenuItem
+              onClick={() => setLanguage('en')}
+              bg={language === 'en' ? 'rgba(0, 59, 187, 0.3)' : 'transparent'}
+              color="white"
+              _hover={{ bg: 'rgba(0, 59, 187, 0.5)' }}
+            >
+              <Flex align="center" gap={2}>
+                <UsaIcon width="16px" height="16px" />
+                English
+              </Flex>
+            </MenuItem>
+          </MenuList>
+        </Menu>
         
         <Button
           display={{ base: 'block', md: 'none' }}
