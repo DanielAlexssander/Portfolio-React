@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Heading, Text, Link, Button, Image } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Link, Button, Image, Select } from '@chakra-ui/react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Header = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [age, setAge] = useState(0);
   const [greeting, setGreeting] = useState('');
@@ -21,17 +23,18 @@ const Header = () => {
 
     const currentHour = date.getHours();
     if (currentHour >= 5 && currentHour < 12) {
-      setGreeting('Bom dia');
+      setGreeting(t('goodMorning'));
     } else if (currentHour >= 12 && currentHour < 18) {
-      setGreeting('Boa tarde');
+      setGreeting(t('goodAfternoon'));
     } else {
-      setGreeting('Boa noite');
+      setGreeting(t('goodEvening'));
     }
-  }, []);
+  }, [language, t]);
 
   return (
     <Box as="header" bg="linear-gradient(180deg, #002d54 0%, #022f5c 37.22%, #000613 100%)">
       <Box
+        position="relative"
         pt="1em"
         pb="1em"
         w="99%"
@@ -42,6 +45,22 @@ const Header = () => {
         letterSpacing="1px"
         zIndex={2}
       >
+        <Select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value as 'pt' | 'en')}
+          w="fit-content"
+          position="absolute"
+          left={2}
+          bg="transparent"
+          border="1px solid rgba(255,255,255,0.3)"
+          color="white"
+          fontSize="14px"
+          _focus={{ borderColor: 'rgb(0, 59, 187)' }}
+        >
+          <option value="pt" style={{ background: '#002d54', color: 'white' }}>🇧🇷 Português</option>
+          <option value="en" style={{ background: '#002d54', color: 'white' }}>🇺🇸 English</option>
+        </Select>
+        
         <Button
           display={{ base: 'block', md: 'none' }}
           onClick={() => setIsNavOpen(!isNavOpen)}
@@ -69,7 +88,7 @@ const Header = () => {
           transition="visibility 0.5s, max-height 0.5s"
           visibility={{ base: isNavOpen ? 'visible' : 'hidden', md: 'visible' }}
         >
-          {['Home', 'Projetos', 'Contatos', 'GitHub'].map((item, index) => {
+          {[t('home'), t('projects'), t('contacts'), t('github')].map((item, index) => {
             const hrefs = ['#', '#projects', '#container-contacts', 'https://github.com/DanielAlexssander'];
             return (
               <Box
@@ -143,18 +162,11 @@ const Header = () => {
               fontSize={{ base: '1.1em', md: 'inherit' }}
               _hover={{ pl: { base: '4.5em', md: '6.5em' } }}
             >
-              Desenvolvedor Front-End
+              {t('frontendDeveloper')}
             </Heading>
           </Box>
           <Text mb="3em">
-            Olá {greeting}! Tenho {age} anos. Sou uma pessoa focada no meu
-            objetivo, e atualmente meu objetivo é me tornar um desenvolvedor
-            de sucesso. Dedico grande parte do meu tempo para estudar e
-            aprimorar minhas habilidades nessa área, buscando sempre me
-            atualizar sobre as últimas tendências e tecnologias. Meu
-            objetivo é me tornar um profissional competente e capaz de
-            oferecer soluções criativas e eficientes para os desafios que
-            surgirem na área.
+            {t('headerDescription').replace('{greeting}', greeting).replace('{age}', age.toString())}
           </Text>
           <Box>
             <Link
@@ -171,7 +183,7 @@ const Header = () => {
               mr="3em"
               _hover={{ boxShadow: 'rgb(0, 59, 187) -15px 0px 20px -12px', textDecoration: 'none' }}
             >
-              Projetos
+              {t('projects')}
             </Link>
             <Link
               href="#container-contacts"
@@ -186,7 +198,7 @@ const Header = () => {
               transition="0.5s"
               _hover={{ boxShadow: 'rgb(0, 59, 187) -15px 0px 20px -12px', textDecoration: 'none' }}
             >
-              Contatos
+              {t('contacts')}
             </Link>
           </Box>
         </Box>

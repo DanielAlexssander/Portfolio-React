@@ -1,5 +1,6 @@
 import { Box, Heading, Text, Image, Link } from '@chakra-ui/react';
 import { FaArrowUp } from 'react-icons/fa';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Project {
   app?: boolean;
@@ -12,6 +13,7 @@ interface Project {
 }
 
 const Projects = () => {
+  const { t } = useLanguage();
   const HTML = `<li class="liTec"><i class="fa-brands fa-html5 orange"></i></li>`;
   const CSS = `<li class="liTec"><i class="fa-brands fa-css3-alt blue"></i></li>`;
   const JavaScript = `<li class="liTec"><i class="fa-brands fa-square-js yellow"></i></li>`;
@@ -32,7 +34,7 @@ const Projects = () => {
       urlGif: "/exchange-rate.gif",
       nameProject: "Exchange Rate",
       liTec: Flutter,
-      informations: "Desenvolvido em Flutter, é um projeto que fiz para uso pessoal. O propósito do projeto é acompanhar os valores atuais das conversões das criptomoedas.",
+      informations: t('exchangeRateDesc'),
       urlSite: "https://drive.google.com/file/d/1RfNycs4Cmy2fYdgTsPIa2Yj6ae5bXJXi/view?usp=sharing",
       urlCod: "https://github.com/DanielAlexssander/Exchange-Rate",
     },
@@ -40,7 +42,7 @@ const Projects = () => {
       urlGif: "/hubgram.gif",
       nameProject: "HubGram",
       liTec: React + Redux + Express + Node,
-      informations: "Desenvolvido em React, inspirado no Instagram, e com uma série de funcionalidades semelhantes.",
+      informations: t('hubgramDesc'),
       urlSite: "https://hubgram.netlify.app",
       urlCod: "https://github.com/DanielAlexssander/HubGram-FronEnd",
     },
@@ -48,7 +50,7 @@ const Projects = () => {
       urlGif: "/vet-pata-amiga.gif",
       nameProject: "Veterinária Pata Amiga",
       liTec: Next + Tailwind + TypeScript + Node,
-      informations: "Desenvolvido em Next.js, 'Veterinária Pata Amiga' é uma empresa fictícia. É um projeto de landing page para uma empresa de Veterinário.",
+      informations: t('vetDesc'),
       urlSite: "https://veterinaria-pata-amiga.netlify.app",
       urlCod: "https://github.com/DanielAlexssander/Vet-Pata-Amiga",
     },
@@ -56,7 +58,7 @@ const Projects = () => {
       urlGif: "/mini-blog.gif",
       nameProject: "Mini Blog",
       liTec: React + Firebase + Node + JavaScript + CSS,
-      informations: "Projeto feito em React, consiste em um Blog com todas as funcionalidades em react usando o banco de dados do Firebase.",
+      informations: t('miniBlogDesc'),
       urlSite: "https://miniblog-by-danielalexssander.netlify.app",
       urlCod: "https://github.com/DanielAlexssander/miniblog",
     },
@@ -64,7 +66,7 @@ const Projects = () => {
       urlGif: "/memorycard.gif",
       nameProject: "Memory Game",
       liTec: HTML + TypeScript + Sass + Node,
-      informations: "Este projeto é um jogo da memoria em TypeScript.",
+      informations: t('memoryGameDesc'),
       urlSite: "https://danielalexssander.github.io/Memory-Game/",
       urlCod: "https://github.com/DanielAlexssander/Memory-Game",
     },
@@ -72,7 +74,7 @@ const Projects = () => {
       urlGif: "/checklist.gif",
       nameProject: "CheckList",
       liTec: HTML + CSS + JavaScript,
-      informations: "Este projeto tem funcionalidades como: Adicionar/Remover tarefa e editar o nome da tarefa já criada. Para que isso funcione corretamente, a CheckList está sendo armazenada no seu navegador (LocalStorage) fazendo assim para que não perca os dados salvos.",
+      informations: t('checklistDesc'),
       urlSite: "https://danielalexssander.github.io/CheckList/",
       urlCod: "https://github.com/DanielAlexssander/CheckList/",
     },
@@ -80,7 +82,7 @@ const Projects = () => {
       urlGif: "/strata.gif",
       nameProject: "Strata",
       liTec: HTML + CSS,
-      informations: "O projeto Strata foi desenvolvido com base no design da \"HTML5 UP\".",
+      informations: t('strataDesc'),
       urlSite: "https://danielalexssander.github.io/Strata/",
       urlCod: "https://github.com/DanielAlexssander/Strata/",
     },
@@ -88,7 +90,7 @@ const Projects = () => {
       urlGif: "/rangehotels.gif",
       nameProject: "Range Hotels (Responsivo)",
       liTec: HTML + CSS,
-      informations: "A Range Hotels é um projeto responsivo. Compatível com computador, tablet e celular.",
+      informations: t('rangeHotelsDesc'),
       urlSite: "https://danielalexssander.github.io/RangeHotels-Responsivo/",
       urlCod: "https://github.com/DanielAlexssander/RangeHotels-Responsivo/",
     },
@@ -115,7 +117,7 @@ const Projects = () => {
         textTransform="uppercase"
         letterSpacing="2px"
       >
-        Projetos:
+        {t('projectsTitle')}
       </Heading>
       
       <Box>
@@ -163,7 +165,7 @@ const Projects = () => {
                 w="100%"
               >
                 <Text fontSize="1.2em" mt="10px" whiteSpace="nowrap" mr="0.5em">
-                  Tecnologias Utilizadas:
+                  {t('technologiesUsed')}
                 </Text>
                 <Box
                   as="ul"
@@ -196,7 +198,7 @@ const Projects = () => {
                   borderRadius="10px"
                   _hover={{ color: 'white', textDecoration: 'none' }}
                 >
-                  {project.app ? "Apk" : "Site"}
+                  {project.app ? t('apk') : t('site')}
                 </Link>
                 
                 <Link
@@ -231,7 +233,7 @@ const Projects = () => {
                     }
                   }}
                 >
-                  Código
+                  {t('code')}
                 </Link>
               </Box>
             </Box>
@@ -249,7 +251,7 @@ const Projects = () => {
           _hover={{ textDecoration: 'none' }}
         >
           <FaArrowUp style={{ display: 'inline', marginRight: '8px' }} />
-          Voltar ao topo
+          {t('backToTop')}
         </Link>
       </Box>
     </Box>

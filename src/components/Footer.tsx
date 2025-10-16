@@ -1,7 +1,9 @@
 import { Box, Flex, Heading, Link } from '@chakra-ui/react';
 import { FaReact } from "react-icons/fa6";
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
   return (
     <Box as="footer">
       <Flex
@@ -14,7 +16,7 @@ const Footer = () => {
         flexDirection="row"
       >
         <Heading as="h4" size="md" mb={4}>
-          Tecnologias Utilizadas:
+          {t('technologiesUsedFooter')}
         </Heading>
         
         <Flex
@@ -41,7 +43,7 @@ const Footer = () => {
             textDecoration: 'none'
           }}
         >
-          Código desta página
+          {t('pageCode')}
         </Link>
       </Flex>
     </Box>

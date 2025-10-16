@@ -2,8 +2,10 @@
 import { useState } from 'react';
 import { Box, Heading, Image, Button, Link, Flex } from '@chakra-ui/react';
 import { FaCopy } from 'react-icons/fa';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contacts = () => {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const email = "danielrossinatti15@gmail.com";
 
@@ -47,7 +49,7 @@ const Contacts = () => {
         />
         
         <Heading as="h1" mb="0.5em">
-          Contatos:
+          {t('contactsTitle')}
         </Heading>
         
         
@@ -98,7 +100,7 @@ const Contacts = () => {
                   bg: 'rgba(255, 255, 255, 0.1)'
                 }}
                 _after={copied ? {
-                  content: '"Copiado"',
+                  content: `"${t('copied')}"`,
                   display: 'block',
                   color: 'white',
                   position: 'absolute',
