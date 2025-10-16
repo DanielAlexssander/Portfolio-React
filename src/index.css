@@ -1,11 +1,41 @@
-/* Global reset for portfolio */
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: "Cabin", sans-serif;
+  font-size: 16px;
+  position: absolute;
+  overflow-x: hidden;
+}
+
+/* Color classes */
+.orange {
+  color: orange;
+}
+.blue {
+  color: #006bbf;
+}
+.yellow {
+  color: yellow;
+}
+.pink {
+  color: pink;
+}
+.green {
+  color: green;
+}
+.white {
+  color: white;
+}
+.flex {
+  display: flex;
 }

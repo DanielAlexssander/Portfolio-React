@@ -1,3 +1,6 @@
+import { Box, Heading, Text, Image, Link } from '@chakra-ui/react';
+import { FaArrowUp } from 'react-icons/fa';
+
 interface Project {
   app?: boolean;
   urlGif: string;
@@ -92,43 +95,164 @@ const Projects = () => {
   ];
 
   return (
-    <section className="projects" id="projects">
-      <h1 className="tittleProject">Projetos:</h1>
-      <div className="sectionProjects">
+    <Box
+      as="section"
+      id="projects"
+      w="100%"
+      display="flex"
+      flexDirection="column"
+      textAlign="center"
+      color="white"
+      bgImage="linear-gradient(240deg, rgb(8, 8, 8), rgb(32, 32, 32) 80%)"
+      pt="3em"
+    >
+      <Heading
+        as="h1"
+        color="rgb(0, 59, 187)"
+        fontSize="1.8em"
+        mb="3em"
+        mt="1.5em"
+        textTransform="uppercase"
+        letterSpacing="2px"
+      >
+        Projetos:
+      </Heading>
+      
+      <Box>
         {projects.map((project, index) => (
-          <div key={index} className="project">
-            <img 
-              className={project.app ? "gif-app" : "gif"} 
-              src={project.urlGif} 
-              alt={project.nameProject} 
+          <Box
+            key={index}
+            w="fit-content"
+            mb={{ base: '8em', sm: '7em', md: '6em', lg: '5em', xl: '3em' }}
+            position="relative"
+            left={{ base: 0, md: index % 2 === 0 ? '10%' : 'auto' }}
+            right={{ base: 0, md: index % 2 === 1 ? '10%' : 'auto' }}
+            ml={{ base: 'auto', md: index % 2 === 1 ? 'auto' : 'initial' }}
+            textAlign={{ base: 'center', md: index % 2 === 0 ? 'left' : 'right' }}
+            display={{ base: 'flex', md: 'block' }}
+            flexDirection={{ base: 'column', md: 'initial' }}
+            justifyContent={{ base: 'center', md: 'initial' }}
+            alignItems={{ base: 'center', md: 'initial' }}
+          >
+            <Image
+              src={project.urlGif}
+              alt={project.nameProject}
+              w={project.app ? { base: '200px', md: '200px' } : { base: '350px', md: '460px' }}
+              h={project.app ? { base: '380px', md: '380px' } : { base: '200px', md: '260px' }}
+              ml={project.app && index % 2 === 0 ? { base: 0, md: '5em' } : 0}
+              mr={project.app && index % 2 === 1 ? { base: 0, md: '5em' } : 0}
             />
-            <div className="contentProject">
-              <div className="informations-content">
-                <h1 className="nameProject">{project.nameProject}</h1>
-                <div className="tecDiv flex blue">
-                  <h2 className="technologyUsed">Tecnologias Utilizadas:</h2>
-                  <ul className="ulTec flex" dangerouslySetInnerHTML={{ __html: project.liTec }} />
-                </div>
-                <p className="informations">{project.informations}</p>
-                <div className="btn">
-                  <a className="siteBtn" target="_blank" href={project.urlSite}>
-                    {project.app ? "Apk" : "Site"}
-                  </a>
-                  <a className="codBtn" target="_blank" href={project.urlCod}>
-                    Código
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+            
+            <Box
+              w={{ base: '350px', md: '500px' }}
+              bg="#0000004f"
+              borderRadius="8px"
+              p="2em"
+              position="relative"
+              bottom={{ base: 0, md: '50px' }}
+              left={{ base: 0, md: index % 2 === 0 ? '150px' : 'auto' }}
+              right={{ base: 0, md: index % 2 === 1 ? '150px' : 'auto' }}
+            >
+              <Heading as="h1" mb="1em">{project.nameProject}</Heading>
+              
+              <Box
+                display="flex"
+                color="rgb(0, 59, 187)"
+                mt="0.5em"
+                justifyContent={{ base: 'center', md: index % 2 === 1 ? 'flex-end' : 'flex-start' }}
+                w="100%"
+              >
+                <Text fontSize="1.2em" mt="10px" whiteSpace="nowrap" mr="0.5em">
+                  Tecnologias Utilizadas:
+                </Text>
+                <Box
+                  as="ul"
+                  sx={{ listStyle: 'none' }}
+                  fontSize={{ base: '1.5em', md: '2em' }}
+                  mb="0.5em"
+                  display="flex"
+                  dangerouslySetInnerHTML={{ __html: project.liTec }}
+                />
+              </Box>
+              
+              <Text mb="2em" fontSize={{ base: '1em', md: 'inherit' }}>
+                {project.informations}
+              </Text>
+              
+              <Box>
+                <Link
+                  href={project.urlSite}
+                  target="_blank"
+                  textDecoration="none"
+                  position="relative"
+                  border="solid rgb(0, 59, 187) 1px"
+                  p="0.5em 1.8em 0.5em 1.8em"
+                  fontWeight="bold"
+                  fontSize="1.1em"
+                  transition="0.3s"
+                  mr="5em"
+                  color="rgb(32, 32, 32)"
+                  bg="rgb(0, 59, 187)"
+                  borderRadius="10px"
+                  _hover={{ color: 'white', textDecoration: 'none' }}
+                >
+                  {project.app ? "Apk" : "Site"}
+                </Link>
+                
+                <Link
+                  href={project.urlCod}
+                  target="_blank"
+                  textDecoration="none"
+                  position="relative"
+                  border="solid rgb(0, 59, 187) 1px"
+                  p="0.5em 1.8em 0.5em 1.8em"
+                  fontWeight="bold"
+                  fontSize="1.1em"
+                  transition="0.3s"
+                  color="white"
+                  zIndex={1}
+                  _before={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    bg: 'rgb(0, 59, 187)',
+                    transition: 'transform 0.5s ease-in-out',
+                    transform: 'scaleX(0)',
+                    transformOrigin: 'left',
+                    zIndex: -1
+                  }}
+                  _hover={{
+                    textDecoration: 'none',
+                    '&::before': {
+                      transform: 'scaleX(1)'
+                    }
+                  }}
+                >
+                  Código
+                </Link>
+              </Box>
+            </Box>
+          </Box>
         ))}
-      </div>
-      <div className="divBackToTop">
-        <a className="backToTop" href="#">
-          <i className="fa-solid fa-arrow-up-long"></i> Voltar ao topo
-        </a>
-      </div>
-    </section>
+      </Box>
+      
+      <Box pb="1em">
+        <Link
+          href="#"
+          fontSize="1.3em"
+          color="white"
+          textDecoration="none"
+          pb="1em"
+          _hover={{ textDecoration: 'none' }}
+        >
+          <FaArrowUp style={{ display: 'inline', marginRight: '8px' }} />
+          Voltar ao topo
+        </Link>
+      </Box>
+    </Box>
   );
 };
 
