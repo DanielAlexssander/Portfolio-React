@@ -15,14 +15,13 @@ const Footer = () => {
         p="1em 0 1em 0"
         flexDirection="row"
       >
-        <Heading as="h4" size="md" mb={4}>
+        <Heading as="h4" size="md">
           {t('technologiesUsedFooter')}
         </Heading>
         
         <Flex
           sx={{ listStyle: 'none' }}
           fontSize="2em"
-          mb={4}
         >
           <Box ml="1em">
             <FaReact color="#61DAFB" />
