@@ -9,7 +9,12 @@ import Footer from './components/Footer';
 function App() {
   return (
     <LanguageProvider>
-      <Box>
+      <Box 
+        w="100%" 
+        overflowX="hidden"
+        bg="#000"
+        minH="100vh"
+      >
         <Header />
         <TechSlider />
         <Projects />

@@ -98,8 +98,10 @@ const Header = () => {
           bg="transparent"
           border="none"
           color="white"
-          fontSize="1.6em"
-          p={0}
+          fontSize="1.4em"
+          p={2}
+          _hover={{ bg: 'rgba(255, 255, 255, 0.1)' }}
+          borderRadius="md"
         >
           {isNavOpen ? <FaTimes /> : <FaBars />}
         </Button>
@@ -166,53 +168,80 @@ const Header = () => {
       </Box>
 
       <Flex
-        fontSize="1.3em"
+        fontSize={{ base: '1.1em', md: '1.3em' }}
         color="white"
         w="100%"
-        h="100vh"
+        minH="100vh"
         justifyContent="center"
         alignItems="center"
         id="home"
         pb={{ base: '5em', md: 0 }}
+        px={{ base: '1rem', md: '2rem' }}
+        direction={{ base: 'column', lg: 'row' }}
       >
         <Box
-          m={{ base: '2em 2em 0 2em', md: '0 2em 0 2em' }}
-          maxW={{ base: '90%', sm: '80%', md: '70%', lg: '60%', xl: '40%' }}
-          bg="#00000036"
-          p="2.5em 2.5em 4em 2.5em"
-          borderRadius="10px"
+          maxW={{ base: '95%', sm: '85%', md: '75%', lg: '50%', xl: '40%' }}
+          bg="rgba(0, 0, 0, 0.4)"
+          p={{ base: '2rem', md: '2.5rem 2.5rem 3rem 2.5rem' }}
+          borderRadius="15px"
+          backdropFilter="blur(10px)"
+          border="1px solid rgba(255, 255, 255, 0.1)"
+          mb={{ base: '2rem', lg: 0 }}
         >
-          <Box>
-            <Heading as="h1" mb="1em">Daniel Alexssander</Heading>
+          <Box textAlign={{ base: 'center', md: 'left' }}>
+            <Heading 
+              as="h1" 
+              mb="1em" 
+              fontSize={{ base: '1.8rem', md: '2.2rem', lg: '2.5rem' }}
+              fontWeight="700"
+            >
+              Daniel Alexssander
+            </Heading>
             <Heading
               as="h2"
-              pl={{ base: '3.5em', md: '5em' }}
+              pl={{ base: 0, md: '2em', lg: '3em' }}
               mb="1em"
               color="rgb(0, 59, 187)"
-              transition="0.5s"
-              fontSize={{ base: '1.1em', md: 'inherit' }}
-              _hover={{ pl: { base: '4.5em', md: '6.5em' } }}
+              transition="all 0.3s ease"
+              fontSize={{ base: '1.2rem', md: '1.4rem', lg: '1.6rem' }}
+              _hover={{ 
+                pl: { base: 0, md: '2.5em', lg: '4em' },
+                color: 'rgb(0, 107, 175)'
+              }}
             >
               {t('frontendDeveloper')}
             </Heading>
           </Box>
-          <Text mb="3em">
+          <Text 
+            mb="3em" 
+            fontSize={{ base: '0.95rem', md: '1rem' }}
+            lineHeight="1.6"
+            textAlign={{ base: 'center', md: 'left' }}
+          >
             {t('headerDescription').replace('{greeting}', greeting).replace('{age}', age.toString())}
           </Text>
-          <Box>
+          <Flex 
+            gap={{ base: '1rem', md: '2rem' }}
+            justify={{ base: 'center', md: 'flex-start' }}
+            direction={{ base: 'column', sm: 'row' }}
+            align="center"
+          >
             <Link
               href="#projects"
               textDecoration="none"
               fontWeight="bold"
-              color="rgb(209, 209, 209)"
-              p="35px 15px 35px 15px"
-              border="4.5px solid"
-              borderColor="rgb(0, 59, 187) transparent rgb(0, 59, 187) rgb(0, 59, 187)"
-              borderRadius="50%"
-              boxShadow="rgb(0, 59, 187) -15px 0px 20px -18px"
-              transition="0.5s"
-              mr="3em"
-              _hover={{ boxShadow: 'rgb(0, 59, 187) -15px 0px 20px -12px', textDecoration: 'none' }}
+              color="white"
+              bg="rgb(0, 59, 187)"
+              px={{ base: '2rem', md: '2.5rem' }}
+              py={{ base: '0.8rem', md: '1rem' }}
+              borderRadius="25px"
+              transition="all 0.3s ease"
+              _hover={{ 
+                bg: 'rgb(0, 107, 175)', 
+                textDecoration: 'none',
+                transform: 'translateY(-2px)',
+                boxShadow: '0 8px 25px rgba(0, 59, 187, 0.3)'
+              }}
             >
               {t('projects')}
             </Link>
@@ -220,28 +249,38 @@ const Header = () => {
               href="#container-contacts"
               textDecoration="none"
               fontWeight="bold"
-              color="rgb(209, 209, 209)"
-              p="35px 15px 35px 15px"
-              border="4.5px solid"
-              borderColor="rgb(0, 59, 187) transparent rgb(0, 59, 187) rgb(0, 59, 187)"
-              borderRadius="50%"
-              boxShadow="rgb(0, 59, 187) -15px 0px 20px -18px"
-              transition="0.5s"
-              _hover={{ boxShadow: 'rgb(0, 59, 187) -15px 0px 20px -12px', textDecoration: 'none' }}
+              color="rgb(0, 59, 187)"
+              border="2px solid rgb(0, 59, 187)"
+              px={{ base: '2rem', md: '2.5rem' }}
+              py={{ base: '0.8rem', md: '1rem' }}
+              borderRadius="25px"
+              transition="all 0.3s ease"
+              _hover={{ 
+                bg: 'rgb(0, 59, 187)',
+                color: 'white',
+                textDecoration: 'none',
+                transform: 'translateY(-2px)',
+                boxShadow: '0 8px 25px rgba(0, 59, 187, 0.3)'
+              }}
             >
               {t('contacts')}
             </Link>
-          </Box>
+          </Flex>
         </Box>
         <Image
           src="/logo.png"
-          alt=""
-          w="400px"
-          h="400px"
-          ml="2em"
+          alt="Daniel Alexssander"
+          w={{ base: '250px', md: '300px', lg: '350px', xl: '400px' }}
+          h={{ base: '250px', md: '300px', lg: '350px', xl: '400px' }}
+          ml={{ base: 0, lg: '2em' }}
           borderRadius="50%"
-          boxShadow="#0a0c10 10px 10px 50px"
-          display={{ base: 'none', lg: 'block' }}
+          boxShadow="0 20px 60px rgba(10, 12, 16, 0.8)"
+          display={{ base: 'block', lg: 'block' }}
+          transition="all 0.3s ease"
+          _hover={{
+            transform: 'scale(1.05)',
+            boxShadow: '0 25px 80px rgba(0, 59, 187, 0.3)'
+          }}
         />
       </Flex>
     </Box>

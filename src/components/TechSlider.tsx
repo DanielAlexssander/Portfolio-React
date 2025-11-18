@@ -4,15 +4,15 @@ import { SiFlutter, SiTypescript } from 'react-icons/si';
 
 const TechSlider = () => {
   const techIcons = [
-    <FaHtml5 key="html" color="white" size={75} />,
-    <FaCss3Alt key="css" color="white" size={75} />,
-    <FaReact key="react" color="white" size={75} />,
-    <SiFlutter key="flutter" color="white" size={75} />,
-    <FaJs key="js" color="white" size={75} />,
-    <FaSass key="sass" color="white" size={75} />,
-    <SiTypescript key="ts" color="white" size={75} />,
-    <FaNodeJs key="node" color="white" size={75} />,
-    <FaGitAlt key="git" color="white" size={75} />
+    <FaHtml5 key="html" color="#E34F26" size={75} />,
+    <FaCss3Alt key="css" color="#1572B6" size={75} />,
+    <FaReact key="react" color="#61DAFB" size={75} />,
+    <SiFlutter key="flutter" color="#02569B" size={75} />,
+    <FaJs key="js" color="#F7DF1E" size={75} />,
+    <FaSass key="sass" color="#CC6699" size={75} />,
+    <SiTypescript key="ts" color="#3178C6" size={75} />,
+    <FaNodeJs key="node" color="#339933" size={75} />,
+    <FaGitAlt key="git" color="#F05032" size={75} />
   ];
 
   return (

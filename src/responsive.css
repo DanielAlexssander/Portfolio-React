@@ -1,0 +1,93 @@
+/* Additional Responsive Styles */
+
+/* Container Queries for Modern Browsers */
+@container (max-width: 768px) {
+  .responsive-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #000;
+    --text-color: #fff;
+    --accent-color: rgb(0, 59, 187);
+  }
+}
+
+/* Print Styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Landscape Orientation on Mobile */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .mobile-landscape-adjust {
+    padding: 1rem 0;
+  }
+}
+
+/* Very Small Screens */
+@media screen and (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .ultra-small-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* Large Screens */
+@media screen and (min-width: 1920px) {
+  .container-large {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .touch-friendly {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Hover Capable Devices */
+@media (hover: hover) and (pointer: fine) {
+  .hover-effects:hover {
+    transform: translateY(-2px);
+  }
+}
