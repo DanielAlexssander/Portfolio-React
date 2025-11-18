@@ -268,7 +268,7 @@ const Header = () => {
           </Flex>
         </Box>
         <Image
-          src="/logo.png"
+          src="./logo.png"
           alt="Daniel Alexssander"
           w={{ base: '250px', md: '300px', lg: '350px', xl: '400px' }}
           h={{ base: '250px', md: '300px', lg: '350px', xl: '400px' }}

@@ -34,7 +34,7 @@ const Projects = () => {
   const projects: Project[] = [
     {
       app: true,
-      urlGif: "/exchange-rate.gif",
+      urlGif: "./exchange-rate.gif",
       nameProject: "Exchange Rate",
       liTec: "Flutter",
       informations: t('exchangeRateDesc'),
@@ -42,7 +42,7 @@ const Projects = () => {
       urlCod: "https://github.com/DanielAlexssander/Exchange-Rate",
     },
     {
-      urlGif: "/hubgram.gif",
+      urlGif: "./hubgram.gif",
       nameProject: "HubGram",
       liTec: "React, Redux, Express, Node",
       informations: t('hubgramDesc'),
@@ -50,7 +50,7 @@ const Projects = () => {
       urlCod: "https://github.com/DanielAlexssander/HubGram-FronEnd",
     },
     {
-      urlGif: "/vet-pata-amiga.gif",
+      urlGif: "./vet-pata-amiga.gif",
       nameProject: "Veterinária Pata Amiga",
       liTec: "Next, Tailwind, TypeScript, Node",
       informations: t('vetDesc'),
@@ -58,7 +58,7 @@ const Projects = () => {
       urlCod: "https://github.com/DanielAlexssander/Vet-Pata-Amiga",
     },
     {
-      urlGif: "/mini-blog.gif",
+      urlGif: "./mini-blog.gif",
       nameProject: "Mini Blog",
       liTec: "React, Firebase, Node, JavaScript, CSS",
       informations: t('miniBlogDesc'),
@@ -66,7 +66,7 @@ const Projects = () => {
       urlCod: "https://github.com/DanielAlexssander/miniblog",
     },
     {
-      urlGif: "/memorycard.gif",
+      urlGif: "./memorycard.gif",
       nameProject: "Memory Game",
       liTec: "HTML, TypeScript, Sass, Node",
       informations: t('memoryGameDesc'),
@@ -74,7 +74,7 @@ const Projects = () => {
       urlCod: "https://github.com/DanielAlexssander/Memory-Game",
     },
     {
-      urlGif: "/checklist.gif",
+      urlGif: "./checklist.gif",
       nameProject: "CheckList",
       liTec: "HTML, CSS, JavaScript",
       informations: t('checklistDesc'),
@@ -82,7 +82,7 @@ const Projects = () => {
       urlCod: "https://github.com/DanielAlexssander/CheckList/",
     },
     {
-      urlGif: "/strata.gif",
+      urlGif: "./strata.gif",
       nameProject: "Strata",
       liTec: "HTML, CSS",
       informations: t('strataDesc'),
@@ -90,7 +90,7 @@ const Projects = () => {
       urlCod: "https://github.com/DanielAlexssander/Strata/",
     },
     {
-      urlGif: "/rangehotels.gif",
+      urlGif: "./rangehotels.gif",
       nameProject: "Range Hotels",
       liTec: "HTML, CSS",
       informations: t('rangeHotelsDesc'),
