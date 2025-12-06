@@ -119,11 +119,14 @@ const Header = () => {
             <DrawerBody>
               <Flex direction="column" gap={4}>
                 {[t('home'), t('projects'), t('contacts'), t('github')].map((item, index) => {
-                  const hrefs = ['#', '#projects', '#container-contacts', 'https://github.com/DanielAlexssander'];
+                  const ids = ['home', 'projects', 'container-contacts', ''];
+                  const isExternal = index === 3;
                   return (
-                    <Link
+                    <Box
                       key={item}
-                      href={hrefs[index]}
+                      as="a"
+                      href={isExternal ? 'https://github.com/DanielAlexssander' : undefined}
+                      target={isExternal ? '_blank' : undefined}
                       color="white"
                       textDecoration="none"
                       fontWeight="bold"
@@ -131,14 +134,21 @@ const Header = () => {
                       p={3}
                       borderRadius="md"
                       transition="all 0.3s ease"
+                      cursor="pointer"
                       _hover={{ 
                         bg: 'rgba(255, 255, 255, 0.1)',
                         transform: 'scale(1.05)'
                       }}
-                      onClick={onClose}
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        if (!isExternal) {
+                          e.preventDefault();
+                          document.getElementById(ids[index])?.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        onClose();
+                      }}
                     >
                       {item}
-                    </Link>
+                    </Box>
                   );
                 })}
               </Flex>
@@ -151,7 +161,8 @@ const Header = () => {
           display={{ base: 'none', md: 'flex' }}
         >
           {[t('home'), t('projects'), t('contacts'), t('github')].map((item, index) => {
-            const hrefs = ['#', '#projects', '#container-contacts', 'https://github.com/DanielAlexssander'];
+            const ids = ['home', 'projects', 'container-contacts', ''];
+            const isExternal = index === 3;
             return (
               <Box
                 key={item}
@@ -162,12 +173,15 @@ const Header = () => {
                 transition="transform 0.3s ease"
                 _hover={{ transform: 'scale(1.05)' }}
               >
-                <Link
-                  href={hrefs[index]}
+                <Box
+                  as="a"
+                  href={isExternal ? 'https://github.com/DanielAlexssander' : undefined}
+                  target={isExternal ? '_blank' : undefined}
                   position="relative"
                   color="white"
                   textDecoration="none"
                   fontWeight="bold"
+                  cursor="pointer"
                   transition="color 0.3s ease"
                   _hover={{ color: 'rgba(255, 255, 255, 1)' }}
                   _after={{
@@ -186,9 +200,15 @@ const Header = () => {
                       transform: 'scale(1, 1)'
                     }
                   }}
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                    if (!isExternal) {
+                      e.preventDefault();
+                      document.getElementById(ids[index])?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                 >
                   {item}
-                </Link>
+                </Box>
               </Box>
             );
           })}
@@ -254,8 +274,8 @@ const Header = () => {
             direction={{ base: 'row', sm: 'row' }}
             align="center"
           >
-            <Link
-              href="#projects"
+            <Box
+              as="a"
               textDecoration="none"
               fontWeight="bold"
               color="white"
@@ -263,6 +283,7 @@ const Header = () => {
               px={{ base: '2rem', md: '2.5rem' }}
               py={{ base: '0.8rem', md: '1rem' }}
               borderRadius="25px"
+              cursor="pointer"
               transition="all 0.3s ease"
               _hover={{ 
                 bg: 'rgb(0, 107, 175)', 
@@ -270,11 +291,15 @@ const Header = () => {
                 transform: 'translateY(-2px)',
                 boxShadow: '0 8px 25px rgba(0, 59, 187, 0.3)'
               }}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault();
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               {t('projects')}
-            </Link>
-            <Link
-              href="#container-contacts"
+            </Box>
+            <Box
+              as="a"
               textDecoration="none"
               fontWeight="bold"
               color="rgb(0, 59, 187)"
@@ -282,6 +307,7 @@ const Header = () => {
               px={{ base: '2rem', md: '2.5rem' }}
               py={{ base: '0.8rem', md: '1rem' }}
               borderRadius="25px"
+              cursor="pointer"
               transition="all 0.3s ease"
               _hover={{ 
                 bg: 'rgb(0, 59, 187)',
@@ -290,9 +316,13 @@ const Header = () => {
                 transform: 'translateY(-2px)',
                 boxShadow: '0 8px 25px rgba(0, 59, 187, 0.3)'
               }}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault();
+                document.getElementById('container-contacts')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               {t('contacts')}
-            </Link>
+            </Box>
           </Flex>
         </Box>
         <Image

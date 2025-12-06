@@ -280,23 +280,28 @@ const Projects = () => {
           flexDirection="row"
           justifyContent="center"
           alignItems="center">
-          <Link
+          <Box
+            as="a"
             display="flex"
             flexDirection="row"
             gap={2}
-            href="#"
             fontSize="1.2rem"
             color="white"
             textDecoration="none"
+            cursor="pointer"
             transition="all 0.3s ease"
             _hover={{ 
               color: 'rgb(0, 59, 187)',
               textDecoration: 'none'
             }}
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           >
             <FaArrowUp />
             {t('backToTop')}
-          </Link>
+          </Box>
         </Box>
       </Box>
     </Box>
