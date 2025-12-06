@@ -38,7 +38,7 @@ const translations = {
     vetDesc: 'Desenvolvido em Next.js, \'Veterinária Pata Amiga\' é uma empresa fictícia. É um projeto de landing page para uma empresa de Veterinário.',
     miniBlogDesc: 'Projeto feito em React, consiste em um Blog com todas as funcionalidades em react usando o banco de dados do Firebase.',
     memoryGameDesc: 'Este projeto é um jogo da memoria em TypeScript.',
-    checklistDesc: 'Este projeto tem funcionalidades como: Adicionar/Remover tarefa e editar o nome da tarefa já criada. Para que isso funcione corretamente, a CheckList está sendo armazenada no seu navegador (LocalStorage) fazendo assim para que não perca os dados salvos.',
+    checklistDesc: 'Funcionalidades: Adicionar/Remover tarefas e editar nomes. Dados salvos no LocalStorage do navegador para persistência.',
     strataDesc: 'O projeto Strata foi desenvolvido com base no design da "HTML5 UP".',
     rangeHotelsDesc: 'A Range Hotels é um projeto responsivo. Compatível com computador, tablet e celular.',
     
@@ -76,7 +76,7 @@ const translations = {
     vetDesc: 'Developed in Next.js, \'Veterinária Pata Amiga\' is a fictional company. It is a landing page project for a Veterinary company.',
     miniBlogDesc: 'Project made in React, consists of a Blog with all functionalities in react using Firebase database.',
     memoryGameDesc: 'This project is a memory game in TypeScript.',
-    checklistDesc: 'This project has functionalities like: Add/Remove task and edit the name of the already created task. For this to work correctly, the CheckList is being stored in your browser (LocalStorage) so you don\'t lose the saved data.',
+    checklistDesc: 'Features: Add/Remove tasks and edit names. Data saved in browser LocalStorage for persistence.',
     strataDesc: 'The Strata project was developed based on the "HTML5 UP" design.',
     rangeHotelsDesc: 'Range Hotels is a responsive project. Compatible with computer, tablet and mobile.',
     

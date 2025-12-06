@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Heading, Text, Link, Button, Image, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
-import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
+import { Box, Flex, Heading, Text, Link, Button, Image, Menu, MenuButton, MenuList, MenuItem, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from '@chakra-ui/react';
+import { FaBars, FaChevronDown } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import BrazilIcon from './Icons/BrazilIcon';
 import UsaIcon from './Icons/UsaIcon';
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [age, setAge] = useState(0);
   const [greeting, setGreeting] = useState('');
 
@@ -42,6 +42,7 @@ const Header = () => {
         w="99%"
         display="flex"
         justifyContent="center"
+        alignItems="center"
         textTransform="uppercase"
         fontSize="1.2em"
         letterSpacing="1px"
@@ -94,7 +95,9 @@ const Header = () => {
         
         <Button
           display={{ base: 'block', md: 'none' }}
-          onClick={() => setIsNavOpen(!isNavOpen)}
+          onClick={onOpen}
+          position="absolute"
+          right={3}
           bg="transparent"
           border="none"
           color="white"
@@ -103,23 +106,49 @@ const Header = () => {
           _hover={{ bg: 'rgba(255, 255, 255, 0.1)' }}
           borderRadius="md"
         >
-          {isNavOpen ? <FaTimes /> : <FaBars />}
+          <FaBars />
         </Button>
+        
+        <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="full">
+          <DrawerOverlay />
+          <DrawerContent bg="linear-gradient(180deg, #002d54 0%, #022f5c 37.22%, #000613 100%)">
+            <DrawerCloseButton color="white" />
+            <DrawerHeader color="white" textTransform="uppercase" letterSpacing="1px">
+              Menu
+            </DrawerHeader>
+            <DrawerBody>
+              <Flex direction="column" gap={4}>
+                {[t('home'), t('projects'), t('contacts'), t('github')].map((item, index) => {
+                  const hrefs = ['#', '#projects', '#container-contacts', 'https://github.com/DanielAlexssander'];
+                  return (
+                    <Link
+                      key={item}
+                      href={hrefs[index]}
+                      color="white"
+                      textDecoration="none"
+                      fontWeight="bold"
+                      fontSize="1.2em"
+                      p={3}
+                      borderRadius="md"
+                      transition="all 0.3s ease"
+                      _hover={{ 
+                        bg: 'rgba(255, 255, 255, 0.1)',
+                        transform: 'scale(1.05)'
+                      }}
+                      onClick={onClose}
+                    >
+                      {item}
+                    </Link>
+                  );
+                })}
+              </Flex>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
         <Box
           as="ul"
           pl={0}
-          display={{ base: isNavOpen ? 'block' : 'none', md: 'flex' }}
-          bg={{ base: 'rgba(0,0,0,0.9)', md: 'transparent' }}
-          position={{ base: 'absolute', md: 'static' }}
-          left={{ base: 0, md: 'auto' }}
-          top={{ base: '45px', md: 'auto' }}
-          p={{ base: '1em', md: 0 }}
-          borderRadius={{ base: '10px', md: 0 }}
-          zIndex={9999}
-          maxH={{ base: isNavOpen ? '1000px' : '0', md: 'auto' }}
-          overflow={{ base: 'hidden', md: 'visible' }}
-          transition="visibility 0.5s, max-height 0.5s"
-          visibility={{ base: isNavOpen ? 'visible' : 'hidden', md: 'visible' }}
+          display={{ base: 'none', md: 'flex' }}
         >
           {[t('home'), t('projects'), t('contacts'), t('github')].map((item, index) => {
             const hrefs = ['#', '#projects', '#container-contacts', 'https://github.com/DanielAlexssander'];
@@ -127,11 +156,11 @@ const Header = () => {
               <Box
                 key={item}
                 as="li"
-                display={{ base: 'block', md: 'inline-block' }}
+                display="inline-block"
                 listStyleType="none"
-                ml={{ base: 0, md: index === 0 ? 0 : '2em' }}
-                mb={{ base: index === 3 ? 0 : '1em', md: 0 }}
-                p={{ base: '1em', md: 0 }}
+                ml={index === 0 ? 0 : '2em'}
+                transition="transform 0.3s ease"
+                _hover={{ transform: 'scale(1.05)' }}
               >
                 <Link
                   href={hrefs[index]}
@@ -139,9 +168,8 @@ const Header = () => {
                   color="white"
                   textDecoration="none"
                   fontWeight="bold"
-                  transition="0.3s"
-                  p={{ base: '1em', md: 0 }}
-                  _hover={{ color: 'rgb(0, 55, 173)' }}
+                  transition="color 0.3s ease"
+                  _hover={{ color: 'rgba(255, 255, 255, 1)' }}
                   _after={{
                     content: '""',
                     position: 'absolute',
@@ -223,7 +251,7 @@ const Header = () => {
           <Flex 
             gap={{ base: '1rem', md: '2rem' }}
             justify={{ base: 'center', md: 'flex-start' }}
-            direction={{ base: 'column', sm: 'row' }}
+            direction={{ base: 'row', sm: 'row' }}
             align="center"
           >
             <Link
@@ -270,8 +298,8 @@ const Header = () => {
         <Image
           src="./logo.png"
           alt="Daniel Alexssander"
-          w={{ base: '250px', md: '300px', lg: '350px', xl: '400px' }}
-          h={{ base: '250px', md: '300px', lg: '350px', xl: '400px' }}
+          w={{ base: '0', md: '0', lg: '0', xl: '400px' }}
+          h={{ base: '0', md: '0', lg: '0', xl: '400px' }}
           ml={{ base: 0, lg: '2em' }}
           borderRadius="50%"
           boxShadow="0 20px 60px rgba(10, 12, 16, 0.8)"

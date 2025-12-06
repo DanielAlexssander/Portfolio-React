@@ -117,7 +117,7 @@ const Projects = () => {
       <Box maxW="1400px" mx="auto">
         <Heading
           as="h3"
-          color="rgb(0, 59, 187)"
+          color="rgba(255, 255, 255, 1)"
           fontSize={{ base: '2rem', md: '2.5rem', lg: '3rem' }}
           mb={{ base: '3rem', md: '4rem' }}
           textAlign="center"
@@ -272,12 +272,17 @@ const Projects = () => {
           ))}
         </SimpleGrid>
         
-        <Box textAlign="center" mt="4rem">
+        <Box
+          textAlign="center"
+          mt="4rem"
+          w="100%"
+          display="flex"
+          flexDirection="row"
+          justifyContent="center"
+          alignItems="center">
           <Link
             display="flex"
             flexDirection="row"
-            justifyContent="center"
-            alignItems="center" 
             gap={2}
             href="#"
             fontSize="1.2rem"
