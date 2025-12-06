@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Heading, Text, Link, Button, Image, Menu, MenuButton, MenuList, MenuItem, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Button, Image, Menu, MenuButton, MenuList, MenuItem, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from '@chakra-ui/react';
 import { FaBars, FaChevronDown } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import BrazilIcon from './Icons/BrazilIcon';
@@ -142,9 +142,13 @@ const Header = () => {
                       onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                         if (!isExternal) {
                           e.preventDefault();
-                          document.getElementById(ids[index])?.scrollIntoView({ behavior: 'smooth' });
+                          onClose();
+                          setTimeout(() => {
+                            document.getElementById(ids[index])?.scrollIntoView({ behavior: 'smooth' });
+                          }, 300);
+                        } else {
+                          onClose();
                         }
-                        onClose();
                       }}
                     >
                       {item}
