@@ -34,6 +34,7 @@ const translations = {
     backToTop: 'Voltar ao topo',
     
     // Project descriptions
+    tiagoOnsDesc: 'Participei do desenvolvimento front-end do Tiago, a plataforma de IA Generativa do ONS. Contribuí para criar uma experiência moderna e intuitiva, facilitando o acesso inteligente a informações e aprimorando a tomada de decisões dos usuários.',
     exchangeRateDesc: 'Desenvolvido em Flutter, é um projeto que fiz para uso pessoal. O propósito do projeto é acompanhar os valores atuais das conversões das criptomoedas.',
     hubgramDesc: 'Desenvolvido em React, inspirado no Instagram, e com uma série de funcionalidades semelhantes.',
     vetDesc: 'Desenvolvido em Next.js, \'Veterinária Pata Amiga\' é uma empresa fictícia. É um projeto de landing page para uma empresa de Veterinário.',
@@ -73,6 +74,7 @@ const translations = {
     backToTop: 'Back to top',
     
     // Project descriptions
+    tiagoOnsDesc: 'I participated in the front-end development of Tiago, the ONS Generative AI platform. I contributed to creating a modern and intuitive experience, facilitating intelligent access to information and enhancing user decision-making.',
     exchangeRateDesc: 'Developed in Flutter, it is a project I made for personal use. The purpose of the project is to track the current values of cryptocurrency conversions.',
     hubgramDesc: 'Developed in React, inspired by Instagram, and with a series of similar functionalities.',
     vetDesc: 'Developed in Next.js, \'Veterinária Pata Amiga\' is a fictional company. It is a landing page project for a Veterinary company.',

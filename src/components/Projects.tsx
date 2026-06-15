@@ -8,8 +8,9 @@ interface Project {
   nameProject: string;
   liTec: string;
   informations: string;
-  urlSite: string;
-  urlCod: string;
+  urlSite?: string;
+  urlCod?: string;
+  private?: boolean;
 }
 
 const Projects = () => {
@@ -32,6 +33,14 @@ const Projects = () => {
   };
 
   const projects: Project[] = [
+    {
+      app: false,
+      urlGif: "./tiago-ons.png",
+      nameProject: "Tiago ONS",
+      liTec: "React, TypeScript",
+      informations: t('tiagoOnsDesc'),
+      private: true,
+    },
     {
       app: true,
       urlGif: "./exchange-rate.gif",
@@ -191,82 +200,84 @@ const Projects = () => {
                   color="rgba(255, 255, 255, 0.8)"
                   lineHeight="1.6"
                   mb="2rem"
-                  noOfLines={3}
+                  noOfLines={project.private ? undefined : 3}
                 >
                   {project.informations}
                 </Text>
                 
-                <Flex gap="1rem" justify="space-between" mt="auto">
-                  <Link
-                    w="50%"
-                    href={project.urlSite}
-                    target="_blank"
-                    position="relative"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    bg="rgb(0, 59, 187)"
-                    color="white"
-                    borderRadius="5px"
-                    textAlign="center"
-                    fontWeight="600"
-                    fontSize="0.9rem"
-                    textDecoration="none"
-                    transition="all 0.3s ease"
-                    _hover={{
-                      bg: 'rgb(0, 107, 175)',
-                      transform: 'translateY(-2px)',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    <Box position="absolute" top={1.5} left={1.5}><FaExternalLinkAlt style={{ marginRight: '8px' }} /></Box>
-                    {project.app ? t('apk') : t('site')}
-                  </Link>
-                  
-                  <Link
-                    w="50%"
-                    href={project.urlCod}
-                    target="_blank"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    position="relative"
-                    border="2px solid rgb(0, 59, 187)"
-                    color="white"
-                    py="0.8rem"
-                    px="1rem"
-                    borderRadius="5px"
-                    textAlign="center"
-                    fontWeight="600"
-                    fontSize="0.9rem"
-                    textDecoration="none"
-                    transition="all 0.3s ease"
-                    zIndex={1}
-                    _before={{
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: '-0.3px',
-                      bg: 'rgb(0, 59, 187)',
-                      borderRadius: '1px',
-                      transition: 'transform 0.5s ease-in-out',
-                      transform: 'scaleX(0)',
-                      transformOrigin: 'left',
-                      zIndex: -1
-                    }}
-                    _hover={{
-                      textDecoration: 'none',
-                      '&::before': {
-                        transform: 'scaleX(1)'
-                      }
-                    }}
-                  >
-                    <Box position='absolute' top={1.5} left={1.5}><FaGithub style={{ marginRight: '8px' }} /></Box>
-                    {t('code')}
-                  </Link>
-                </Flex>
+                {!project.private && (
+                  <Flex gap="1rem" justify="space-between" mt="auto">
+                    <Link
+                      w="50%"
+                      href={project.urlSite}
+                      target="_blank"
+                      position="relative"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                      bg="rgb(0, 59, 187)"
+                      color="white"
+                      borderRadius="5px"
+                      textAlign="center"
+                      fontWeight="600"
+                      fontSize="0.9rem"
+                      textDecoration="none"
+                      transition="all 0.3s ease"
+                      _hover={{
+                        bg: 'rgb(0, 107, 175)',
+                        transform: 'translateY(-2px)',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      <Box position="absolute" top={1.5} left={1.5}><FaExternalLinkAlt style={{ marginRight: '8px' }} /></Box>
+                      {project.app ? t('apk') : t('site')}
+                    </Link>
+                    
+                    <Link
+                      w="50%"
+                      href={project.urlCod}
+                      target="_blank"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                      position="relative"
+                      border="2px solid rgb(0, 59, 187)"
+                      color="white"
+                      py="0.8rem"
+                      px="1rem"
+                      borderRadius="5px"
+                      textAlign="center"
+                      fontWeight="600"
+                      fontSize="0.9rem"
+                      textDecoration="none"
+                      transition="all 0.3s ease"
+                      zIndex={1}
+                      _before={{
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: '-0.3px',
+                        bg: 'rgb(0, 59, 187)',
+                        borderRadius: '1px',
+                        transition: 'transform 0.5s ease-in-out',
+                        transform: 'scaleX(0)',
+                        transformOrigin: 'left',
+                        zIndex: -1
+                      }}
+                      _hover={{
+                        textDecoration: 'none',
+                        '&::before': {
+                          transform: 'scaleX(1)'
+                        }
+                      }}
+                    >
+                      <Box position='absolute' top={1.5} left={1.5}><FaGithub style={{ marginRight: '8px' }} /></Box>
+                      {t('code')}
+                    </Link>
+                  </Flex>
+                )}
               </Flex>
             </Flex>
           ))}
