@@ -260,6 +260,7 @@ const Header = () => {
               Daniel Rossinatti
             </Heading>
             <Heading
+              cursor="default"
               as="h2"
               pl={{ base: 0, md: '2em', lg: '3em' }}
               mb="1em"
@@ -351,9 +352,10 @@ const Header = () => {
           borderRadius="50%"
           boxShadow="0 20px 60px rgba(10, 12, 16, 0.8)"
           display={{ base: 'block', lg: 'block' }}
+          sx={{ transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
           _hover={{
             transform: 'scale(1.05)',
-            boxShadow: '0 25px 80px rgba(0, 59, 187, 0.3)'
+            boxShadow: '0 25px 80px rgba(0, 59, 187, 0.3)',
           }}
         />
       </Flex>
