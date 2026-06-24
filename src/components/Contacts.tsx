@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { Box, Heading, Image, Button, Link, Flex, Text } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { FaCopy } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
+
+const MotionFlex = motion.create(Flex as React.ComponentType<any>);
+const MotionHeading = motion.create(Heading as React.ComponentType<any>);
+const MotionImage = motion.create(Image as React.ComponentType<any>);
 
 const Contacts = () => {
   const { t } = useLanguage();
@@ -43,29 +48,37 @@ const Contacts = () => {
       px={{ base: '1rem', md: '2rem' }}
     >
       <Flex w="100%" maxW="600px" direction="column" align="center">
-        <Image
+        <MotionImage
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           src="./logo.png"
           alt="Daniel Rossinatti"
           w={{ base: '120px', sm: '150px', md: '180px', lg: '200px' }}
           h={{ base: '120px', sm: '150px', md: '180px', lg: '200px' }}
           borderRadius="50%"
-          transition="all 0.3s ease"
           bg="linear-gradient(90deg, rgba(0, 45, 84, 1) 0%, rgba(0, 107, 175, 1) 35%, rgba(0, 212, 255, 1) 100%)"
           mb="2rem"
           _hover={{ 
             transform: 'scale(1.1)',
             boxShadow: '0 15px 40px rgba(0, 59, 187, 0.4)'
           }}
+          sx={{ transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
         />
         
-        <Heading 
-          as="h1" 
+        <MotionHeading
+          as="h1"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           mb="2rem"
           fontSize={{ base: '1.8rem', md: '2.2rem', lg: '2.5rem' }}
           fontWeight="700"
         >
           {t('contactsTitle')}
-        </Heading>
+        </MotionHeading>
         
         <Flex
           w="100%"
@@ -133,7 +146,15 @@ const Contacts = () => {
           </Flex>
 
           {contacts.map((contact, index) => (
-            <Link key={index} w="100%" href={contact.href} target="_blank" _hover={{ textDecoration: 'none' }}>
+            <MotionFlex
+              key={index}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+              as="div"
+            >
+            <Link w="100%" href={contact.href} target="_blank" _hover={{ textDecoration: 'none' }}>
               <Flex
                 align="center"
                 justify="center"
@@ -154,6 +175,7 @@ const Contacts = () => {
                 <Text fontWeight="600">{contact.label}</Text>
               </Flex>
             </Link>
+            </MotionFlex>
           ))}
         </Flex>
         

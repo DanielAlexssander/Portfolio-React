@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex, Heading, Text, Button, Image, Menu, MenuButton, MenuList, MenuItem, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { FaBars, FaChevronDown } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import BrazilIcon from './Icons/BrazilIcon';
 import UsaIcon from './Icons/UsaIcon';
 import resumePdf from '../assets/Curriculo_Daniel.pdf';
+
+const MotionBox = motion.create(Box as React.ComponentType<any>);
+const MotionImage = motion.create(Image as React.ComponentType<any>);
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -234,7 +238,10 @@ const Header = () => {
         px={{ base: '1rem', md: '2rem' }}
         direction={{ base: 'column', lg: 'row' }}
       >
-        <Box
+        <MotionBox
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
           maxW={{ base: '95%', sm: '85%', md: '75%', lg: '50%', xl: '40%' }}
           bg="rgba(0, 0, 0, 0.4)"
           p={{ base: '2rem', md: '2.5rem 2.5rem 3rem 2.5rem' }}
@@ -331,8 +338,11 @@ const Header = () => {
               {t('contacts')}
             </Box>
           </Flex>
-        </Box>
-        <Image
+        </MotionBox>
+        <MotionImage
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           src="./logo.png"
           alt="Daniel Rossinatti"
           w={{ base: '0', md: '0', lg: '0', xl: '400px' }}
@@ -341,7 +351,6 @@ const Header = () => {
           borderRadius="50%"
           boxShadow="0 20px 60px rgba(10, 12, 16, 0.8)"
           display={{ base: 'block', lg: 'block' }}
-          transition="all 0.3s ease"
           _hover={{
             transform: 'scale(1.05)',
             boxShadow: '0 25px 80px rgba(0, 59, 187, 0.3)'

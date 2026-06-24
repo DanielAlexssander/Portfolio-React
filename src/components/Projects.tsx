@@ -1,7 +1,11 @@
 import { useState, useMemo } from 'react';
 import { Box, Heading, Text, Image, Link, Flex, SimpleGrid, Input } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { FaArrowUp, FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight, FaSearch } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
+
+const MotionFlex = motion.create(Flex as React.ComponentType<any>);
+const MotionHeading = motion.create(Heading as React.ComponentType<any>);
 
 interface Project {
   app?: boolean;
@@ -19,7 +23,12 @@ const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTech, setSelectedTech] = useState('');
-  const PROJECTS_PER_PAGE = 9;
+  const PROJECTS_PER_PAGE = 6;
+
+  const changePage = (page: number | ((p: number) => number)) => {
+    setCurrentPage(page);
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
   
   const techIcons = {
     HTML: `<i class="fa-brands fa-html5" style="color: #E34F26;"></i>`,
@@ -147,8 +156,12 @@ const Projects = () => {
       px={{ base: '1rem', md: '2rem' }}
     >
       <Box maxW="1400px" mx="auto">
-        <Heading
+        <MotionHeading
           as="h3"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
           color="rgba(255, 255, 255, 1)"
           fontSize={{ base: '2rem', md: '2.5rem', lg: '3rem' }}
           mb={{ base: '3rem', md: '4rem' }}
@@ -158,7 +171,7 @@ const Projects = () => {
           fontWeight="800"
         >
           {t('projectsTitle')}
-        </Heading>
+        </MotionHeading>
 
         <Flex
           justify="left"
@@ -216,20 +229,24 @@ const Projects = () => {
         
         <SimpleGrid columns={{ base: 1, lg: 2, xl: 3 }} spacing={{ base: 6, md: 8 }}>
           {paginatedProjects.map((project, index) => (
-            <Flex
+            <MotionFlex
               key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               direction="column"
               bg="rgba(255, 255, 255, 0.05)"
               borderRadius="20px"
               overflow="hidden"
               backdropFilter="blur(20px)"
               border="1px solid rgba(255, 255, 255, 0.1)"
-              transition="all 0.4s ease"
               _hover={{
                 transform: 'translateY(-3px)',
                 boxShadow: '0 25px 50px rgba(0, 59, 187, 0.3)',
                 border: '1px solid rgba(0, 59, 187, 0.3)'
               }}
+              sx={{ transition: 'transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease' }}
             >
               <Box position="relative" overflow="hidden">
                 <Image
@@ -356,7 +373,7 @@ const Projects = () => {
                   </Flex>
                 )}
               </Flex>
-            </Flex>
+            </MotionFlex>
           ))}
         </SimpleGrid>
 
@@ -364,7 +381,7 @@ const Projects = () => {
           <Flex justify="center" align="center" gap="1rem" mt="3rem">
             <Box
               as="button"
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              onClick={() => changePage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
               opacity={currentPage === 1 ? 0.4 : 1}
               cursor={currentPage === 1 ? 'not-allowed' : 'pointer'}
@@ -382,7 +399,7 @@ const Projects = () => {
               <Box
                 key={page}
                 as="button"
-                onClick={() => setCurrentPage(page)}
+                onClick={() => changePage(page)}
                 cursor="pointer"
                 bg={page === currentPage ? 'rgb(0, 59, 187)' : 'rgba(255, 255, 255, 0.05)'}
                 border="1px solid"
@@ -400,7 +417,7 @@ const Projects = () => {
             ))}
             <Box
               as="button"
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              onClick={() => changePage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
               opacity={currentPage === totalPages ? 0.4 : 1}
               cursor={currentPage === totalPages ? 'not-allowed' : 'pointer'}
