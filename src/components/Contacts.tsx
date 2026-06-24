@@ -45,7 +45,7 @@ const Contacts = () => {
       <Flex w="100%" maxW="600px" direction="column" align="center">
         <Image
           src="./logo.png"
-          alt="Daniel Alexssander"
+          alt="Daniel Rossinatti"
           w={{ base: '120px', sm: '150px', md: '180px', lg: '200px' }}
           h={{ base: '120px', sm: '150px', md: '180px', lg: '200px' }}
           borderRadius="50%"

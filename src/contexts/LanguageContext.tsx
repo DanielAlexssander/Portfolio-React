@@ -22,7 +22,7 @@ const translations = {
     contacts: 'Contatos',
     resume: 'Currículo',
     github: 'GitHub',
-    frontendDeveloper: 'Desenvolvedor Front-End',
+    softwareDeveloper: 'Desenvolvedor de Software',
     headerDescription: 'Olá {greeting}! Tenho {age} anos. Sou uma pessoa focada no meu objetivo, e atualmente meu objetivo é me tornar um desenvolvedor de sucesso. Dedico grande parte do meu tempo para estudar e aprimorar minhas habilidades nessa área, buscando sempre me atualizar sobre as últimas tendências e tecnologias. Meu objetivo é me tornar um profissional competente e capaz de oferecer soluções criativas e eficientes para os desafios que surgirem na área.',
     
     // Projects
@@ -32,6 +32,8 @@ const translations = {
     apk: 'Apk',
     code: 'Código',
     backToTop: 'Voltar ao topo',
+    searchPlaceholder: 'Pesquisar nome do projeto...',
+    allTechnologies: 'Todas as tecnologias',
     
     // Project descriptions
     tiagoOnsDesc: 'Participei do desenvolvimento front-end do Tiago, a plataforma de IA Generativa do ONS. Contribuí para criar uma experiência moderna e intuitiva, facilitando o acesso inteligente a informações e aprimorando a tomada de decisões dos usuários.',
@@ -62,7 +64,7 @@ const translations = {
     contacts: 'Contacts',
     resume: 'Curriculum',
     github: 'GitHub',
-    frontendDeveloper: 'Front-End Developer',
+    softwareDeveloper: 'Software Developer',
     headerDescription: 'Hello {greeting}! I am {age} years old. I am a person focused on my goal, and currently my goal is to become a successful developer. I dedicate a large part of my time to studying and improving my skills in this area, always seeking to stay updated on the latest trends and technologies. My goal is to become a competent professional capable of offering creative and efficient solutions to the challenges that arise in the area.',
     
     // Projects
@@ -72,6 +74,8 @@ const translations = {
     apk: 'Apk',
     code: 'Code',
     backToTop: 'Back to top',
+    searchPlaceholder: 'Search a project...',
+    allTechnologies: 'All technologies',
     
     // Project descriptions
     tiagoOnsDesc: 'I participated in the front-end development of Tiago, the ONS Generative AI platform. I contributed to creating a modern and intuitive experience, facilitating intelligent access to information and enhancing user decision-making.',

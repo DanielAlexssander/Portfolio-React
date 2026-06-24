@@ -250,7 +250,7 @@ const Header = () => {
               fontSize={{ base: '1.8rem', md: '2.2rem', lg: '2.5rem' }}
               fontWeight="700"
             >
-              Daniel Alexssander
+              Daniel Rossinatti
             </Heading>
             <Heading
               as="h2"
@@ -264,7 +264,7 @@ const Header = () => {
                 color: 'rgb(0, 107, 175)'
               }}
             >
-              {t('frontendDeveloper')}
+              {t('softwareDeveloper')}
             </Heading>
           </Box>
           <Text 
@@ -334,7 +334,7 @@ const Header = () => {
         </Box>
         <Image
           src="./logo.png"
-          alt="Daniel Alexssander"
+          alt="Daniel Rossinatti"
           w={{ base: '0', md: '0', lg: '0', xl: '400px' }}
           h={{ base: '0', md: '0', lg: '0', xl: '400px' }}
           ml={{ base: 0, lg: '2em' }}

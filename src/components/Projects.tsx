@@ -1,5 +1,6 @@
-import { Box, Heading, Text, Image, Link, Flex, SimpleGrid } from '@chakra-ui/react';
-import { FaArrowUp, FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { useState, useMemo } from 'react';
+import { Box, Heading, Text, Image, Link, Flex, SimpleGrid, Input } from '@chakra-ui/react';
+import { FaArrowUp, FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight, FaSearch } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface Project {
@@ -15,6 +16,10 @@ interface Project {
 
 const Projects = () => {
   const { t } = useLanguage();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTech, setSelectedTech] = useState('');
+  const PROJECTS_PER_PAGE = 9;
   
   const techIcons = {
     HTML: `<i class="fa-brands fa-html5" style="color: #E34F26;"></i>`,
@@ -114,6 +119,24 @@ const Projects = () => {
     ));
   };
 
+  const allTechs = useMemo(() => {
+    const techs = new Set<string>();
+    projects.forEach(p => p.liTec.split(', ').forEach(t => techs.add(t)));
+    return Array.from(techs).sort();
+  }, []);
+
+  const filteredProjects = projects.filter(project => {
+    const matchesName = project.nameProject.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesTech = !selectedTech || project.liTec.split(', ').includes(selectedTech);
+    return matchesName && matchesTech;
+  });
+
+  const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
+  const paginatedProjects = filteredProjects.slice(
+    (currentPage - 1) * PROJECTS_PER_PAGE,
+    currentPage * PROJECTS_PER_PAGE
+  );
+
   return (
     <Box
       as="section"
@@ -136,9 +159,63 @@ const Projects = () => {
         >
           {t('projectsTitle')}
         </Heading>
+
+        <Flex
+          justify="left"
+          gap={{ base: '1rem', md: '1.5rem' }}
+          mb={{ base: '2rem', md: '3rem' }}
+          direction={{ base: 'column', md: 'row' }}
+          align="center"
+        >
+          <Flex
+            align="center"
+            bg="rgba(255, 255, 255, 0.05)"
+            border="1px solid rgba(255, 255, 255, 0.1)"
+            borderRadius="12px"
+            px="1rem"
+            w={{ base: '100%', md: '400px' }}
+            transition="all 0.3s ease"
+            _focusWithin={{ border: '1px solid rgba(0, 59, 187, 0.5)', boxShadow: '0 0 15px rgba(0, 59, 187, 0.2)' }}
+          >
+            <FaSearch color="rgba(255, 255, 255, 0.5)" />
+            <Input
+              placeholder={t('searchPlaceholder')}
+              value={searchTerm}
+              onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
+              border="none"
+              bg="transparent"
+              color="white"
+              _placeholder={{ color: 'rgba(255, 255, 255, 0.4)' }}
+              _focus={{ boxShadow: 'none' }}
+              py="0.8rem"
+            />
+          </Flex>
+
+          <Box
+            as="select"
+            value={selectedTech}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => { setSelectedTech(e.target.value); setCurrentPage(1); }}
+            bg="rgba(255, 255, 255, 0.05)"
+            border="1px solid rgba(255, 255, 255, 0.1)"
+            borderRadius="12px"
+            color="white"
+            px="1rem"
+            py="0.8rem"
+            w={{ base: '100%', md: '220px' }}
+            cursor="pointer"
+            transition="all 0.3s ease"
+            _focus={{ border: '1px solid rgba(0, 59, 187, 0.5)', boxShadow: '0 0 15px rgba(0, 59, 187, 0.2)', outline: 'none' }}
+            sx={{ '& option': { bg: '#1a1a2e', color: 'white' } }}
+          >
+            <option value="">{t('allTechnologies')}</option>
+            {allTechs.map(tech => (
+              <option key={tech} value={tech}>{tech}</option>
+            ))}
+          </Box>
+        </Flex>
         
         <SimpleGrid columns={{ base: 1, lg: 2, xl: 3 }} spacing={{ base: 6, md: 8 }}>
-          {projects.map((project, index) => (
+          {paginatedProjects.map((project, index) => (
             <Flex
               key={index}
               direction="column"
@@ -282,6 +359,63 @@ const Projects = () => {
             </Flex>
           ))}
         </SimpleGrid>
+
+        {totalPages > 1 && (
+          <Flex justify="center" align="center" gap="1rem" mt="3rem">
+            <Box
+              as="button"
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              opacity={currentPage === 1 ? 0.4 : 1}
+              cursor={currentPage === 1 ? 'not-allowed' : 'pointer'}
+              bg="rgba(255, 255, 255, 0.05)"
+              border="1px solid rgba(255, 255, 255, 0.1)"
+              borderRadius="8px"
+              p="0.6rem 1rem"
+              color="white"
+              transition="all 0.3s ease"
+              _hover={{ bg: currentPage === 1 ? undefined : 'rgba(0, 59, 187, 0.3)' }}
+            >
+              <FaChevronLeft />
+            </Box>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+              <Box
+                key={page}
+                as="button"
+                onClick={() => setCurrentPage(page)}
+                cursor="pointer"
+                bg={page === currentPage ? 'rgb(0, 59, 187)' : 'rgba(255, 255, 255, 0.05)'}
+                border="1px solid"
+                borderColor={page === currentPage ? 'rgb(0, 59, 187)' : 'rgba(255, 255, 255, 0.1)'}
+                borderRadius="8px"
+                px="1rem"
+                py="0.5rem"
+                color="white"
+                fontWeight="600"
+                transition="all 0.3s ease"
+                _hover={{ bg: page === currentPage ? 'rgb(0, 59, 187)' : 'rgba(0, 59, 187, 0.3)' }}
+              >
+                {page}
+              </Box>
+            ))}
+            <Box
+              as="button"
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              opacity={currentPage === totalPages ? 0.4 : 1}
+              cursor={currentPage === totalPages ? 'not-allowed' : 'pointer'}
+              bg="rgba(255, 255, 255, 0.05)"
+              border="1px solid rgba(255, 255, 255, 0.1)"
+              borderRadius="8px"
+              p="0.6rem 1rem"
+              color="white"
+              transition="all 0.3s ease"
+              _hover={{ bg: currentPage === totalPages ? undefined : 'rgba(0, 59, 187, 0.3)' }}
+            >
+              <FaChevronRight />
+            </Box>
+          </Flex>
+        )}
         
         <Box
           textAlign="center"
