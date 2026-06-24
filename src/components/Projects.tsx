@@ -230,10 +230,9 @@ const Projects = () => {
         <SimpleGrid columns={{ base: 1, lg: 2, xl: 3 }} spacing={{ base: 6, md: 8 }}>
           {paginatedProjects.map((project, index) => (
             <MotionFlex
-              key={index}
+              key={`${currentPage}-${index}`}
               initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               direction="column"
               bg="rgba(255, 255, 255, 0.05)"
