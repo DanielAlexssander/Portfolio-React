@@ -27,7 +27,9 @@ const Projects = () => {
 
   const changePage = (page: number | ((p: number) => number)) => {
     setCurrentPage(page);
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
   };
   
   const techIcons = {
