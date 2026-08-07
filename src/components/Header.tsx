@@ -123,15 +123,15 @@ const Header = () => {
             </DrawerHeader>
             <DrawerBody>
               <Flex direction="column" gap={4}>
-                {[t('home'), t('projects'), t('contacts'), t('resume'), t('github')].map((item, index) => {
-                  const ids = ['home', 'projects', 'container-contacts', '', ''];
-                  const isExternal = index === 3 || index === 4;
-                  const isResume = index === 3;
+                {[t('home'), t('experience'), t('projects'), t('contacts'), t('resume'), t('github')].map((item, index) => {
+                  const ids = ['home', 'experience', 'projects', 'container-contacts', '', ''];
+                  const isExternal = index === 4 || index === 5;
+                  const isResume = index === 4;
                   return (
                     <Box
                       key={item}
                       as="a"
-                      href={isResume ? resumePdf : (index === 4 ? 'https://github.com/DanielAlexssander' : undefined)}
+                      href={isResume ? resumePdf : (index === 5 ? 'https://github.com/DanielAlexssander' : undefined)}
                       target={isExternal ? '_blank' : undefined}
                       color="white"
                       textDecoration="none"
@@ -170,10 +170,10 @@ const Header = () => {
           pl={0}
           display={{ base: 'none', md: 'flex' }}
         >
-          {[t('home'), t('projects'), t('contacts'), t('resume'), t('github')].map((item, index) => {
-            const ids = ['home', 'projects', 'container-contacts', '', ''];
-            const isExternal = index === 3 || index === 4;
-            const isResume = index === 3;
+          {[t('home'), t('experience'), t('projects'), t('contacts'), t('resume'), t('github')].map((item, index) => {
+            const ids = ['home', 'experience', 'projects', 'container-contacts', '', ''];
+            const isExternal = index === 4 || index === 5;
+            const isResume = index === 4;
             return (
               <Box
                 key={item}
@@ -186,7 +186,7 @@ const Header = () => {
               >
                 <Box
                   as="a"
-                  href={isResume ? resumePdf : (index === 4 ? 'https://github.com/DanielAlexssander' : undefined)}
+                  href={isResume ? resumePdf : (index === 5 ? 'https://github.com/DanielAlexssander' : undefined)}
                   target={isExternal ? '_blank' : undefined}
                   position="relative"
                   color="white"

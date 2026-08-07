@@ -19,11 +19,23 @@ const translations = {
     goodEvening: 'Boa noite',
     home: 'Home',
     projects: 'Projetos',
+    experience: 'Experiência',
     contacts: 'Contatos',
     resume: 'Currículo',
     github: 'GitHub',
     softwareDeveloper: 'Desenvolvedor de Software',
-    headerDescription: 'Olá {greeting}! Tenho {age} anos. Sou uma pessoa focada no meu objetivo, e atualmente meu objetivo é me tornar um desenvolvedor de sucesso. Dedico grande parte do meu tempo para estudar e aprimorar minhas habilidades nessa área, buscando sempre me atualizar sobre as últimas tendências e tecnologias. Meu objetivo é me tornar um profissional competente e capaz de oferecer soluções criativas e eficientes para os desafios que surgirem na área.',
+    headerDescription: '{greeting}! Tenho {age} anos e sou profissional de desenvolvimento de software com experiência prática em projetos corporativos e atuação em ambiente de equipe, incluindo desenvolvimento de soluções full stack e participação em iniciativas de IA generativa. Busco oportunidades para aplicar e evoluir minhas habilidades técnicas, contribuindo com soluções escaláveis, eficientes e alinhadas às necessidades do negócio.',
+    
+    // Experience
+    experienceTitle: 'Experiência Profissional:',
+    onsRole: 'Desenvolvedor de Software',
+    onsPeriod: '2024 - 2026',
+    onsDescription: 'Desenvolvimento de aplicações corporativas Full Stack utilizando tecnologias modernas de front-end (React, Vite, Angular) e back-end (Node.js, Express, FastAPI, GraphQL, .NET), com foco em soluções escaláveis, responsivas e de fácil manutenção. Participação ativa no desenvolvimento do Tiago, assistente de IA Generativa do ONS, aplicando técnicas de Engenharia de Prompt, Machine Learning, Agentes de IA e automações. Atuação com arquiteturas como Clean Architecture, Design Patterns e práticas orientadas a APIs (OpenAPI/Swagger). Implementação de pipelines CI/CD com GitHub Actions e Azure DevOps, incluindo testes automatizados de acessibilidade com Playwright, axe-core e Lighthouse CI. Experiência com Cloud (AWS, AWS Lambda), bancos de dados relacionais e NoSQL (PostgreSQL, MongoDB, Firebase), e migração de painéis Tableau para Power BI. Trabalho colaborativo em metodologias ágeis (Scrum, Kanban) em equipes multidisciplinares.',
+    
+    // Workana
+    workanaRole: 'Desenvolvedor Freelancer',
+    workanaPeriod: '2023 - 2025',
+    workanaDescription: 'Desenvolvimento de projetos web Full Stack para clientes, atuando desde a construção de interfaces modernas e responsivas até o desenvolvimento de serviços e APIs back-end. Criação de Landing Pages e aplicações voltadas à captação de leads, com soluções personalizadas conforme os objetivos de cada cliente. Atuação independente realizando levantamento de requisitos, desenvolvimento, ajustes e entrega dentro dos prazos. Gestão de múltiplos projetos com comunicação direta com clientes, garantindo alinhamento de requisitos e cumprimento de prazos. Aplicação de boas práticas para criar soluções eficientes, organizadas e de fácil manutenção.',
     
     // Projects
     projectsTitle: 'Projetos:',
@@ -61,11 +73,23 @@ const translations = {
     goodEvening: 'Good evening',
     home: 'Home',
     projects: 'Projects',
+    experience: 'Experience',
     contacts: 'Contacts',
     resume: 'Curriculum',
     github: 'GitHub',
     softwareDeveloper: 'Software Developer',
-    headerDescription: 'Hello {greeting}! I am {age} years old. I am a person focused on my goal, and currently my goal is to become a successful developer. I dedicate a large part of my time to studying and improving my skills in this area, always seeking to stay updated on the latest trends and technologies. My goal is to become a competent professional capable of offering creative and efficient solutions to the challenges that arise in the area.',
+    headerDescription: '{greeting}! I am {age} years old and a software development professional with hands-on experience in corporate projects and team environments, including full stack solution development and participation in generative AI initiatives. I seek opportunities to apply and evolve my technical skills, contributing with scalable, efficient solutions aligned with business needs.',
+    
+    // Experience
+    experienceTitle: 'Professional Experience:',
+    onsRole: 'Software Developer',
+    onsPeriod: '2024 - 2026',
+    onsDescription: 'Full Stack corporate application development using modern front-end (React, Vite, Angular) and back-end (Node.js, Express, FastAPI, GraphQL, .NET) technologies, focused on scalable, responsive, and maintainable solutions. Active participation in developing Tiago, ONS\'s Generative AI assistant, applying Prompt Engineering, Machine Learning, AI Agents, and automation techniques. Experience with Clean Architecture, Design Patterns, and API-oriented practices (OpenAPI/Swagger). Implementation of CI/CD pipelines with GitHub Actions and Azure DevOps, including automated accessibility testing with Playwright, axe-core, and Lighthouse CI. Experience with Cloud (AWS, AWS Lambda), relational and NoSQL databases (PostgreSQL, MongoDB, Firebase), and Tableau to Power BI dashboard migration. Collaborative work using agile methodologies (Scrum, Kanban) in multidisciplinary teams.',
+    
+    // Workana
+    workanaRole: 'Freelance Developer',
+    workanaPeriod: '2023 - 2025',
+    workanaDescription: 'Full Stack web project development for clients, from building modern and responsive interfaces to developing back-end services and APIs. Creation of Landing Pages and lead capture applications with customized solutions according to each client\'s objectives. Independent work performing requirements gathering, development, adjustments, and delivery within deadlines. Management of multiple projects with direct client communication, ensuring requirements alignment and deadline compliance. Application of best practices to create efficient, organized, and maintainable solutions.',
     
     // Projects
     projectsTitle: 'Projects:',

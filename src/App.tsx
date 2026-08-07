@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/Header';
 import TechSlider from './components/TechSlider';
+import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contacts from './components/Contacts';
 import Footer from './components/Footer';
@@ -16,7 +17,7 @@ function App() {
         minH="100vh"
       >
         <Header />
-        <TechSlider />
+        <Experience />
         <Projects />
         <TechSlider />
         <Contacts />
