@@ -30,7 +30,7 @@ const translations = {
     // Experience
     experienceTitle: 'Experiência Profissional:',
     onsRole: 'Desenvolvedor de Software',
-    onsPeriod: '2024 - 2026',
+    onsPeriod: '2025 - 2026',
     onsDescription: 'Desenvolvimento de aplicações corporativas Full Stack utilizando tecnologias modernas de front-end (React, Vite, Angular) e back-end (Node.js, Express, FastAPI, GraphQL, .NET), com foco em soluções escaláveis, responsivas e de fácil manutenção. Participação ativa no desenvolvimento do Tiago, assistente de IA Generativa do ONS, aplicando técnicas de Engenharia de Prompt, Machine Learning, Agentes de IA e automações. Atuação com arquiteturas como Clean Architecture, Design Patterns e práticas orientadas a APIs (OpenAPI/Swagger). Implementação de pipelines CI/CD com GitHub Actions e Azure DevOps, incluindo testes automatizados de acessibilidade com Playwright, axe-core e Lighthouse CI. Experiência com Cloud (AWS, AWS Lambda), bancos de dados relacionais e NoSQL (PostgreSQL, MongoDB, Firebase), e migração de painéis Tableau para Power BI. Trabalho colaborativo em metodologias ágeis (Scrum, Kanban) em equipes multidisciplinares.',
     
     // Workana
@@ -87,7 +87,7 @@ const translations = {
     // Experience
     experienceTitle: 'Professional Experience:',
     onsRole: 'Software Developer',
-    onsPeriod: '2024 - 2026',
+    onsPeriod: '2025 - 2026',
     onsDescription: 'Full Stack corporate application development using modern front-end (React, Vite, Angular) and back-end (Node.js, Express, FastAPI, GraphQL, .NET) technologies, focused on scalable, responsive, and maintainable solutions. Active participation in developing Tiago, ONS\'s Generative AI assistant, applying Prompt Engineering, Machine Learning, AI Agents, and automation techniques. Experience with Clean Architecture, Design Patterns, and API-oriented practices (OpenAPI/Swagger). Implementation of CI/CD pipelines with GitHub Actions and Azure DevOps, including automated accessibility testing with Playwright, axe-core, and Lighthouse CI. Experience with Cloud (AWS, AWS Lambda), relational and NoSQL databases (PostgreSQL, MongoDB, Firebase), and Tableau to Power BI dashboard migration. Collaborative work using agile methodologies (Scrum, Kanban) in multidisciplinary teams.',
     
     // Workana
@@ -144,7 +144,7 @@ const translations = {
     // Experience
     experienceTitle: 'Experiencia Profesional:',
     onsRole: 'Desarrollador de Software',
-    onsPeriod: '2024 - 2026',
+    onsPeriod: '2025 - 2026',
     onsDescription: 'Desarrollo de aplicaciones corporativas Full Stack utilizando tecnologías modernas de front-end (React, Vite, Angular) y back-end (Node.js, Express, FastAPI, GraphQL, .NET), con enfoque en soluciones escalables, responsivas y de fácil mantenimiento. Participación activa en el desarrollo de Tiago, asistente de IA Generativa del ONS, aplicando técnicas de Ingeniería de Prompts, Machine Learning, Agentes de IA y automatizaciones. Trabajo con arquitecturas como Clean Architecture, Design Patterns y prácticas orientadas a APIs (OpenAPI/Swagger). Implementación de pipelines CI/CD con GitHub Actions y Azure DevOps, incluyendo pruebas automatizadas de accesibilidad con Playwright, axe-core y Lighthouse CI. Experiencia con Cloud (AWS, AWS Lambda), bases de datos relacionales y NoSQL (PostgreSQL, MongoDB, Firebase), y migración de paneles Tableau a Power BI. Trabajo colaborativo en metodologías ágiles (Scrum, Kanban) en equipos multidisciplinarios.',
     
     // Workana

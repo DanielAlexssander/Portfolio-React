@@ -186,10 +186,13 @@ const Header = () => {
                   alignItems="center"
                   gap={2}
                   cursor="pointer"
+                  outline="none"
                   _hover={{
                     color: 'white',
                     bg: 'rgba(59, 130, 246, 0.1)'
                   }}
+                  _focus={{ outline: 'none', boxShadow: 'none' }}
+                  _focusVisible={{ outline: 'none', boxShadow: 'none' }}
                 >
                   {item.icon && <item.icon size={14} />}
                   {item.label}
@@ -214,10 +217,13 @@ const Header = () => {
                   bg="transparent"
                   border="none"
                   cursor="pointer"
+                  outline="none"
                   _hover={{
                     color: 'white',
                     bg: 'rgba(59, 130, 246, 0.1)'
                   }}
+                  _focus={{ outline: 'none', boxShadow: 'none' }}
+                  _focusVisible={{ outline: 'none', boxShadow: 'none' }}
                 >
                   {item.label}
                 </Box>

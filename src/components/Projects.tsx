@@ -7,6 +7,21 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const MotionBox = motion.create(Box as React.ComponentType<any>);
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.9, rotateX: 8 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      delay: i * 0.08,
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  }),
+};
+
 interface Project {
   app?: boolean;
   urlGif: string;
@@ -285,9 +300,13 @@ const Projects = () => {
           {paginatedProjects.map((project, index) => (
             <MotionBox
               key={`${currentPage}-${index}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              style={{ perspective: 800 }}
             >
               <Box
                 bg="rgba(30, 41, 59, 0.5)"
@@ -300,7 +319,6 @@ const Projects = () => {
                 display="flex"
                 flexDirection="column"
                 _hover={{
-                  transform: 'translateY(-8px)',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
                   boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.1)'
                 }}
