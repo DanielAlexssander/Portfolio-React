@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
-type Language = 'pt' | 'en';
+type Language = 'pt' | 'en' | 'es';
 
 interface LanguageContextType {
   language: Language;
@@ -125,6 +125,63 @@ const translations = {
     technologiesUsedFooter: 'Technologies Used:',
     pageCode: 'Code of this page',
     builtWith: 'Built with'
+  },
+  es: {
+    // Header
+    goodMorning: 'Buenos días',
+    goodAfternoon: 'Buenas tardes',
+    goodEvening: 'Buenas noches',
+    greetingBadge: 'Construyendo soluciones escalables e inteligentes',
+    home: 'Inicio',
+    projects: 'Proyectos',
+    experience: 'Experiencia',
+    contacts: 'Contactos',
+    resume: 'Currículum',
+    github: 'GitHub',
+    softwareDeveloper: 'Desarrollador de Software',
+    headerDescription: 'Hola, {greeting}! Tengo {age} años y soy profesional de desarrollo de software con experiencia práctica en proyectos corporativos y trabajo en equipo, incluyendo desarrollo de soluciones full stack y participación en iniciativas de IA generativa. Busco oportunidades para aplicar y evolucionar mis habilidades técnicas, contribuyendo con soluciones escalables, eficientes y alineadas con las necesidades del negocio.',
+    
+    // Experience
+    experienceTitle: 'Experiencia Profesional:',
+    onsRole: 'Desarrollador de Software',
+    onsPeriod: '2024 - 2026',
+    onsDescription: 'Desarrollo de aplicaciones corporativas Full Stack utilizando tecnologías modernas de front-end (React, Vite, Angular) y back-end (Node.js, Express, FastAPI, GraphQL, .NET), con enfoque en soluciones escalables, responsivas y de fácil mantenimiento. Participación activa en el desarrollo de Tiago, asistente de IA Generativa del ONS, aplicando técnicas de Ingeniería de Prompts, Machine Learning, Agentes de IA y automatizaciones. Trabajo con arquitecturas como Clean Architecture, Design Patterns y prácticas orientadas a APIs (OpenAPI/Swagger). Implementación de pipelines CI/CD con GitHub Actions y Azure DevOps, incluyendo pruebas automatizadas de accesibilidad con Playwright, axe-core y Lighthouse CI. Experiencia con Cloud (AWS, AWS Lambda), bases de datos relacionales y NoSQL (PostgreSQL, MongoDB, Firebase), y migración de paneles Tableau a Power BI. Trabajo colaborativo en metodologías ágiles (Scrum, Kanban) en equipos multidisciplinarios.',
+    
+    // Workana
+    workanaRole: 'Desarrollador Freelance',
+    workanaPeriod: '2023 - 2025',
+    workanaDescription: 'Desarrollo de proyectos web Full Stack para clientes, desde la construcción de interfaces modernas y responsivas hasta el desarrollo de servicios y APIs back-end. Creación de Landing Pages y aplicaciones orientadas a la captación de leads, con soluciones personalizadas según los objetivos de cada cliente. Trabajo independiente realizando levantamiento de requisitos, desarrollo, ajustes y entrega dentro de los plazos. Gestión de múltiples proyectos con comunicación directa con clientes, garantizando alineación de requisitos y cumplimiento de plazos. Aplicación de buenas prácticas para crear soluciones eficientes, organizadas y de fácil mantenimiento.',
+    
+    // Projects
+    projectsTitle: 'Proyectos:',
+    technologiesUsed: 'Tecnologías Utilizadas:',
+    site: 'Sitio',
+    apk: 'Apk',
+    code: 'Código',
+    backToTop: 'Volver arriba',
+    searchPlaceholder: 'Buscar nombre del proyecto...',
+    allTechnologies: 'Todas las tecnologías',
+    
+    // Project descriptions
+    tiagoOnsDesc: 'Participé en el desarrollo front-end de Tiago, la plataforma de IA Generativa del ONS. Contribuí a crear una experiencia moderna e intuitiva, facilitando el acceso inteligente a información y mejorando la toma de decisiones de los usuarios.',
+    exchangeRateDesc: 'Desarrollado en Flutter, es un proyecto que hice para uso personal. El propósito del proyecto es seguir los valores actuales de las conversiones de criptomonedas.',
+    hubgramDesc: 'Desarrollado en React, inspirado en Instagram, y con una serie de funcionalidades similares.',
+    vetDesc: 'Desarrollado en Next.js, \'Veterinária Pata Amiga\' es una empresa ficticia. Es un proyecto de landing page para una empresa veterinaria.',
+    miniBlogDesc: 'Proyecto hecho en React, consiste en un Blog con todas las funcionalidades en React usando la base de datos de Firebase.',
+    memoryGameDesc: 'Este proyecto es un juego de memoria en TypeScript.',
+    checklistDesc: 'Funcionalidades: Agregar/Eliminar tareas y editar nombres. Datos guardados en LocalStorage del navegador para persistencia.',
+    strataDesc: 'El proyecto Strata fue desarrollado basado en el diseño de "HTML5 UP".',
+    rangeHotelsDesc: 'Range Hotels es un proyecto responsivo. Compatible con computadora, tablet y celular.',
+    
+    // Contacts
+    contactsTitle: 'Contactos:',
+    copied: 'Copiado',
+    contactSubtitle: 'Construyamos algo increíble juntos',
+    
+    // Footer
+    technologiesUsedFooter: 'Tecnologías Utilizadas:',
+    pageCode: 'Código de esta página',
+    builtWith: 'Hecho con'
   }
 };
 

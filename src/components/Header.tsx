@@ -5,6 +5,7 @@ import { FaBars, FaChevronDown, FaArrowRight, FaGithub } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import BrazilIcon from './Icons/BrazilIcon';
 import UsaIcon from './Icons/UsaIcon';
+import SpainIcon from './Icons/SpainIcon';
 import resumePdf from '../assets/Curriculo_Daniel.pdf';
 
 const MotionBox = motion.create(Box as React.ComponentType<any>);
@@ -134,37 +135,61 @@ const Header = () => {
             display={{ base: 'none', md: 'flex' }}
             align="center"
           >
-            {navItems.map((item, index) => (
-              <Box
-                key={index}
-                as={item.external ? 'a' : 'button'}
-                href={item.external ? item.href : undefined}
-                target={item.external ? '_blank' : undefined}
-                onClick={!item.external ? () => {
-                  document.getElementById(item.id!)?.scrollIntoView({ behavior: 'smooth' });
-                } : undefined}
-                px={3}
-                py={2}
-                color="#94A3B8"
-                fontSize="sm"
-                fontWeight="500"
-                borderRadius="8px"
-                transition="all 0.2s ease"
-                display="flex"
-                alignItems="center"
-                gap={2}
-                bg="transparent"
-                border="none"
-                cursor="pointer"
-                _hover={{
-                  color: 'white',
-                  bg: 'rgba(59, 130, 246, 0.1)'
-                }}
-              >
-                {item.icon && <item.icon size={14} />}
-                {item.label}
-              </Box>
-            ))}
+            {navItems.map((item, index) => 
+              item.external ? (
+                <Box
+                  key={index}
+                  as="a"
+                  href={item.href}
+                  target="_blank"
+                  px={3}
+                  py={2}
+                  color="#94A3B8"
+                  fontSize="sm"
+                  fontWeight="500"
+                  borderRadius="8px"
+                  transition="all 0.2s ease"
+                  display="flex"
+                  alignItems="center"
+                  gap={2}
+                  cursor="pointer"
+                  _hover={{
+                    color: 'white',
+                    bg: 'rgba(59, 130, 246, 0.1)'
+                  }}
+                >
+                  {item.icon && <item.icon size={14} />}
+                  {item.label}
+                </Box>
+              ) : (
+                <Box
+                  key={index}
+                  as="button"
+                  onClick={() => {
+                    document.getElementById(item.id!)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  px={3}
+                  py={2}
+                  color="#94A3B8"
+                  fontSize="sm"
+                  fontWeight="500"
+                  borderRadius="8px"
+                  transition="all 0.2s ease"
+                  display="flex"
+                  alignItems="center"
+                  gap={2}
+                  bg="transparent"
+                  border="none"
+                  cursor="pointer"
+                  _hover={{
+                    color: 'white',
+                    bg: 'rgba(59, 130, 246, 0.1)'
+                  }}
+                >
+                  {item.label}
+                </Box>
+              )
+            )}
           </Flex>
 
           {/* Language + Mobile Menu */}
@@ -186,9 +211,11 @@ const Header = () => {
                 borderRadius="8px"
               >
                 <Flex align="center" gap={2}>
-                  {language === 'pt' ? <BrazilIcon width="16px" height="16px" /> : <UsaIcon width="16px" height="16px" />}
+                  {language === 'pt' && <BrazilIcon width="16px" height="16px" />}
+                  {language === 'en' && <UsaIcon width="16px" height="16px" />}
+                  {language === 'es' && <SpainIcon width="16px" height="16px" />}
                   <Box display={{ base: 'none', sm: 'block' }}>
-                    {language === 'pt' ? 'PT' : 'EN'}
+                    {language === 'pt' ? 'PT' : language === 'en' ? 'EN' : 'ES'}
                   </Box>
                 </Flex>
               </MenuButton>
@@ -221,10 +248,24 @@ const Header = () => {
                   _hover={{ bg: 'rgba(59, 130, 246, 0.15)' }}
                   borderRadius="8px"
                   fontSize="sm"
+                  mb="2px"
                 >
                   <Flex align="center" gap={2}>
                     <UsaIcon width="16px" height="16px" />
                     English
+                  </Flex>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => setLanguage('es')}
+                  bg={language === 'es' ? 'rgba(59, 130, 246, 0.2)' : 'transparent'}
+                  color="white"
+                  _hover={{ bg: 'rgba(59, 130, 246, 0.15)' }}
+                  borderRadius="8px"
+                  fontSize="sm"
+                >
+                  <Flex align="center" gap={2}>
+                    <SpainIcon width="16px" height="16px" />
+                    Español
                   </Flex>
                 </MenuItem>
               </MenuList>
@@ -265,44 +306,76 @@ const Header = () => {
           </DrawerHeader>
           <DrawerBody pt={8}>
             <Flex direction="column" gap={2}>
-              {navItems.map((item, index) => (
-                <Box
-                  key={index}
-                  as={item.external ? 'a' : 'button'}
-                  href={item.external ? item.href : undefined}
-                  target={item.external ? '_blank' : undefined}
-                  onClick={!item.external ? () => {
-                    onClose();
-                    setTimeout(() => {
-                      document.getElementById(item.id!)?.scrollIntoView({ behavior: 'smooth' });
-                    }, 300);
-                  } : () => onClose()}
-                  color="white"
-                  textDecoration="none"
-                  fontWeight="600"
-                  fontSize="lg"
-                  p={4}
-                  borderRadius="12px"
-                  bg="rgba(30, 41, 59, 0.5)"
-                  border="1px solid rgba(255, 255, 255, 0.05)"
-                  transition="all 0.2s ease"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  cursor="pointer"
-                  textAlign="left"
-                  _hover={{ 
-                    bg: 'rgba(59, 130, 246, 0.15)',
-                    borderColor: 'rgba(59, 130, 246, 0.3)'
-                  }}
-                >
-                  <Flex align="center" gap={3}>
-                    {item.icon && <item.icon size={18} />}
-                    {item.label}
-                  </Flex>
-                  <FaArrowRight size={14} color="#94A3B8" />
-                </Box>
-              ))}
+              {navItems.map((item, index) => 
+                item.external ? (
+                  <Box
+                    key={index}
+                    as="a"
+                    href={item.href}
+                    target="_blank"
+                    onClick={onClose}
+                    color="white"
+                    textDecoration="none"
+                    fontWeight="600"
+                    fontSize="lg"
+                    p={4}
+                    borderRadius="12px"
+                    bg="rgba(30, 41, 59, 0.5)"
+                    border="1px solid rgba(255, 255, 255, 0.05)"
+                    transition="all 0.2s ease"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    cursor="pointer"
+                    _hover={{ 
+                      bg: 'rgba(59, 130, 246, 0.15)',
+                      borderColor: 'rgba(59, 130, 246, 0.3)'
+                    }}
+                  >
+                    <Flex align="center" gap={3}>
+                      {item.icon && <item.icon size={18} />}
+                      {item.label}
+                    </Flex>
+                    <FaArrowRight size={14} color="#94A3B8" />
+                  </Box>
+                ) : (
+                  <Box
+                    key={index}
+                    as="button"
+                    onClick={() => {
+                      onClose();
+                      setTimeout(() => {
+                        document.getElementById(item.id!)?.scrollIntoView({ behavior: 'smooth' });
+                      }, 300);
+                    }}
+                    color="white"
+                    textDecoration="none"
+                    fontWeight="600"
+                    fontSize="lg"
+                    p={4}
+                    borderRadius="12px"
+                    bg="rgba(30, 41, 59, 0.5)"
+                    border="1px solid rgba(255, 255, 255, 0.05)"
+                    transition="all 0.2s ease"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    cursor="pointer"
+                    textAlign="left"
+                    w="100%"
+                    _hover={{ 
+                      bg: 'rgba(59, 130, 246, 0.15)',
+                      borderColor: 'rgba(59, 130, 246, 0.3)'
+                    }}
+                  >
+                    <Flex align="center" gap={3}>
+                      {item.icon && <item.icon size={18} />}
+                      {item.label}
+                    </Flex>
+                    <FaArrowRight size={14} color="#94A3B8" />
+                  </Box>
+                )
+              )}
             </Flex>
           </DrawerBody>
         </DrawerContent>

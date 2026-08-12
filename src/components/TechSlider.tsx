@@ -19,7 +19,6 @@ const TechSlider = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   const techItems: TechItem[] = [
     // Front-end
@@ -67,7 +66,7 @@ const TechSlider = () => {
   // Auto scroll com loop infinito
   useEffect(() => {
     const slider = sliderRef.current;
-    if (!slider || isPaused || isDragging) return;
+    if (!slider || isDragging) return;
 
     let animationId: number;
     let scrollPos = slider.scrollLeft;
@@ -91,7 +90,7 @@ const TechSlider = () => {
     animationId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationId);
-  }, [isPaused, isDragging, techItems.length]);
+  }, [isDragging, techItems.length]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
