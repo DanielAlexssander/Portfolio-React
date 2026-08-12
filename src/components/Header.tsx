@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Box, Flex, Heading, Text, Button, Image, Menu, MenuButton, MenuList, MenuItem, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FaBars, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaChevronDown, FaArrowRight, FaGithub } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import BrazilIcon from './Icons/BrazilIcon';
 import UsaIcon from './Icons/UsaIcon';
 import resumePdf from '../assets/Curriculo_Daniel.pdf';
 
 const MotionBox = motion.create(Box as React.ComponentType<any>);
-const MotionImage = motion.create(Image as React.ComponentType<any>);
+const MotionText = motion.create(Text as React.ComponentType<any>);
+const MotionFlex = motion.create(Flex as React.ComponentType<any>);
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [age, setAge] = useState(0);
   const [greeting, setGreeting] = useState('');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const date = new Date();
@@ -38,326 +40,517 @@ const Header = () => {
     }
   }, [language, t]);
 
-  return (
-    <Box as="header" bg="linear-gradient(180deg, #002d54 0%, #022f5c 37.22%, #000613 100%)">
-      <Box
-        position="relative"
-        pt="1em"
-        pb="1em"
-        w="99%"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        textTransform="uppercase"
-        fontSize="1.2em"
-        letterSpacing="1px"
-        zIndex={2}
-      >
-        <Menu>
-          <MenuButton
-            as={Button}
-            rightIcon={<FaChevronDown />}
-            position="absolute"
-            left={2}
-            bg="transparent"
-            border="1px solid rgba(255,255,255,0.3)"
-            color="white"
-            fontSize="14px"
-            _hover={{ bg: 'rgba(255,255,255,0.1)' }}
-            _active={{ bg: 'rgba(255,255,255,0.1)' }}
-            size="sm"
-          >
-            <Flex align="center" gap={2}>
-              {language === 'pt' ? <BrazilIcon width="18px" height="18px" /> : <UsaIcon width="18px" height="18px" />}
-              {language === 'pt' ? 'Português' : 'English'}
-            </Flex>
-          </MenuButton>
-          <MenuList bg="#002d54" border="1px solid rgba(255,255,255,0.3)">
-            <MenuItem
-              onClick={() => setLanguage('pt')}
-              bg={language === 'pt' ? 'rgba(0, 59, 187, 0.3)' : 'transparent'}
-              color="white"
-              _hover={{ bg: 'rgba(0, 59, 187, 0.5)' }}
-            >
-              <Flex align="center" gap={2}>
-                <BrazilIcon width="16px" height="16px" />
-                Português
-              </Flex>
-            </MenuItem>
-            <MenuItem
-              onClick={() => setLanguage('en')}
-              bg={language === 'en' ? 'rgba(0, 59, 187, 0.3)' : 'transparent'}
-              color="white"
-              _hover={{ bg: 'rgba(0, 59, 187, 0.5)' }}
-            >
-              <Flex align="center" gap={2}>
-                <UsaIcon width="16px" height="16px" />
-                English
-              </Flex>
-            </MenuItem>
-          </MenuList>
-        </Menu>
-        
-        <Button
-          display={{ base: 'block', md: 'none' }}
-          onClick={onOpen}
-          position="absolute"
-          right={3}
-          bg="transparent"
-          border="none"
-          color="white"
-          fontSize="1.4em"
-          p={2}
-          _hover={{ bg: 'rgba(255, 255, 255, 0.1)' }}
-          borderRadius="md"
-        >
-          <FaBars />
-        </Button>
-        
-        <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="full">
-          <DrawerOverlay />
-          <DrawerContent bg="linear-gradient(180deg, #002d54 0%, #022f5c 37.22%, #000613 100%)">
-            <DrawerCloseButton color="white" />
-            <DrawerHeader color="white" textTransform="uppercase" letterSpacing="1px">
-              Menu
-            </DrawerHeader>
-            <DrawerBody>
-              <Flex direction="column" gap={4}>
-                {[t('home'), t('experience'), t('projects'), t('contacts'), t('resume'), t('github')].map((item, index) => {
-                  const ids = ['home', 'experience', 'projects', 'container-contacts', '', ''];
-                  const isExternal = index === 4 || index === 5;
-                  const isResume = index === 4;
-                  return (
-                    <Box
-                      key={item}
-                      as="a"
-                      href={isResume ? resumePdf : (index === 5 ? 'https://github.com/DanielAlexssander' : undefined)}
-                      target={isExternal ? '_blank' : undefined}
-                      color="white"
-                      textDecoration="none"
-                      fontWeight="bold"
-                      fontSize="1.2em"
-                      p={3}
-                      borderRadius="md"
-                      transition="all 0.3s ease"
-                      cursor="pointer"
-                      _hover={{ 
-                        bg: 'rgba(255, 255, 255, 0.1)',
-                        transform: 'scale(1.05)'
-                      }}
-                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        if (!isExternal) {
-                          e.preventDefault();
-                          onClose();
-                          setTimeout(() => {
-                            document.getElementById(ids[index])?.scrollIntoView({ behavior: 'smooth' });
-                          }, 300);
-                        } else {
-                          onClose();
-                        }
-                      }}
-                    >
-                      {item}
-                    </Box>
-                  );
-                })}
-              </Flex>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
-        <Box
-          as="ul"
-          pl={0}
-          display={{ base: 'none', md: 'flex' }}
-        >
-          {[t('home'), t('experience'), t('projects'), t('contacts'), t('resume'), t('github')].map((item, index) => {
-            const ids = ['home', 'experience', 'projects', 'container-contacts', '', ''];
-            const isExternal = index === 4 || index === 5;
-            const isResume = index === 4;
-            return (
-              <Box
-                key={item}
-                as="li"
-                display="inline-block"
-                listStyleType="none"
-                ml={index === 0 ? 0 : '2em'}
-                transition="transform 0.3s ease"
-                _hover={{ transform: 'scale(1.05)' }}
-              >
-                <Box
-                  as="a"
-                  href={isResume ? resumePdf : (index === 5 ? 'https://github.com/DanielAlexssander' : undefined)}
-                  target={isExternal ? '_blank' : undefined}
-                  position="relative"
-                  color="white"
-                  textDecoration="none"
-                  fontWeight="bold"
-                  cursor="pointer"
-                  transition="color 0.3s ease"
-                  _hover={{ color: 'rgba(255, 255, 255, 1)' }}
-                  _after={{
-                    content: '""',
-                    position: 'absolute',
-                    width: '100%',
-                    height: '2px',
-                    left: 0,
-                    bottom: 0,
-                    bg: 'rgb(0, 55, 173)',
-                    transform: 'scale(0, 1)',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  sx={{
-                    '&:hover::after': {
-                      transform: 'scale(1, 1)'
-                    }
-                  }}
-                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                    if (!isExternal) {
-                      e.preventDefault();
-                      document.getElementById(ids[index])?.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                >
-                  {item}
-                </Box>
-              </Box>
-            );
-          })}
-        </Box>
-      </Box>
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-      <Flex
-        fontSize={{ base: '1.1em', md: '1.3em' }}
-        color="white"
-        w="100%"
-        minH="100vh"
-        justifyContent="center"
-        alignItems="center"
-        id="home"
-        pb={{ base: '5em', md: 0 }}
-        px={{ base: '1rem', md: '2rem' }}
-        direction={{ base: 'column', lg: 'row' }}
+  const navItems = [
+    { label: t('home'), id: 'home' },
+    { label: t('experience'), id: 'experience' },
+    { label: t('projects'), id: 'projects' },
+    { label: t('contacts'), id: 'container-contacts' },
+    { label: t('resume'), href: resumePdf, external: true },
+    { label: t('github'), href: 'https://github.com/DanielAlexssander', external: true, icon: FaGithub }
+  ];
+
+  return (
+    <Box as="header" position="relative" minH="100vh" overflow="hidden">
+      {/* Background com gradiente e padrão sutil */}
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        bg="linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)"
+        _after={{
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                           radial-gradient(circle at 75% 75%, rgba(34, 197, 94, 0.08) 0%, transparent 50%)`,
+          pointerEvents: 'none'
+        }}
+      />
+
+      {/* Grid pattern overlay */}
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        opacity={0.03}
+        backgroundImage={`linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                         linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`}
+        backgroundSize="60px 60px"
+        pointerEvents="none"
+      />
+
+      {/* Navbar */}
+      <Box
+        position="fixed"
+        top={scrolled ? '0' : '16px'}
+        left="50%"
+        transform="translateX(-50%)"
+        w={scrolled ? '100%' : { base: '95%', md: '90%', lg: '85%' }}
+        maxW="1400px"
+        zIndex={100}
+        transition="all 0.3s ease"
       >
-        <MotionBox
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          maxW={{ base: '95%', sm: '85%', md: '75%', lg: '50%', xl: '40%' }}
-          bg="rgba(0, 0, 0, 0.4)"
-          p={{ base: '2rem', md: '2.5rem 2.5rem 3rem 2.5rem' }}
-          borderRadius="15px"
-          backdropFilter="blur(10px)"
-          border="1px solid rgba(255, 255, 255, 0.1)"
-          mb={{ base: '2rem', lg: 0 }}
+        <Flex
+          bg={scrolled ? 'rgba(15, 23, 42, 0.95)' : 'rgba(30, 41, 59, 0.8)'}
+          backdropFilter="blur(20px)"
+          borderRadius={scrolled ? '0' : '16px'}
+          border={scrolled ? 'none' : '1px solid rgba(255, 255, 255, 0.1)'}
+          px={{ base: 4, md: 6 }}
+          py={3}
+          justify="space-between"
+          align="center"
+          boxShadow={scrolled ? '0 4px 30px rgba(0,0,0,0.3)' : 'none'}
         >
-          <Box textAlign={{ base: 'center', md: 'left' }}>
-            <Heading 
-              as="h1" 
-              mb="1em" 
-              fontSize={{ base: '1.8rem', md: '2.2rem', lg: '2.5rem' }}
-              fontWeight="700"
-            >
-              Daniel Rossinatti
-            </Heading>
-            <Heading
-              cursor="default"
-              as="h2"
-              pl={{ base: 0, md: '2em', lg: '3em' }}
-              mb="1em"
-              color="rgb(0, 59, 187)"
-              transition="all 0.3s ease"
-              fontSize={{ base: '1.2rem', md: '1.4rem', lg: '1.6rem' }}
-              _hover={{ 
-                pl: { base: 0, md: '2.5em', lg: '4em' },
-                color: 'rgb(0, 107, 175)'
-              }}
-            >
-              {t('softwareDeveloper')}
-            </Heading>
-          </Box>
-          <Text 
-            mb="3em" 
-            fontSize={{ base: '0.95rem', md: '1rem' }}
-            lineHeight="1.6"
-            textAlign={{ base: 'center', md: 'left' }}
+          {/* Logo/Name */}
+          <Text
+            fontFamily="'Space Grotesk', sans-serif"
+            fontWeight="700"
+            fontSize={{ base: 'lg', md: 'xl' }}
+            color="white"
+            letterSpacing="-0.02em"
           >
-            {t('headerDescription').replace('{greeting}', greeting).replace('{age}', age.toString())}
+            DR<Box as="span" color="#3B82F6">.</Box>
           </Text>
-          <Flex 
-            gap={{ base: '1rem', md: '2rem' }}
-            justify={{ base: 'center', md: 'flex-start' }}
-            direction={{ base: 'row', sm: 'row' }}
+
+          {/* Desktop Nav */}
+          <Flex
+            as="nav"
+            gap={{ md: 1, lg: 2 }}
+            display={{ base: 'none', md: 'flex' }}
             align="center"
           >
-            <Box
-              as="a"
-              textDecoration="none"
-              fontWeight="bold"
-              color="white"
-              bg="rgb(0, 59, 187)"
-              px={{ base: '2rem', md: '2.5rem' }}
-              py={{ base: '0.8rem', md: '1rem' }}
-              borderRadius="25px"
-              cursor="pointer"
-              transition="all 0.3s ease"
-              _hover={{ 
-                bg: 'rgb(0, 107, 175)', 
-                textDecoration: 'none',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 8px 25px rgba(0, 59, 187, 0.3)'
-              }}
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.preventDefault();
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              {t('projects')}
-            </Box>
-            <Box
-              as="a"
-              textDecoration="none"
-              fontWeight="bold"
-              color="rgb(0, 59, 187)"
-              border="2px solid rgb(0, 59, 187)"
-              px={{ base: '2rem', md: '2.5rem' }}
-              py={{ base: '0.8rem', md: '1rem' }}
-              borderRadius="25px"
-              cursor="pointer"
-              transition="all 0.3s ease"
-              _hover={{ 
-                bg: 'rgb(0, 59, 187)',
-                color: 'white',
-                textDecoration: 'none',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 8px 25px rgba(0, 59, 187, 0.3)'
-              }}
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.preventDefault();
-                document.getElementById('container-contacts')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              {t('contacts')}
-            </Box>
+            {navItems.map((item, index) => (
+              <Box
+                key={index}
+                as={item.external ? 'a' : 'button'}
+                href={item.external ? item.href : undefined}
+                target={item.external ? '_blank' : undefined}
+                onClick={!item.external ? () => {
+                  document.getElementById(item.id!)?.scrollIntoView({ behavior: 'smooth' });
+                } : undefined}
+                px={3}
+                py={2}
+                color="#94A3B8"
+                fontSize="sm"
+                fontWeight="500"
+                borderRadius="8px"
+                transition="all 0.2s ease"
+                display="flex"
+                alignItems="center"
+                gap={2}
+                bg="transparent"
+                border="none"
+                cursor="pointer"
+                _hover={{
+                  color: 'white',
+                  bg: 'rgba(59, 130, 246, 0.1)'
+                }}
+              >
+                {item.icon && <item.icon size={14} />}
+                {item.label}
+              </Box>
+            ))}
           </Flex>
+
+          {/* Language + Mobile Menu */}
+          <Flex align="center" gap={2}>
+            <Menu>
+              <MenuButton
+                as={Button}
+                rightIcon={<FaChevronDown size={10} />}
+                bg="transparent"
+                border="1px solid rgba(255,255,255,0.15)"
+                color="white"
+                fontSize="13px"
+                fontWeight="500"
+                _hover={{ bg: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.25)' }}
+                _active={{ bg: 'rgba(255,255,255,0.05)' }}
+                size="sm"
+                px={3}
+                h="36px"
+                borderRadius="8px"
+              >
+                <Flex align="center" gap={2}>
+                  {language === 'pt' ? <BrazilIcon width="16px" height="16px" /> : <UsaIcon width="16px" height="16px" />}
+                  <Box display={{ base: 'none', sm: 'block' }}>
+                    {language === 'pt' ? 'PT' : 'EN'}
+                  </Box>
+                </Flex>
+              </MenuButton>
+              <MenuList 
+                bg="#1E293B" 
+                border="1px solid rgba(255,255,255,0.1)"
+                borderRadius="12px"
+                py={1}
+                px={1}
+                minW="140px"
+              >
+                <MenuItem
+                  onClick={() => setLanguage('pt')}
+                  bg={language === 'pt' ? 'rgba(59, 130, 246, 0.2)' : 'transparent'}
+                  color="white"
+                  _hover={{ bg: 'rgba(59, 130, 246, 0.15)' }}
+                  borderRadius="8px"
+                  fontSize="sm"
+                  mb="2px"
+                >
+                  <Flex align="center" gap={2}>
+                    <BrazilIcon width="16px" height="16px" />
+                    Português
+                  </Flex>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => setLanguage('en')}
+                  bg={language === 'en' ? 'rgba(59, 130, 246, 0.2)' : 'transparent'}
+                  color="white"
+                  _hover={{ bg: 'rgba(59, 130, 246, 0.15)' }}
+                  borderRadius="8px"
+                  fontSize="sm"
+                >
+                  <Flex align="center" gap={2}>
+                    <UsaIcon width="16px" height="16px" />
+                    English
+                  </Flex>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+
+            <Button
+              display={{ base: 'flex', md: 'none' }}
+              onClick={onOpen}
+              bg="transparent"
+              border="1px solid rgba(255,255,255,0.15)"
+              color="white"
+              p={0}
+              w="36px"
+              h="36px"
+              minW="36px"
+              borderRadius="8px"
+              _hover={{ bg: 'rgba(255, 255, 255, 0.05)' }}
+            >
+              <FaBars size={16} />
+            </Button>
+          </Flex>
+        </Flex>
+      </Box>
+
+      {/* Mobile Drawer */}
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="full">
+        <DrawerOverlay bg="rgba(15, 23, 42, 0.8)" backdropFilter="blur(10px)" />
+        <DrawerContent bg="#0F172A">
+          <DrawerCloseButton color="white" size="lg" top={4} right={4} />
+          <DrawerHeader 
+            color="white" 
+            fontFamily="'Space Grotesk', sans-serif"
+            fontSize="xl"
+            fontWeight="700"
+            pt={6}
+          >
+            Menu
+          </DrawerHeader>
+          <DrawerBody pt={8}>
+            <Flex direction="column" gap={2}>
+              {navItems.map((item, index) => (
+                <Box
+                  key={index}
+                  as={item.external ? 'a' : 'button'}
+                  href={item.external ? item.href : undefined}
+                  target={item.external ? '_blank' : undefined}
+                  onClick={!item.external ? () => {
+                    onClose();
+                    setTimeout(() => {
+                      document.getElementById(item.id!)?.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+                  } : () => onClose()}
+                  color="white"
+                  textDecoration="none"
+                  fontWeight="600"
+                  fontSize="lg"
+                  p={4}
+                  borderRadius="12px"
+                  bg="rgba(30, 41, 59, 0.5)"
+                  border="1px solid rgba(255, 255, 255, 0.05)"
+                  transition="all 0.2s ease"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  cursor="pointer"
+                  textAlign="left"
+                  _hover={{ 
+                    bg: 'rgba(59, 130, 246, 0.15)',
+                    borderColor: 'rgba(59, 130, 246, 0.3)'
+                  }}
+                >
+                  <Flex align="center" gap={3}>
+                    {item.icon && <item.icon size={18} />}
+                    {item.label}
+                  </Flex>
+                  <FaArrowRight size={14} color="#94A3B8" />
+                </Box>
+              ))}
+            </Flex>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+
+      {/* Hero Content */}
+      <Flex
+        position="relative"
+        zIndex={1}
+        minH="100vh"
+        align="center"
+        justify="center"
+        px={{ base: 4, md: 8 }}
+        pt={{ base: '100px', md: '80px' }}
+        id="home"
+      >
+        <Flex
+          direction={{ base: 'column', lg: 'row' }}
+          align="center"
+          justify="center"
+          gap={{ base: 8, lg: 16 }}
+          maxW="1200px"
+          w="100%"
+        >
+          {/* Text Content */}
+          <MotionBox
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            flex={1}
+            maxW={{ base: '100%', lg: '600px' }}
+          >
+            {/* Greeting Badge */}
+            <MotionFlex
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              align="center"
+              gap={2}
+              mb={4}
+            >
+              <Box
+                w="40px"
+                h="2px"
+                bg="linear-gradient(90deg, #3B82F6, transparent)"
+                flexShrink={0}
+              />
+              <Text
+                color="#3B82F6"
+                fontSize="sm"
+                fontWeight="600"
+                letterSpacing="0.5px"
+              >
+                {t('greetingBadge')}
+              </Text>
+            </MotionFlex>
+
+            {/* Name */}
+            <Heading
+              as="h1"
+              fontFamily="'Space Grotesk', sans-serif"
+              fontSize={{ base: '2.5rem', md: '3.5rem', lg: '4rem' }}
+              fontWeight="700"
+              color="white"
+              lineHeight="1.1"
+              mb={4}
+              letterSpacing="-0.02em"
+            >
+              Daniel{' '}
+              <Box as="span" color="#3B82F6">
+                Rossinatti
+              </Box>
+            </Heading>
+
+            {/* Role */}
+            <MotionText
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              fontSize={{ base: 'lg', md: 'xl' }}
+              color="#22C55E"
+              fontWeight="600"
+              mb={6}
+              fontFamily="'Space Grotesk', sans-serif"
+            >
+              {t('softwareDeveloper')}
+            </MotionText>
+
+            {/* Description */}
+            <Text
+              fontSize={{ base: 'md', md: 'lg' }}
+              color="#94A3B8"
+              lineHeight="1.8"
+              mb={8}
+              maxW="540px"
+            >
+              {t('headerDescription').replace('{greeting}', greeting).replace('{age}', age.toString())}
+            </Text>
+
+            {/* CTA Buttons */}
+            <Flex
+              gap={4}
+              direction={{ base: 'column', sm: 'row' }}
+            >
+              <Button
+                as="a"
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                bg="#3B82F6"
+                color="white"
+                px={8}
+                py={6}
+                fontSize="md"
+                fontWeight="600"
+                borderRadius="12px"
+                cursor="pointer"
+                transition="all 0.25s ease"
+                _hover={{
+                  bg: '#2563EB',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 10px 40px rgba(59, 130, 246, 0.4)'
+                }}
+                rightIcon={<FaArrowRight />}
+              >
+                {t('projects')}
+              </Button>
+              <Button
+                as="a"
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  document.getElementById('container-contacts')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                bg="transparent"
+                color="white"
+                px={8}
+                py={6}
+                fontSize="md"
+                fontWeight="600"
+                borderRadius="12px"
+                border="2px solid rgba(255, 255, 255, 0.2)"
+                cursor="pointer"
+                transition="all 0.25s ease"
+                _hover={{
+                  borderColor: '#3B82F6',
+                  bg: 'rgba(59, 130, 246, 0.1)'
+                }}
+              >
+                {t('contacts')}
+              </Button>
+            </Flex>
+          </MotionBox>
+
+          {/* Profile Image */}
+          <MotionBox
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+            display={{ base: 'none', lg: 'block' }}
+          >
+            <Box
+              position="relative"
+              _before={{
+                content: '""',
+                position: 'absolute',
+                top: '-20px',
+                left: '-20px',
+                right: '20px',
+                bottom: '20px',
+                border: '2px solid rgba(59, 130, 246, 0.3)',
+                borderRadius: '24px',
+                zIndex: 0
+              }}
+            >
+              <Image
+                src="./logo.png"
+                alt="Daniel Rossinatti"
+                w={{ lg: '320px', xl: '380px' }}
+                h={{ lg: '320px', xl: '380px' }}
+                borderRadius="24px"
+                objectFit="cover"
+                position="relative"
+                zIndex={1}
+                boxShadow="0 25px 80px rgba(0, 0, 0, 0.5)"
+                transition="transform 0.4s ease"
+                _hover={{
+                  transform: 'scale(1.02)'
+                }}
+              />
+              {/* Glow effect */}
+              <Box
+                position="absolute"
+                top="50%"
+                left="50%"
+                transform="translate(-50%, -50%)"
+                w="100%"
+                h="100%"
+                bg="radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)"
+                filter="blur(40px)"
+                zIndex={0}
+                pointerEvents="none"
+              />
+            </Box>
+          </MotionBox>
+        </Flex>
+
+        {/* Scroll Indicator */}
+        <MotionBox
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          position="absolute"
+          bottom="40px"
+          left="50%"
+          transform="translateX(-50%)"
+          display={{ base: 'none', md: 'flex' }}
+          flexDirection="column"
+          alignItems="center"
+          gap={2}
+        >
+          <Text fontSize="xs" color="#64748B" fontWeight="500" letterSpacing="1px">
+            SCROLL
+          </Text>
+          <MotionBox
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <Box
+              w="24px"
+              h="40px"
+              border="2px solid rgba(255, 255, 255, 0.2)"
+              borderRadius="12px"
+              position="relative"
+              _before={{
+                content: '""',
+                position: 'absolute',
+                top: '8px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                w: '4px',
+                h: '8px',
+                bg: '#3B82F6',
+                borderRadius: '2px'
+              }}
+            />
+          </MotionBox>
         </MotionBox>
-        <MotionImage
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          src="./logo.png"
-          alt="Daniel Rossinatti"
-          w={{ base: '0', md: '0', lg: '0', xl: '400px' }}
-          h={{ base: '0', md: '0', lg: '0', xl: '400px' }}
-          ml={{ base: 0, lg: '2em' }}
-          borderRadius="50%"
-          boxShadow="0 20px 60px rgba(10, 12, 16, 0.8)"
-          display={{ base: 'block', lg: 'block' }}
-          sx={{ transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
-          _hover={{
-            transform: 'scale(1.05)',
-            boxShadow: '0 25px 80px rgba(0, 59, 187, 0.3)',
-          }}
-        />
       </Flex>
     </Box>
   );

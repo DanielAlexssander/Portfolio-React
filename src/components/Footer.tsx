@@ -1,53 +1,78 @@
-import { Box, Flex, Text, Link } from '@chakra-ui/react';
-import { FaReact } from "react-icons/fa6";
+import { Box, Flex, Text, Link, Button } from '@chakra-ui/react';
+import { FaReact, FaGithub } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
   const { t } = useLanguage();
+  const currentYear = new Date().getFullYear();
+
   return (
-    <Box as="footer" bg="#0a0c10" py={{ base: '2rem', md: '1.5rem' }}>
-      <Flex
-        justifyContent="center"
-        alignItems="center"
-        color="white"
-        textAlign="center"
-        direction={{ base: 'column', md: 'row' }}
-        gap={{ base: '1rem', md: '2rem' }}
-        px={{ base: '1rem', md: '2rem' }}
-        maxW="1200px"
-        mx="auto"
-      >
-        <Flex align="center" gap="0.5rem">
-          <Text fontSize={{ base: '0.9rem', md: '1rem' }} fontWeight="600">
-            {t('technologiesUsedFooter')}
-          </Text>
-          <Box color="#61DAFB" fontSize="1.5rem">
-            <FaReact />
-          </Box>
-        </Flex>
-        
-        <Link
-          href="https://github.com/DanielAlexssander/Projetos"
-          target="_blank"
-          textDecoration="none"
-          color="white"
-          border="2px solid rgb(0, 59, 187)"
-          px={{ base: '1.5rem', md: '2rem' }}
-          py={{ base: '0.7rem', md: '0.8rem' }}
-          borderRadius="25px"
-          fontSize={{ base: '0.9rem', md: '1rem' }}
-          fontWeight="600"
-          transition="all 0.3s ease"
-          _hover={{
-            bg: 'rgb(0, 59, 187)',
-            textDecoration: 'none',
-            transform: 'translateY(-2px)',
-            boxShadow: '0 8px 25px rgba(0, 59, 187, 0.3)'
-          }}
+    <Box 
+      as="footer" 
+      bg="#0A0F1A"
+      borderTop="1px solid rgba(255, 255, 255, 0.05)"
+      py={{ base: 8, md: 10 }}
+      px={{ base: 4, md: 8 }}
+    >
+      <Box maxW="1200px" mx="auto">
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          justify="space-between"
+          align="center"
+          gap={6}
         >
-          {t('pageCode')}
-        </Link>
-      </Flex>
+          {/* Left - Brand */}
+          <Flex direction="column" align={{ base: 'center', md: 'flex-start' }} gap={2}>
+            <Text
+              fontFamily="'Space Grotesk', sans-serif"
+              fontWeight="700"
+              fontSize="xl"
+              color="white"
+              letterSpacing="-0.02em"
+            >
+              DR<Box as="span" color="#3B82F6">.</Box>
+            </Text>
+            <Text fontSize="sm" color="#64748B">
+              © {currentYear} Daniel Rossinatti
+            </Text>
+          </Flex>
+
+          {/* Center - Built with */}
+          <Flex align="center" gap={2} color="#64748B" fontSize="sm">
+            <Text>{t('builtWith')}</Text>
+            <Flex align="center" gap={1} color="#61DAFB">
+              <FaReact size={16} />
+              <Text fontWeight="500">React</Text>
+            </Flex>
+          </Flex>
+
+          {/* Right - Source code */}
+          <Link
+            href="https://github.com/DanielAlexssander/Projetos"
+            target="_blank"
+            _hover={{ textDecoration: 'none' }}
+          >
+            <Button
+              size="sm"
+              bg="transparent"
+              color="#94A3B8"
+              border="1px solid rgba(255, 255, 255, 0.1)"
+              borderRadius="10px"
+              fontWeight="500"
+              fontSize="sm"
+              leftIcon={<FaGithub size={14} />}
+              _hover={{
+                bg: 'rgba(59, 130, 246, 0.1)',
+                borderColor: 'rgba(59, 130, 246, 0.3)',
+                color: 'white'
+              }}
+              transition="all 0.2s ease"
+            >
+              {t('pageCode')}
+            </Button>
+          </Link>
+        </Flex>
+      </Box>
     </Box>
   );
 };

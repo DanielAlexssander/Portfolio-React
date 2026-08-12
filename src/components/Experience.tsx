@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { Box, Heading, Text, Flex, Image, Button } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const MotionBox = motion.create(Box as React.ComponentType<any>);
-const MotionHeading = motion.create(Heading as React.ComponentType<any>);
 
 interface ExperienceItem {
   company: string;
@@ -60,182 +59,276 @@ const Experience = () => {
     <Box
       as="section"
       id="experience"
-      bg="linear-gradient(180deg, #000613 0%, #011229 50%, #000715 100%)"
-      color="white"
-      py={{ base: '4rem', md: '6rem' }}
-      px={{ base: '1rem', md: '2rem' }}
-      minH="100vh"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
+      bg="#0F172A"
+      position="relative"
+      py={{ base: '80px', md: '120px' }}
+      px={{ base: 4, md: 8 }}
+      overflow="hidden"
     >
-      <MotionHeading
-        as="h2"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        mb={{ base: '2rem', md: '3rem' }}
-        fontSize={{ base: '1.8rem', md: '2.2rem', lg: '2.5rem' }}
-        fontWeight="700"
-        textAlign="center"
-      >
-        {t('experienceTitle')}
-      </MotionHeading>
+      {/* Background decoration */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        opacity={0.5}
+        bgGradient="linear(to-b, transparent, rgba(30, 41, 59, 0.3), transparent)"
+        pointerEvents="none"
+      />
 
-      <Flex
-        direction="column"
-        gap="2rem"
-        w="100%"
-        maxW="900px"
-      >
-        {paginatedExperiences.map((exp, index) => (
-          <MotionBox
-            key={index}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            bg="rgba(0, 0, 0, 0.4)"
-            p={{ base: '1.5rem', md: '2rem' }}
-            borderRadius="15px"
-            backdropFilter="blur(10px)"
-            border="1px solid rgba(255, 255, 255, 0.1)"
-            _hover={{
-              border: '1px solid rgba(0, 91, 209, 0.5)',
-              boxShadow: '0 8px 30px rgba(0, 91, 209, 0.15)',
-              transform: 'translateY(-2px)'
-            }}
-            sx={{ transition: 'all 0.3s ease' }}
-            cursor="default"
-          >
-            <Flex
-              direction={{ base: 'column', md: 'row' }}
-              align={{ base: 'flex-start', md: 'center' }}
-              justify="space-between"
-              mb="1rem"
-              gap={{ base: '0.5rem', md: '1rem' }}
-            >
-              <Flex align="center" gap="1rem">
-                {exp.logo && (
-                  <Image
-                    src={exp.logo}
-                    alt={exp.company}
-                    w="50px"
-                    h="50px"
-                    borderRadius="8px"
-                    objectFit="contain"
-                  />
-                )}
-                <Box>
-                  <Heading
-                    as="h3"
-                    fontSize={{ base: '1.2rem', md: '1.4rem' }}
-                    fontWeight="700"
-                    color="rgb(0, 91, 209)"
-                  >
-                    {exp.company}
-                  </Heading>
-                  <Text
-                    fontSize={{ base: '1rem', md: '1.1rem' }}
-                    fontWeight="600"
-                    color="white"
-                  >
-                    {exp.role}
-                  </Text>
-                </Box>
-              </Flex>
-              <Text
-                fontSize={{ base: '0.9rem', md: '1rem' }}
-                color="rgba(255, 255, 255, 0.7)"
-                fontWeight="500"
-                whiteSpace="nowrap"
-              >
-                {exp.period}
-              </Text>
-            </Flex>
-
-            <Text
-              fontSize={{ base: '0.95rem', md: '1rem' }}
-              lineHeight="1.7"
-              color="rgba(255, 255, 255, 0.9)"
-              mb="1rem"
-            >
-              {exp.description}
-            </Text>
-
-            {exp.technologies && exp.technologies.length > 0 && (
-              <Flex gap="0.5rem" flexWrap="wrap">
-                {exp.technologies.map((tech, techIndex) => (
-                  <Box
-                    key={techIndex}
-                    bg="rgba(0, 91, 209, 0.2)"
-                    color="rgb(100, 180, 255)"
-                    px="0.8rem"
-                    py="0.3rem"
-                    borderRadius="20px"
-                    fontSize="0.85rem"
-                    fontWeight="500"
-                    border="1px solid rgba(0, 91, 209, 0.3)"
-                  >
-                    {tech}
-                  </Box>
-                ))}
-              </Flex>
-            )}
-          </MotionBox>
-        ))}
-      </Flex>
-
-      {totalPages > 1 && (
-        <Flex
-          mt="2rem"
-          gap="1rem"
-          align="center"
-          justify="center"
+      <Box maxW="1000px" mx="auto" position="relative" zIndex={1}>
+        {/* Section Header */}
+        <MotionBox
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          mb={{ base: 10, md: 16 }}
+          textAlign="center"
         >
-          <Button
-            onClick={() => changePage(currentPage - 1)}
-            isDisabled={currentPage === 1}
-            bg="transparent"
-            border="2px solid rgba(0, 91, 209, 0.8)"
-            color="white"
-            _hover={{ bg: 'rgba(0, 91, 209, 0.3)' }}
-            _disabled={{ opacity: 0.5, cursor: 'not-allowed' }}
-            size="sm"
-          >
-            <FaChevronLeft />
-          </Button>
-
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <Button
-              key={page}
-              onClick={() => changePage(page)}
-              bg={currentPage === page ? 'rgb(0, 91, 209)' : 'transparent'}
-              border="2px solid rgba(0, 91, 209, 0.8)"
-              color="white"
-              _hover={{ bg: currentPage === page ? 'rgb(0, 91, 209)' : 'rgba(0, 91, 209, 0.3)' }}
-              size="sm"
-              minW="40px"
+          <Flex align="center" justify="center" gap={3} mb={4}>
+            <Box w="60px" h="1px" bg="linear-gradient(90deg, transparent, #3B82F6)" />
+            <Box
+              p={3}
+              bg="rgba(59, 130, 246, 0.1)"
+              borderRadius="12px"
+              border="1px solid rgba(59, 130, 246, 0.2)"
             >
-              {page}
-            </Button>
-          ))}
-
-          <Button
-            onClick={() => changePage(currentPage + 1)}
-            isDisabled={currentPage === totalPages}
-            bg="transparent"
-            border="2px solid rgba(0, 91, 209, 0.8)"
+              <FaBriefcase color="#3B82F6" size={20} />
+            </Box>
+            <Box w="60px" h="1px" bg="linear-gradient(90deg, #3B82F6, transparent)" />
+          </Flex>
+          <Heading
+            as="h2"
+            fontFamily="'Space Grotesk', sans-serif"
+            fontSize={{ base: '2rem', md: '2.5rem', lg: '3rem' }}
+            fontWeight="700"
             color="white"
-            _hover={{ bg: 'rgba(0, 91, 209, 0.3)' }}
-            _disabled={{ opacity: 0.5, cursor: 'not-allowed' }}
-            size="sm"
+            letterSpacing="-0.02em"
           >
-            <FaChevronRight />
-          </Button>
+            {t('experienceTitle').replace(':', '')}
+          </Heading>
+        </MotionBox>
+
+        {/* Experience Cards */}
+        <Flex direction="column" gap={6}>
+          {paginatedExperiences.map((exp, index) => (
+            <MotionBox
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Box
+                bg="rgba(30, 41, 59, 0.5)"
+                backdropFilter="blur(10px)"
+                borderRadius="20px"
+                border="1px solid rgba(255, 255, 255, 0.05)"
+                p={{ base: 6, md: 8 }}
+                position="relative"
+                overflow="hidden"
+                transition="all 0.3s ease"
+                cursor="default"
+                _hover={{
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+                }}
+                _before={{
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  h: '3px',
+                  bgGradient: 'linear(to-r, #3B82F6, #22C55E)',
+                  opacity: 0,
+                  transition: 'opacity 0.3s ease'
+                }}
+                sx={{
+                  '&:hover::before': {
+                    opacity: 1
+                  }
+                }}
+              >
+                {/* Header */}
+                <Flex
+                  direction={{ base: 'column', md: 'row' }}
+                  align={{ base: 'flex-start', md: 'center' }}
+                  justify="space-between"
+                  gap={4}
+                  mb={6}
+                >
+                  <Flex align="center" gap={4}>
+                    {exp.logo && (
+                      <Box
+                        w="60px"
+                        h="60px"
+                        borderRadius="16px"
+                        overflow="hidden"
+                        bg="white"
+                        p={1}
+                        flexShrink={0}
+                      >
+                        <Image
+                          src={exp.logo}
+                          alt={exp.company}
+                          w="100%"
+                          h="100%"
+                          objectFit="contain"
+                          borderRadius="12px"
+                        />
+                      </Box>
+                    )}
+                    <Box>
+                      <Heading
+                        as="h3"
+                        fontFamily="'Space Grotesk', sans-serif"
+                        fontSize={{ base: 'lg', md: 'xl' }}
+                        fontWeight="700"
+                        color="white"
+                        mb={1}
+                      >
+                        {exp.company}
+                      </Heading>
+                      <Text
+                        fontSize={{ base: 'md', md: 'lg' }}
+                        fontWeight="600"
+                        color="#3B82F6"
+                      >
+                        {exp.role}
+                      </Text>
+                    </Box>
+                  </Flex>
+
+                  <Flex
+                    align="center"
+                    gap={2}
+                    bg="rgba(59, 130, 246, 0.1)"
+                    px={4}
+                    py={2}
+                    borderRadius="full"
+                    flexShrink={0}
+                  >
+                    <FaCalendarAlt color="#3B82F6" size={14} />
+                    <Text
+                      fontSize="sm"
+                      color="#94A3B8"
+                      fontWeight="600"
+                    >
+                      {exp.period}
+                    </Text>
+                  </Flex>
+                </Flex>
+
+                {/* Description */}
+                <Text
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  lineHeight="1.8"
+                  color="#94A3B8"
+                  mb={6}
+                >
+                  {exp.description}
+                </Text>
+
+                {/* Technologies */}
+                {exp.technologies && exp.technologies.length > 0 && (
+                  <Flex gap={2} flexWrap="wrap">
+                    {exp.technologies.map((tech, techIndex) => (
+                      <Box
+                        key={techIndex}
+                        bg="rgba(59, 130, 246, 0.1)"
+                        color="#94A3B8"
+                        px={3}
+                        py={1.5}
+                        borderRadius="8px"
+                        fontSize="xs"
+                        fontWeight="600"
+                        border="1px solid rgba(59, 130, 246, 0.15)"
+                        transition="all 0.2s ease"
+                        _hover={{
+                          bg: 'rgba(59, 130, 246, 0.2)',
+                          color: 'white',
+                          borderColor: 'rgba(59, 130, 246, 0.3)'
+                        }}
+                      >
+                        {tech}
+                      </Box>
+                    ))}
+                  </Flex>
+                )}
+              </Box>
+            </MotionBox>
+          ))}
         </Flex>
-      )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <Flex
+            mt={10}
+            gap={3}
+            align="center"
+            justify="center"
+          >
+            <Button
+              onClick={() => changePage(currentPage - 1)}
+              isDisabled={currentPage === 1}
+              bg="rgba(30, 41, 59, 0.8)"
+              border="1px solid rgba(255, 255, 255, 0.1)"
+              color="white"
+              w="44px"
+              h="44px"
+              p={0}
+              borderRadius="12px"
+              _hover={{ bg: 'rgba(59, 130, 246, 0.2)', borderColor: 'rgba(59, 130, 246, 0.3)' }}
+              _disabled={{ opacity: 0.3, cursor: 'not-allowed', _hover: { bg: 'rgba(30, 41, 59, 0.8)' } }}
+            >
+              <FaChevronLeft size={14} />
+            </Button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <Button
+                key={page}
+                onClick={() => changePage(page)}
+                bg={currentPage === page ? '#3B82F6' : 'rgba(30, 41, 59, 0.8)'}
+                border="1px solid"
+                borderColor={currentPage === page ? '#3B82F6' : 'rgba(255, 255, 255, 0.1)'}
+                color="white"
+                w="44px"
+                h="44px"
+                p={0}
+                borderRadius="12px"
+                fontWeight="600"
+                fontSize="sm"
+                _hover={{ 
+                  bg: currentPage === page ? '#2563EB' : 'rgba(59, 130, 246, 0.2)',
+                  borderColor: currentPage === page ? '#2563EB' : 'rgba(59, 130, 246, 0.3)'
+                }}
+              >
+                {page}
+              </Button>
+            ))}
+
+            <Button
+              onClick={() => changePage(currentPage + 1)}
+              isDisabled={currentPage === totalPages}
+              bg="rgba(30, 41, 59, 0.8)"
+              border="1px solid rgba(255, 255, 255, 0.1)"
+              color="white"
+              w="44px"
+              h="44px"
+              p={0}
+              borderRadius="12px"
+              _hover={{ bg: 'rgba(59, 130, 246, 0.2)', borderColor: 'rgba(59, 130, 246, 0.3)' }}
+              _disabled={{ opacity: 0.3, cursor: 'not-allowed', _hover: { bg: 'rgba(30, 41, 59, 0.8)' } }}
+            >
+              <FaChevronRight size={14} />
+            </Button>
+          </Flex>
+        )}
+      </Box>
     </Box>
   );
 };

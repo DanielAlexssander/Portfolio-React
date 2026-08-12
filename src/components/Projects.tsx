@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
-import { Box, Heading, Text, Image, Link, Flex, SimpleGrid, Input } from '@chakra-ui/react';
+import { Box, Heading, Text, Image, Link, Flex, SimpleGrid, Input, Button } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FaArrowUp, FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight, FaSearch } from 'react-icons/fa';
+import { FaArrowUp, FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight, FaSearch, FaCode, FaLock, FaHtml5, FaCss3Alt, FaReact, FaJs, FaSass, FaNodeJs, FaPython, FaAws } from 'react-icons/fa';
+import { SiTypescript, SiFlutter, SiFirebase, SiNextdotjs, SiTailwindcss, SiRedux, SiExpress } from 'react-icons/si';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const MotionFlex = motion.create(Flex as React.ComponentType<any>);
-const MotionHeading = motion.create(Heading as React.ComponentType<any>);
+const MotionBox = motion.create(Box as React.ComponentType<any>);
 
 interface Project {
   app?: boolean;
@@ -18,6 +18,30 @@ interface Project {
   private?: boolean;
 }
 
+interface TechIconConfig {
+  icon: React.ComponentType<{ size?: number; color?: string }>;
+  color: string;
+}
+
+const techIconsConfig: Record<string, TechIconConfig> = {
+  HTML: { icon: FaHtml5, color: '#E34F26' },
+  CSS: { icon: FaCss3Alt, color: '#1572B6' },
+  JavaScript: { icon: FaJs, color: '#F7DF1E' },
+  TypeScript: { icon: SiTypescript, color: '#3178C6' },
+  React: { icon: FaReact, color: '#61DAFB' },
+  Node: { icon: FaNodeJs, color: '#339933' },
+  Sass: { icon: FaSass, color: '#CC6699' },
+  Flutter: { icon: SiFlutter, color: '#02569B' },
+  Firebase: { icon: SiFirebase, color: '#FFCA28' },
+  Next: { icon: SiNextdotjs, color: '#FFFFFF' },
+  Tailwind: { icon: SiTailwindcss, color: '#06B6D4' },
+  Redux: { icon: SiRedux, color: '#764ABC' },
+  Express: { icon: SiExpress, color: '#FFFFFF' },
+  Python: { icon: FaPython, color: '#3776AB' },
+  AWS: { icon: FaAws, color: '#FF9900' },
+};
+
+
 const Projects = () => {
   const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,34 +49,8 @@ const Projects = () => {
   const [selectedTech, setSelectedTech] = useState('');
   const PROJECTS_PER_PAGE = 6;
 
-  const changePage = (page: number | ((p: number) => number)) => {
-    setCurrentPage(page);
-    setTimeout(() => {
-      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
-  };
-  
-  const techIcons = {
-    HTML: `<i class="fa-brands fa-html5" style="color: #E34F26;"></i>`,
-    CSS: `<i class="fa-brands fa-css3-alt" style="color: #1572B6;"></i>`,
-    JavaScript: `<i class="fa-brands fa-square-js" style="color: #F7DF1E;"></i>`,
-    TypeScript: `<svg width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="28" height="28" rx="1.312" style="fill:#3178c6"/><path d="M18.245,23.759v3.068a6.492,6.492,0,0,0,1.764.575,11.56,11.56,0,0,0,2.146.192,9.968,9.968,0,0,0,2.088-.211,5.11,5.11,0,0,0,1.735-.7,3.542,3.542,0,0,0,1.181-1.266,4.469,4.469,0,0,0,.186-3.394,3.409,3.409,0,0,0-.717-1.117,5.236,5.236,0,0,0-1.123-.877,12.027,12.027,0,0,0-1.477-.734q-.6-.249-1.08-.484a5.5,5.5,0,0,1-.813-.479,2.089,2.089,0,0,1-.516-.518,1.091,1.091,0,0,1-.181-.618,1.039,1.039,0,0,1,.162-.571,1.4,1.4,0,0,1,.459-.436,2.439,2.439,0,0,1,.726-.283,4.211,4.211,0,0,1,.956-.1,5.942,5.942,0,0,1,.808.058,6.292,6.292,0,0,1,.856.177,5.994,5.994,0,0,1,.836.3,4.657,4.657,0,0,1,.751.422V13.9a7.509,7.509,0,0,0-1.525-.4,12.426,12.426,0,0,0-1.9-.129,8.767,8.767,0,0,0-2.064.235,5.239,5.239,0,0,0-1.716.733,3.655,3.655,0,0,0-1.171,1.271,3.731,3.731,0,0,0-.431,1.845,3.588,3.588,0,0,0,.789,2.34,6,6,0,0,0,2.395,1.639q.63.26,1.175.509a6.458,6.458,0,0,1,.942.517,2.463,2.463,0,0,1,.626.585,1.2,1.2,0,0,1,.23.719,1.1,1.1,0,0,1-.144.552,1.269,1.269,0,0,1-.435.441,2.381,2.381,0,0,1-.726.292,4.377,4.377,0,0,1-1.018.105,5.773,5.773,0,0,1-1.969-.35A5.874,5.874,0,0,1,18.245,23.759Zm-5.154-7.638h4V13.594H5.938v2.527H9.92V27.375h3.171Z" style="fill: #ffffff; fill-rule: evenodd"/></svg>`,
-    React: `<i class="fa-brands fa-react" style="color: #61DAFB;"></i>`,
-    Node: `<i class="fa-brands fa-node" style="color: #339933;"></i>`,
-    Sass: `<i class="fa-brands fa-sass" style="color: #CC6699;"></i>`,
-    Flutter: `<svg fill="#5BC2F0" width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M18.909 14.84l-8.086 8.070 8.085 8.085h9.214l-8.073-8.083 8.073-8.073h-9.212zM18.892 1.004l-15.013 14.996 4.624 4.624 19.599-19.603h-9.194z"></path></svg>`,
-    Firebase: `<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20" viewBox="0 0 32 32"><path d="M19.62 11.558l-3.203 2.98-2.972-5.995 1.538-3.448c.4-.7 1.024-.692 1.414 0z" fill="#ffa000"/><path d="M13.445 8.543l2.972 5.995-11.97 11.135z" fill="#f57f17"/><path d="M23.123 7.003c.572-.55 1.164-.362 1.315.417l3.116 18.105-10.328 6.2c-.36.2-1.32.286-1.32.286s-.874-.104-1.207-.3L4.447 25.673z" fill="#ffca28"/><path d="M13.445 8.543l-8.997 17.13L8.455.638c.148-.78.592-.855.988-.167z" fill="#ffa000"/></svg>`,
-    Next: `<svg width="20px" height="20px" viewBox="0 -101.5 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M120.81043,80.5613102 L217.378325,80.5613102 L217.378325,88.2366589 L129.662487,88.2366589 L129.662487,146.003758 L212.147564,146.003758 L212.147564,153.679106 L129.662487,153.679106 L129.662487,217.101725 L218.384241,217.101725 L218.384241,224.777073 L120.81043,224.777073 L120.81043,80.5613102 Z M226.0292,80.5613102 L236.289538,80.5613102 L281.756922,143.983929 L328.230222,80.5613102 L391.441486,0 L287.591232,150.649363 L341.105941,224.777073 L330.443237,224.777073 L281.756922,157.314798 L232.869425,224.777073 L222.407904,224.777073 L276.324978,150.649363 L226.0292,80.5613102 Z M344.928421,88.2366588 L344.928421,80.5613102 L454.975585,80.5613102 L454.975585,88.2366589 L404.27744,88.2366589 L404.27744,224.777073 L395.425382,224.777073 L395.425382,88.2366589 L344.928421,88.2366588 Z M1.42108547e-14,80.5613102 L11.0650714,80.5613102 L163.64593,308.884007 L100.591558,224.777073 L9.25442331,91.4683847 L8.85205708,224.777073 L1.42108547e-14,224.777073 L1.42108547e-14,80.5613102 Z M454.083705,214.785469 C452.275167,214.785469 450.918762,213.38418 450.918762,211.573285 C450.918762,209.762388 452.275167,208.361099 454.083705,208.361099 C455.913774,208.361099 457.248648,209.762388 457.248648,211.573285 C457.248648,213.38418 455.913774,214.785469 454.083705,214.785469 Z M462.781915,206.334618 L467.518563,206.334618 C467.583153,208.900055 469.456284,210.624719 472.212151,210.624719 C475.290972,210.624719 477.03492,208.770705 477.03492,205.29982 L477.03492,183.310363 L481.85769,183.310363 L481.85769,205.321379 C481.85769,211.573285 478.240613,215.173518 472.255212,215.173518 C466.635824,215.173518 462.781915,211.681076 462.781915,206.334618 Z M488.166045,206.054362 L492.945754,206.054362 C493.354828,209.007848 496.239878,210.883419 500.395211,210.883419 C504.270652,210.883419 507.11264,208.878498 507.11264,206.119036 C507.11264,203.747625 505.304102,202.324777 501.191828,201.354653 L497.187209,200.384531 C491.56782,199.069474 489.005723,196.353129 489.005723,191.782772 C489.005723,186.24229 493.527071,182.555823 500.30909,182.555823 C506.617445,182.555823 511.224912,186.24229 511.504805,191.480955 L506.811217,191.480955 C506.359083,188.613703 503.861576,186.824365 500.244499,186.824365 C496.43365,186.824365 493.893085,188.656819 493.893085,191.459398 C493.893085,193.679901 495.52938,194.95184 499.577063,195.900406 L503.000368,196.741178 C509.373314,198.228702 512,200.815695 512,205.493846 C512,211.443935 507.392533,215.173518 500.029197,215.173518 C493.139526,215.173518 488.51053,211.6164 488.166045,206.054362 Z" fill="#ffff"/></svg>`,
-    Tailwind: `<svg width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M9,13.7q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q11.1,10.9,9,13.7ZM2,22.1q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q4.1,19.3,2,22.1Z" style="fill:#06B6D4"/></svg>`,
-    Redux: `<svg width="20px" height="20" viewBox="0 -6 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M177.381 169.733c9.447-.978 16.614-9.122 16.288-18.896-.325-9.773-8.47-17.592-18.243-17.592h-.651c-10.1.326-17.918 8.796-17.592 18.895.326 4.887 2.28 9.122 5.212 12.054-11.076 21.828-28.016 37.791-53.426 51.148-17.266 9.122-35.183 12.38-53.1 10.1-14.66-1.955-26.062-8.47-33.23-19.222-10.424-15.963-11.401-33.23-2.605-50.496 6.19-12.38 15.962-21.502 22.152-26.063-1.303-4.235-3.258-11.402-4.235-16.614-47.237 34.207-42.35 80.468-28.016 102.295 10.75 16.29 32.577 26.389 56.684 26.389 6.515 0 13.03-.652 19.546-2.28 41.699-8.145 73.299-32.905 91.216-69.718zm57.336-40.397c-24.759-28.995-61.245-44.958-102.944-44.958h-5.212c-2.932-5.864-9.122-9.774-15.963-9.774h-.652C99.848 74.93 92.03 83.4 92.355 93.5c.326 9.773 8.47 17.592 18.243 17.592h.651c7.167-.326 13.357-4.887 15.963-11.077h5.864c24.759 0 48.214 7.167 69.39 21.176 16.288 10.751 28.016 24.76 34.531 41.7 5.538 13.683 5.212 27.04-.652 38.443-9.121 17.266-24.432 26.714-44.63 26.714-13.031 0-25.41-3.91-31.926-6.842-3.583 3.258-10.099 8.47-14.66 11.729 14.009 6.515 28.343 10.099 42.025 10.099 31.274 0 54.404-17.267 63.2-34.533 9.447-18.896 8.795-51.474-15.637-79.165zM69.225 175.27c.326 9.774 8.47 17.592 18.243 17.592h.652c10.099-.325 17.917-8.796 17.591-18.895-.325-9.774-8.47-17.592-18.243-17.592h-.651c-.652 0-1.63 0-2.28.325-13.357-22.153-18.895-46.26-16.94-72.323 1.302-19.547 7.818-36.488 19.22-50.497 9.447-12.054 27.69-17.918 40.07-18.243 34.531-.652 49.19 42.351 50.168 59.618 4.235.977 11.402 3.258 16.289 4.887C189.434 27.366 156.857 0 125.584 0c-29.32 0-56.359 21.176-67.11 52.451-14.985 41.7-5.212 81.771 13.031 113.372-1.628 2.28-2.606 5.864-2.28 9.448z" fill="#764ABC"/></svg>`,
-    Express: `<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 50 50" width="20px" height="20px"><path d="M49.729 11h-.85c-1.051 0-2.041.49-2.68 1.324l-8.7 11.377-8.7-11.377C28.162 11.49 27.171 11 26.121 11h-.85l10.971 14.346L25.036 40h.85c1.051 0 2.041-.49 2.679-1.324L37.5 26.992l8.935 11.684C47.073 39.51 48.063 40 49.114 40h.85L38.758 25.346 49.729 11zM21.289 34.242c-2.554 3.881-7.582 5.87-12.389 4.116C4.671 36.815 2 32.611 2 28.109L2 27h12v0h11l0-4.134c0-6.505-4.818-12.2-11.295-12.809C6.273 9.358 0 15.21 0 22.5l0 5.573c0 5.371 3.215 10.364 8.269 12.183 6.603 2.376 13.548-1.17 15.896-7.256 0 0 0 0 0 0h-.638C22.616 33 21.789 33.481 21.289 34.242zM2 22.5C2 16.71 6.71 12 12.5 12S23 16.71 23 22.5V25H2V22.5z"/></svg>`,
-    Python: `<i class="fa-brands fa-python" style="color: #3776AB;"></i>`,
-    AWS: `<i class="fa-brands fa-aws" style="color: #FF9900;"></i>`
-  };
-
   const projects: Project[] = [
     {
-      app: false,
       urlGif: "./tiago-ons.png",
       nameProject: "Tiago ONS",
       liTec: "React, TypeScript, Python, AWS",
@@ -126,15 +124,9 @@ const Projects = () => {
     },
   ];
 
-  const renderTechIcons = (techs: string) => {
-    return techs.split(', ').map((tech, index) => (
-      <Box key={index} dangerouslySetInnerHTML={{ __html: techIcons[tech as keyof typeof techIcons] || tech }} />
-    ));
-  };
-
   const allTechs = useMemo(() => {
     const techs = new Set<string>();
-    projects.forEach(p => p.liTec.split(', ').forEach(t => techs.add(t)));
+    projects.forEach(p => p.liTec.split(', ').forEach(tech => techs.add(tech)));
     return Array.from(techs).sort();
   }, []);
 
@@ -150,51 +142,105 @@ const Projects = () => {
     currentPage * PROJECTS_PER_PAGE
   );
 
+  const changePage = (page: number) => {
+    setCurrentPage(page);
+    setTimeout(() => {
+      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  };
+
+  const renderTechBadges = (techs: string) => {
+    return techs.split(', ').map((tech, index) => {
+      const config = techIconsConfig[tech];
+      const IconComponent = config?.icon;
+      return (
+        <Flex
+          key={index}
+          align="center"
+          gap={1.5}
+          bg="rgba(59, 130, 246, 0.1)"
+          px={2.5}
+          py={1}
+          borderRadius="6px"
+          border="1px solid rgba(59, 130, 246, 0.15)"
+        >
+          {IconComponent && <IconComponent size={14} color={config.color} />}
+          <Text fontSize="xs" color="#94A3B8" fontWeight="500">{tech}</Text>
+        </Flex>
+      );
+    });
+  };
+
+
   return (
     <Box
       as="section"
       id="projects"
-      w="100%"
-      bg="linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)"
-      py={{ base: '4rem', md: '6rem' }}
-      px={{ base: '1rem', md: '2rem' }}
+      bg="#0F172A"
+      position="relative"
+      py={{ base: '80px', md: '120px' }}
+      px={{ base: 4, md: 8 }}
+      overflow="hidden"
     >
-      <Box maxW="1400px" mx="auto">
-        <MotionHeading
-          as="h3"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          color="rgba(255, 255, 255, 1)"
-          fontSize={{ base: '2rem', md: '2.5rem', lg: '3rem' }}
-          mb={{ base: '3rem', md: '4rem' }}
-          textAlign="center"
-          textTransform="uppercase"
-          letterSpacing="3px"
-          fontWeight="800"
-        >
-          {t('projectsTitle')}
-        </MotionHeading>
+      {/* Background */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        bgGradient="linear(135deg, rgba(59, 130, 246, 0.03) 0%, transparent 50%, rgba(34, 197, 94, 0.03) 100%)"
+        pointerEvents="none"
+      />
 
+      <Box maxW="1300px" mx="auto" position="relative" zIndex={1}>
+        {/* Header */}
+        <MotionBox
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          mb={{ base: 8, md: 12 }}
+          textAlign="center"
+        >
+          <Flex align="center" justify="center" gap={3} mb={4}>
+            <Box w="60px" h="1px" bg="linear-gradient(90deg, transparent, #3B82F6)" />
+            <Box p={3} bg="rgba(59, 130, 246, 0.1)" borderRadius="12px" border="1px solid rgba(59, 130, 246, 0.2)">
+              <FaCode color="#3B82F6" size={20} />
+            </Box>
+            <Box w="60px" h="1px" bg="linear-gradient(90deg, #3B82F6, transparent)" />
+          </Flex>
+          <Heading
+            as="h2"
+            fontFamily="'Space Grotesk', sans-serif"
+            fontSize={{ base: '2rem', md: '2.5rem', lg: '3rem' }}
+            fontWeight="700"
+            color="white"
+            letterSpacing="-0.02em"
+          >
+            {t('projectsTitle').replace(':', '')}
+          </Heading>
+        </MotionBox>
+
+        {/* Filters */}
         <Flex
-          justify="left"
-          gap={{ base: '1rem', md: '1.5rem' }}
-          mb={{ base: '2rem', md: '3rem' }}
+          gap={4}
+          mb={10}
           direction={{ base: 'column', md: 'row' }}
           align="center"
+          justify="center"
         >
           <Flex
             align="center"
-            bg="rgba(255, 255, 255, 0.05)"
-            border="1px solid rgba(255, 255, 255, 0.1)"
+            bg="rgba(30, 41, 59, 0.6)"
+            border="1px solid rgba(255, 255, 255, 0.08)"
             borderRadius="12px"
-            px="1rem"
-            w={{ base: '100%', md: '400px' }}
-            transition="all 0.3s ease"
-            _focusWithin={{ border: '1px solid rgba(0, 59, 187, 0.5)', boxShadow: '0 0 15px rgba(0, 59, 187, 0.2)' }}
+            px={4}
+            w={{ base: '100%', md: '350px' }}
+            transition="all 0.25s ease"
+            _focusWithin={{ borderColor: 'rgba(59, 130, 246, 0.5)', boxShadow: '0 0 20px rgba(59, 130, 246, 0.15)' }}
           >
-            <FaSearch color="rgba(255, 255, 255, 0.5)" />
+            <FaSearch color="#64748B" size={14} />
             <Input
               placeholder={t('searchPlaceholder')}
               value={searchTerm}
@@ -202,9 +248,11 @@ const Projects = () => {
               border="none"
               bg="transparent"
               color="white"
-              _placeholder={{ color: 'rgba(255, 255, 255, 0.4)' }}
+              fontSize="sm"
+              _placeholder={{ color: '#64748B' }}
               _focus={{ boxShadow: 'none' }}
-              py="0.8rem"
+              py={3}
+              pl={3}
             />
           </Flex>
 
@@ -212,17 +260,18 @@ const Projects = () => {
             as="select"
             value={selectedTech}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => { setSelectedTech(e.target.value); setCurrentPage(1); }}
-            bg="rgba(255, 255, 255, 0.05)"
-            border="1px solid rgba(255, 255, 255, 0.1)"
+            bg="rgba(30, 41, 59, 0.6)"
+            border="1px solid rgba(255, 255, 255, 0.08)"
             borderRadius="12px"
             color="white"
-            px="1rem"
-            py="0.8rem"
-            w={{ base: '100%', md: '220px' }}
+            px={4}
+            py={3}
+            fontSize="sm"
+            w={{ base: '100%', md: '200px' }}
             cursor="pointer"
-            transition="all 0.3s ease"
-            _focus={{ border: '1px solid rgba(0, 59, 187, 0.5)', boxShadow: '0 0 15px rgba(0, 59, 187, 0.2)', outline: 'none' }}
-            sx={{ '& option': { bg: '#1a1a2e', color: 'white' } }}
+            transition="all 0.25s ease"
+            _focus={{ borderColor: 'rgba(59, 130, 246, 0.5)', outline: 'none' }}
+            sx={{ '& option': { bg: '#1E293B', color: 'white' } }}
           >
             <option value="">{t('allTechnologies')}</option>
             {allTechs.map(tech => (
@@ -230,240 +279,247 @@ const Projects = () => {
             ))}
           </Box>
         </Flex>
-        
-        <SimpleGrid columns={{ base: 1, lg: 2, xl: 3 }} spacing={{ base: 6, md: 8 }}>
+
+        {/* Projects Grid */}
+        <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={6}>
           {paginatedProjects.map((project, index) => (
-            <MotionFlex
+            <MotionBox
               key={`${currentPage}-${index}`}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              direction="column"
-              bg="rgba(255, 255, 255, 0.05)"
-              borderRadius="20px"
-              overflow="hidden"
-              backdropFilter="blur(20px)"
-              border="1px solid rgba(255, 255, 255, 0.1)"
-              _hover={{
-                transform: 'translateY(-3px)',
-                boxShadow: '0 25px 50px rgba(0, 59, 187, 0.3)',
-                border: '1px solid rgba(0, 59, 187, 0.3)'
-              }}
-              sx={{ transition: 'transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease' }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
             >
-              <Box position="relative" overflow="hidden">
-                <Image
-                  src={project.urlGif}
-                  alt={project.nameProject}
-                  w="100%"
-                  h={{ base: '200px', md: '250px' }}
-                  objectFit={project.app ? 'contain' : 'cover'}
-                  objectPosition="center"
-                  transition="all 0.4s ease"
-                  _hover={{ transform: { base: 'none', md: 'scale(1.1)' } }}
-                />
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  bg="linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 100%)"
-                />
-              </Box>
-              
-              <Flex direction="column" flex="1" p={{ base: '1.5rem', md: '2rem' }}>
-                <Flex justify="space-between" align="center" mb="1rem">
+              <Box
+                bg="rgba(30, 41, 59, 0.5)"
+                borderRadius="20px"
+                overflow="hidden"
+                border="1px solid rgba(255, 255, 255, 0.05)"
+                transition="all 0.3s ease"
+                cursor="pointer"
+                h="100%"
+                display="flex"
+                flexDirection="column"
+                _hover={{
+                  transform: 'translateY(-8px)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.1)'
+                }}
+              >
+                {/* Image */}
+                <Box position="relative" overflow="hidden" h="200px">
+                  <Image
+                    src={project.urlGif}
+                    alt={project.nameProject}
+                    w="100%"
+                    h="100%"
+                    objectFit={project.app ? 'contain' : 'cover'}
+                    transition="transform 0.5s ease"
+                    _groupHover={{ transform: 'scale(1.05)' }}
+                  />
+                  <Box
+                    position="absolute"
+                    inset={0}
+                    bg="linear-gradient(180deg, transparent 50%, rgba(15, 23, 42, 0.9) 100%)"
+                  />
+                  {project.private && (
+                    <Flex
+                      position="absolute"
+                      top={3}
+                      right={3}
+                      align="center"
+                      gap={1.5}
+                      bg="rgba(0, 0, 0, 0.6)"
+                      backdropFilter="blur(8px)"
+                      px={3}
+                      py={1.5}
+                      borderRadius="full"
+                    >
+                      <FaLock size={10} color="#94A3B8" />
+                      <Text fontSize="xs" color="#94A3B8" fontWeight="500">Private</Text>
+                    </Flex>
+                  )}
+                </Box>
+
+                {/* Content */}
+                <Flex direction="column" flex={1} p={6}>
                   <Heading
                     as="h3"
-                    fontSize={{ base: '1.2rem', md: '1.4rem' }}
-                    color="white"
+                    fontFamily="'Space Grotesk', sans-serif"
+                    fontSize="lg"
                     fontWeight="700"
+                    color="white"
+                    mb={3}
                   >
                     {project.nameProject}
                   </Heading>
-                  
-                  <Flex gap="0.5rem" align="center">
-                    {renderTechIcons(project.liTec)}
+
+                  <Text
+                    fontSize="sm"
+                    color="#94A3B8"
+                    lineHeight="1.7"
+                    mb={4}
+                    noOfLines={3}
+                  >
+                    {project.informations}
+                  </Text>
+
+                  <Flex gap={2} flexWrap="wrap" mb={5}>
+                    {renderTechBadges(project.liTec)}
                   </Flex>
+
+                  {/* Actions */}
+                  {!project.private && (
+                    <Flex gap={3} mt="auto">
+                      <Link
+                        href={project.urlSite}
+                        target="_blank"
+                        flex={1}
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        <Flex
+                          w="100%"
+                          bg="#3B82F6"
+                          color="white"
+                          py={2.5}
+                          fontSize="sm"
+                          fontWeight="600"
+                          borderRadius="5px"
+                          align="center"
+                          justify="center"
+                          gap={2}
+                          _hover={{ bg: '#2563EB', transform: 'translateY(-2px)' }}
+                          transition="all 0.2s ease"
+                        >
+                          <FaExternalLinkAlt size={12} />
+                          {project.app ? t('apk') : t('site')}
+                        </Flex>
+                      </Link>
+                      <Link
+                        href={project.urlCod}
+                        target="_blank"
+                        flex={1}
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        <Box
+                          position="relative"
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                          gap={2}
+                          w="100%"
+                          bg="transparent"
+                          color="white"
+                          py={2.5}
+                          fontSize="sm"
+                          fontWeight="600"
+                          borderRadius="5px"
+                          border="1px solid rgba(255, 255, 255, 0.15)"
+                          overflow="hidden"
+                          zIndex={1}
+                          transition="all 0.3s ease"
+                          _before={{
+                            content: '""',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            bg: '#3B82F6',
+                            transition: 'transform 0.4s ease-in-out',
+                            transform: 'scaleX(0)',
+                            transformOrigin: 'left',
+                            zIndex: -1
+                          }}
+                          _hover={{
+                            borderColor: '#3B82F6',
+                            '&::before': {
+                              transform: 'scaleX(1)'
+                            }
+                          }}
+                        >
+                          <FaGithub size={14} />
+                          {t('code')}
+                        </Box>
+                      </Link>
+                    </Flex>
+                  )}
                 </Flex>
-                
-                <Text
-                  fontSize="0.9rem"
-                  color="rgba(255, 255, 255, 0.8)"
-                  lineHeight="1.6"
-                  mb="2rem"
-                  noOfLines={project.private ? undefined : 3}
-                >
-                  {project.informations}
-                </Text>
-                
-                {!project.private && (
-                  <Flex gap="1rem" justify="space-between" mt="auto">
-                    <Link
-                      w="50%"
-                      href={project.urlSite}
-                      target="_blank"
-                      position="relative"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      bg="rgb(0, 59, 187)"
-                      color="white"
-                      borderRadius="5px"
-                      textAlign="center"
-                      fontWeight="600"
-                      fontSize="0.9rem"
-                      textDecoration="none"
-                      transition="all 0.3s ease"
-                      _hover={{
-                        bg: 'rgb(0, 107, 175)',
-                        transform: 'translateY(-2px)',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      <Box position="absolute" top={1.5} left={1.5}><FaExternalLinkAlt style={{ marginRight: '8px' }} /></Box>
-                      {project.app ? t('apk') : t('site')}
-                    </Link>
-                    
-                    <Link
-                      w="50%"
-                      href={project.urlCod}
-                      target="_blank"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      position="relative"
-                      border="2px solid rgb(0, 59, 187)"
-                      color="white"
-                      py="0.8rem"
-                      px="1rem"
-                      borderRadius="5px"
-                      textAlign="center"
-                      fontWeight="600"
-                      fontSize="0.9rem"
-                      textDecoration="none"
-                      transition="all 0.3s ease"
-                      zIndex={1}
-                      _before={{
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: '-0.3px',
-                        bg: 'rgb(0, 59, 187)',
-                        borderRadius: '1px',
-                        transition: 'transform 0.5s ease-in-out',
-                        transform: 'scaleX(0)',
-                        transformOrigin: 'left',
-                        zIndex: -1
-                      }}
-                      _hover={{
-                        textDecoration: 'none',
-                        '&::before': {
-                          transform: 'scaleX(1)'
-                        }
-                      }}
-                    >
-                      <Box position='absolute' top={1.5} left={1.5}><FaGithub style={{ marginRight: '8px' }} /></Box>
-                      {t('code')}
-                    </Link>
-                  </Flex>
-                )}
-              </Flex>
-            </MotionFlex>
+              </Box>
+            </MotionBox>
           ))}
         </SimpleGrid>
 
+        {/* Pagination */}
         {totalPages > 1 && (
-          <Flex justify="center" align="center" gap="1rem" mt="3rem">
-            <Box
-              as="button"
-              onClick={() => changePage(p => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
-              opacity={currentPage === 1 ? 0.4 : 1}
-              cursor={currentPage === 1 ? 'not-allowed' : 'pointer'}
-              bg="rgba(255, 255, 255, 0.05)"
+          <Flex justify="center" align="center" gap={3} mt={12}>
+            <Button
+              onClick={() => changePage(Math.max(1, currentPage - 1))}
+              isDisabled={currentPage === 1}
+              bg="rgba(30, 41, 59, 0.8)"
               border="1px solid rgba(255, 255, 255, 0.1)"
-              borderRadius="8px"
-              p="0.6rem 1rem"
               color="white"
-              transition="all 0.3s ease"
-              _hover={{ bg: currentPage === 1 ? undefined : 'rgba(0, 59, 187, 0.3)' }}
+              w="44px"
+              h="44px"
+              p={0}
+              borderRadius="12px"
+              _hover={{ bg: 'rgba(59, 130, 246, 0.2)', borderColor: 'rgba(59, 130, 246, 0.3)' }}
+              _disabled={{ opacity: 0.3, cursor: 'not-allowed' }}
             >
-              <FaChevronLeft />
-            </Box>
+              <FaChevronLeft size={14} />
+            </Button>
+
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-              <Box
+              <Button
                 key={page}
-                as="button"
                 onClick={() => changePage(page)}
-                cursor="pointer"
-                bg={page === currentPage ? 'rgb(0, 59, 187)' : 'rgba(255, 255, 255, 0.05)'}
+                bg={currentPage === page ? '#3B82F6' : 'rgba(30, 41, 59, 0.8)'}
                 border="1px solid"
-                borderColor={page === currentPage ? 'rgb(0, 59, 187)' : 'rgba(255, 255, 255, 0.1)'}
-                borderRadius="8px"
-                px="1rem"
-                py="0.5rem"
+                borderColor={currentPage === page ? '#3B82F6' : 'rgba(255, 255, 255, 0.1)'}
                 color="white"
+                w="44px"
+                h="44px"
+                p={0}
+                borderRadius="12px"
                 fontWeight="600"
-                transition="all 0.3s ease"
-                _hover={{ bg: page === currentPage ? 'rgb(0, 59, 187)' : 'rgba(0, 59, 187, 0.3)' }}
+                fontSize="sm"
+                _hover={{ bg: currentPage === page ? '#2563EB' : 'rgba(59, 130, 246, 0.2)' }}
               >
                 {page}
-              </Box>
+              </Button>
             ))}
-            <Box
-              as="button"
-              onClick={() => changePage(p => Math.min(totalPages, p + 1))}
-              disabled={currentPage === totalPages}
-              opacity={currentPage === totalPages ? 0.4 : 1}
-              cursor={currentPage === totalPages ? 'not-allowed' : 'pointer'}
-              bg="rgba(255, 255, 255, 0.05)"
+
+            <Button
+              onClick={() => changePage(Math.min(totalPages, currentPage + 1))}
+              isDisabled={currentPage === totalPages}
+              bg="rgba(30, 41, 59, 0.8)"
               border="1px solid rgba(255, 255, 255, 0.1)"
-              borderRadius="8px"
-              p="0.6rem 1rem"
               color="white"
-              transition="all 0.3s ease"
-              _hover={{ bg: currentPage === totalPages ? undefined : 'rgba(0, 59, 187, 0.3)' }}
+              w="44px"
+              h="44px"
+              p={0}
+              borderRadius="12px"
+              _hover={{ bg: 'rgba(59, 130, 246, 0.2)', borderColor: 'rgba(59, 130, 246, 0.3)' }}
+              _disabled={{ opacity: 0.3, cursor: 'not-allowed' }}
             >
-              <FaChevronRight />
-            </Box>
+              <FaChevronRight size={14} />
+            </Button>
           </Flex>
         )}
-        
-        <Box
-          textAlign="center"
-          mt="4rem"
-          w="100%"
-          display="flex"
-          flexDirection="row"
-          justifyContent="center"
-          alignItems="center">
-          <Box
-            as="a"
-            display="flex"
-            flexDirection="row"
-            gap={2}
-            fontSize="1.2rem"
-            color="white"
-            textDecoration="none"
-            cursor="pointer"
-            transition="all 0.3s ease"
-            _hover={{ 
-              color: 'rgb(0, 59, 187)',
-              textDecoration: 'none'
-            }}
-            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+
+        {/* Back to top */}
+        <Flex justify="center" mt={16}>
+          <Button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            variant="ghost"
+            color="#64748B"
+            fontWeight="500"
+            fontSize="sm"
+            leftIcon={<FaArrowUp size={12} />}
+            _hover={{ color: '#3B82F6' }}
           >
-            <FaArrowUp />
             {t('backToTop')}
-          </Box>
-        </Box>
+          </Button>
+        </Flex>
       </Box>
     </Box>
   );

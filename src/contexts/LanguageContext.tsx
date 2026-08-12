@@ -17,6 +17,7 @@ const translations = {
     goodMorning: 'Bom dia',
     goodAfternoon: 'Boa tarde',
     goodEvening: 'Boa noite',
+    greetingBadge: 'Construindo soluções escaláveis e inteligentes',
     home: 'Home',
     projects: 'Projetos',
     experience: 'Experiência',
@@ -24,7 +25,7 @@ const translations = {
     resume: 'Currículo',
     github: 'GitHub',
     softwareDeveloper: 'Desenvolvedor de Software',
-    headerDescription: '{greeting}! Tenho {age} anos e sou profissional de desenvolvimento de software com experiência prática em projetos corporativos e atuação em ambiente de equipe, incluindo desenvolvimento de soluções full stack e participação em iniciativas de IA generativa. Busco oportunidades para aplicar e evoluir minhas habilidades técnicas, contribuindo com soluções escaláveis, eficientes e alinhadas às necessidades do negócio.',
+    headerDescription: 'Olá, {greeting}! Tenho {age} anos e sou profissional de desenvolvimento de software com experiência prática em projetos corporativos e atuação em ambiente de equipe, incluindo desenvolvimento de soluções full stack e participação em iniciativas de IA generativa. Busco oportunidades para aplicar e evoluir minhas habilidades técnicas, contribuindo com soluções escaláveis, eficientes e alinhadas às necessidades do negócio.',
     
     // Experience
     experienceTitle: 'Experiência Profissional:',
@@ -61,16 +62,19 @@ const translations = {
     // Contacts
     contactsTitle: 'Contatos:',
     copied: 'Copiado',
+    contactSubtitle: 'Vamos construir algo incrível juntos',
     
     // Footer
     technologiesUsedFooter: 'Tecnologias Utilizadas:',
-    pageCode: 'Código desta página'
+    pageCode: 'Código desta página',
+    builtWith: 'Feito com'
   },
   en: {
     // Header
     goodMorning: 'Good morning',
     goodAfternoon: 'Good afternoon',
     goodEvening: 'Good evening',
+    greetingBadge: 'Building scalable & intelligent solutions',
     home: 'Home',
     projects: 'Projects',
     experience: 'Experience',
@@ -78,7 +82,7 @@ const translations = {
     resume: 'Curriculum',
     github: 'GitHub',
     softwareDeveloper: 'Software Developer',
-    headerDescription: '{greeting}! I am {age} years old and a software development professional with hands-on experience in corporate projects and team environments, including full stack solution development and participation in generative AI initiatives. I seek opportunities to apply and evolve my technical skills, contributing with scalable, efficient solutions aligned with business needs.',
+    headerDescription: 'Hey, {greeting}! I am {age} years old and a software development professional with hands-on experience in corporate projects and team environments, including full stack solution development and participation in generative AI initiatives. I seek opportunities to apply and evolve my technical skills, contributing with scalable, efficient solutions aligned with business needs.',
     
     // Experience
     experienceTitle: 'Professional Experience:',
@@ -115,10 +119,12 @@ const translations = {
     // Contacts
     contactsTitle: 'Contacts:',
     copied: 'Copied',
+    contactSubtitle: 'Let\'s build something amazing together',
     
     // Footer
     technologiesUsedFooter: 'Technologies Used:',
-    pageCode: 'Code of this page'
+    pageCode: 'Code of this page',
+    builtWith: 'Built with'
   }
 };
 

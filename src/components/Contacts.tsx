@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { Box, Heading, Image, Button, Link, Flex, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FaCopy } from 'react-icons/fa';
+import { FaCopy, FaCheck, FaLinkedinIn, FaWhatsapp, FaDiscord, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const MotionFlex = motion.create(Flex as React.ComponentType<any>);
-const MotionHeading = motion.create(Heading as React.ComponentType<any>);
-const MotionImage = motion.create(Image as React.ComponentType<any>);
+const MotionBox = motion.create(Box as React.ComponentType<any>);
 
 const Contacts = () => {
   const { t } = useLanguage();
@@ -24,180 +22,207 @@ const Contacts = () => {
   };
 
   const contacts = [
-    { href: 'https://www.linkedin.com/in/daniel-alexssander-667933148', icon: 'fa-brands fa-linkedin', label: 'LinkedIn' },
-    { href: 'https://profile.indeed.com/?hl=pt_BR&co=BR&from=gnav-homepage&_ga=2.232801303.840665186.1682014064-110041772.1682014064', icon: 'fa-solid fa-info', label: 'Indeed' },
-    { href: 'https://wa.me/5521968603176', icon: 'fa-brands fa-whatsapp', label: 'WhatsApp' },
-    { href: 'https://discord.gg/apUjj8JRVC', icon: 'fa-brands fa-discord', label: 'Discord' },
-    { href: 'https://github.com/DanielAlexssander', icon: 'fa-brands fa-github', label: 'GitHub' }
+    { 
+      href: 'mailto:danielrossinatti15@gmail.com', 
+      icon: FaEnvelope, 
+      label: 'Email',
+      color: '#EA4335',
+      description: email
+    },
+    { 
+      href: 'https://www.linkedin.com/in/daniel-alexssander-667933148', 
+      icon: FaLinkedinIn, 
+      label: 'LinkedIn',
+      color: '#0A66C2',
+      description: 'daniel-alexssander'
+    },
+    { 
+      href: 'https://wa.me/5521968603176', 
+      icon: FaWhatsapp, 
+      label: 'WhatsApp',
+      color: '#25D366',
+      description: '+55 21 96860-3176'
+    },
+    { 
+      href: 'https://discord.gg/apUjj8JRVC', 
+      icon: FaDiscord, 
+      label: 'Discord',
+      color: '#5865F2',
+      description: 'Join server'
+    },
+    { 
+      href: 'https://github.com/DanielAlexssander', 
+      icon: FaGithub, 
+      label: 'GitHub',
+      color: '#fff',
+      description: 'DanielAlexssander'
+    }
   ];
 
   return (
     <Box
       as="section"
       id="container-contacts"
-      bgImage="linear-gradient(180deg, #011229 50%, #000715)"
-      bgAttachment={{ base: 'scroll', md: 'fixed' }}
-      color="white"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      textAlign="center"
-      w="100%"
-      minH="100vh"
-      py={{ base: '4rem', md: '2rem' }}
-      px={{ base: '1rem', md: '2rem' }}
+      bg="#0F172A"
+      position="relative"
+      py={{ base: '80px', md: '120px' }}
+      px={{ base: 4, md: 8 }}
+      overflow="hidden"
     >
-      <Flex w="100%" maxW="600px" direction="column" align="center">
-        <MotionImage
-          initial={{ opacity: 0, scale: 0.8 }}
+      {/* Background decoration */}
+      <Box
+        position="absolute"
+        top="50%"
+        left="50%"
+        transform="translate(-50%, -50%)"
+        w="600px"
+        h="600px"
+        bg="radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)"
+        pointerEvents="none"
+      />
+
+      <Box maxW="700px" mx="auto" position="relative" zIndex={1}>
+        {/* Profile Image */}
+        <MotionBox
+          initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          src="./logo.png"
-          alt="Daniel Rossinatti"
-          w={{ base: '120px', sm: '150px', md: '180px', lg: '200px' }}
-          h={{ base: '120px', sm: '150px', md: '180px', lg: '200px' }}
-          borderRadius="50%"
-          bg="linear-gradient(90deg, rgba(0, 45, 84, 1) 0%, rgba(0, 107, 175, 1) 35%, rgba(0, 212, 255, 1) 100%)"
-          mb="2rem"
-          _hover={{ 
-            transform: 'scale(1.1)',
-            boxShadow: '0 15px 40px rgba(0, 59, 187, 0.4)'
-          }}
-          sx={{ transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
-        />
-        
-        <MotionHeading
-          as="h1"
+          transition={{ duration: 0.5 }}
+          textAlign="center"
+          mb={8}
+        >
+          <Box
+            position="relative"
+            display="inline-block"
+          >
+            <Image
+              src="./logo.png"
+              alt="Daniel Rossinatti"
+              w={{ base: '120px', md: '150px' }}
+              h={{ base: '120px', md: '150px' }}
+              borderRadius="full"
+              border="3px solid rgba(59, 130, 246, 0.3)"
+              transition="all 0.3s ease"
+              _hover={{ 
+                borderColor: '#3B82F6',
+                transform: 'scale(1.05)'
+              }}
+            />
+            <Box
+              position="absolute"
+              inset={-2}
+              borderRadius="full"
+              bg="radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)"
+              filter="blur(15px)"
+              zIndex={-1}
+            />
+          </Box>
+        </MotionBox>
+
+        {/* Title */}
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          mb="2rem"
-          fontSize={{ base: '1.8rem', md: '2.2rem', lg: '2.5rem' }}
-          fontWeight="700"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          textAlign="center"
+          mb={10}
         >
-          {t('contactsTitle')}
-        </MotionHeading>
-        
-        <Flex
-          w="100%"
-          maxW="500px"
-          direction="column"
-          gap="0.8rem"
-        >
-          <Flex w="100%" direction="row" align="center" position="relative">
-            <Link w="100%" href="mailto:danielrossinatti15@gmail.com" _hover={{ textDecoration: 'none' }}>
-              <Flex
-                align="center"
-                justify="center"
-                h="55px"
-                border="2px solid rgba(0, 91, 209, 0.8)"
-                borderRadius="12px"
-                bg="rgba(0, 0, 0, 0.3)"
-                transition="all 0.3s ease"
-                backdropFilter="blur(10px)"
-                _hover={{ 
-                  bg: 'rgba(0, 91, 209, 0.1)',
-                  borderColor: 'rgba(0, 91, 209, 1)',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 8px 25px rgba(0, 91, 209, 0.3)'
-                }}
-              >
-                <Box as="i" color="rgba(0, 91, 209, 0.9)" className="fa-regular fa-envelope" mr={3} fontSize="1.2rem" />
-                <Text fontWeight="600">Gmail</Text>
-              </Flex>
-            </Link>
-            <Button
-              onClick={handleCopy}
-              border="2px solid rgba(0, 91, 209, 0.8)"
-              bg="rgba(0, 0, 0, 0.3)"
-              color="rgba(0, 91, 209, 0.9)"
-              p="1rem"
-              position="absolute"
-              right="-60px"
-              borderRadius="12px"
-              fontSize="1.1rem"
-              transition="all 0.3s ease"
-              display={{ base: 'none', lg: 'flex' }}
-              backdropFilter="blur(10px)"
-              _hover={{
-                color: 'white',
-                bg: 'rgba(0, 91, 209, 0.8)',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 8px 25px rgba(0, 91, 209, 0.3)'
-              }}
-              _after={copied ? {
-                content: `"${t('copied')}"`,
-                display: 'block',
-                color: 'white',
-                position: 'absolute',
-                top: '-50px',
-                right: '-10px',
-                bg: 'rgba(0, 91, 209, 0.9)',
-                p: '8px 12px',
-                borderRadius: '8px',
-                fontSize: '0.8rem',
-                whiteSpace: 'nowrap'
-              } : {}}
-            >
-              <FaCopy />
-            </Button>
-          </Flex>
+          <Heading
+            as="h2"
+            fontFamily="'Space Grotesk', sans-serif"
+            fontSize={{ base: '2rem', md: '2.5rem' }}
+            fontWeight="700"
+            color="white"
+            letterSpacing="-0.02em"
+            mb={3}
+          >
+            {t('contactsTitle').replace(':', '')}
+          </Heading>
+          <Text color="#64748B" fontSize="md">
+            {t('contactSubtitle')}
+          </Text>
+        </MotionBox>
 
+        {/* Contact Cards */}
+        <Flex direction="column" gap={3}>
           {contacts.map((contact, index) => (
-            <MotionFlex
+            <MotionBox
               key={index}
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-              as="div"
+              transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
             >
-            <Link w="100%" href={contact.href} target="_blank" _hover={{ textDecoration: 'none' }}>
-              <Flex
-                align="center"
-                justify="center"
-                h="55px"
-                border="2px solid rgba(0, 91, 209, 0.8)"
-                borderRadius="12px"
-                bg="rgba(0, 0, 0, 0.3)"
-                transition="all 0.3s ease"
-                backdropFilter="blur(10px)"
-                _hover={{ 
-                  bg: 'rgba(0, 91, 209, 0.1)',
-                  borderColor: 'rgba(0, 91, 209, 1)',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 8px 25px rgba(0, 91, 209, 0.3)'
-                }}
+              <Link
+                href={contact.href}
+                target={contact.label !== 'Email' ? '_blank' : undefined}
+                _hover={{ textDecoration: 'none' }}
               >
-                <Box as="i" color="rgba(0, 91, 209, 0.9)" className={contact.icon} mr={3} fontSize="1.2rem" />
-                <Text fontWeight="600">{contact.label}</Text>
-              </Flex>
-            </Link>
-            </MotionFlex>
+                <Flex
+                  align="center"
+                  gap={4}
+                  bg="rgba(30, 41, 59, 0.5)"
+                  p={4}
+                  borderRadius="16px"
+                  border="1px solid rgba(255, 255, 255, 0.05)"
+                  transition="all 0.3s ease"
+                  cursor="pointer"
+                  _hover={{
+                    bg: 'rgba(30, 41, 59, 0.8)',
+                    borderColor: 'rgba(59, 130, 246, 0.3)',
+                    transform: 'translateX(8px)'
+                  }}
+                >
+                  <Flex
+                    align="center"
+                    justify="center"
+                    w="48px"
+                    h="48px"
+                    borderRadius="12px"
+                    bg={`${contact.color}15`}
+                    color={contact.color}
+                    flexShrink={0}
+                  >
+                    <contact.icon size={22} />
+                  </Flex>
+                  
+                  <Box flex={1}>
+                    <Text fontWeight="600" color="white" fontSize="md">
+                      {contact.label}
+                    </Text>
+                    <Text fontSize="sm" color="#64748B">
+                      {contact.description}
+                    </Text>
+                  </Box>
+
+                  {contact.label === 'Email' && (
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleCopy();
+                      }}
+                      bg="rgba(59, 130, 246, 0.1)"
+                      color={copied ? '#22C55E' : '#3B82F6'}
+                      size="sm"
+                      px={4}
+                      borderRadius="8px"
+                      fontWeight="500"
+                      fontSize="xs"
+                      leftIcon={copied ? <FaCheck size={12} /> : <FaCopy size={12} />}
+                      _hover={{ bg: 'rgba(59, 130, 246, 0.2)' }}
+                      transition="all 0.2s ease"
+                    >
+                      {copied ? t('copied') : 'Copy'}
+                    </Button>
+                  )}
+                </Flex>
+              </Link>
+            </MotionBox>
           ))}
         </Flex>
-        
-        {copied && (
-          <Box
-            position="fixed"
-            bottom="2rem"
-            right="2rem"
-            bg="rgba(0, 91, 209, 0.9)"
-            color="white"
-            px="1rem"
-            py="0.5rem"
-            borderRadius="8px"
-            fontSize="0.9rem"
-            fontWeight="600"
-            display={{ base: 'block', lg: 'none' }}
-            zIndex={1000}
-          >
-            {t('copied')}
-          </Box>
-        )}
-      </Flex>
+      </Box>
     </Box>
   );
 };
