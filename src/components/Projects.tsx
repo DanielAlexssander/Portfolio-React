@@ -376,7 +376,7 @@ const Projects = () => {
                     color="#94A3B8"
                     lineHeight="1.7"
                     mb={4}
-                    noOfLines={3}
+                    noOfLines={5}
                   >
                     {project.informations}
                   </Text>
