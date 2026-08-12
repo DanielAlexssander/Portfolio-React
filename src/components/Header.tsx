@@ -18,6 +18,7 @@ const Header = () => {
   const [age, setAge] = useState(0);
   const [greeting, setGreeting] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const date = new Date();
@@ -42,11 +43,32 @@ const Header = () => {
   }, [language, t]);
 
   useEffect(() => {
+    let expandTimeout: ReturnType<typeof setTimeout>;
+    let collapseTimeout: ReturnType<typeof setTimeout>;
+    let isCurrentlyScrolled = false;
+    
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const shouldBeScrolled = window.scrollY > 50;
+      
+      if (shouldBeScrolled && !isCurrentlyScrolled) {
+        isCurrentlyScrolled = true;
+        setScrolled(true);
+        clearTimeout(collapseTimeout);
+        expandTimeout = setTimeout(() => setExpanded(true), 250);
+      } else if (!shouldBeScrolled && isCurrentlyScrolled) {
+        isCurrentlyScrolled = false;
+        setExpanded(false);
+        clearTimeout(expandTimeout);
+        collapseTimeout = setTimeout(() => setScrolled(false), 250);
+      }
     };
+    
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(expandTimeout);
+      clearTimeout(collapseTimeout);
+    };
   }, []);
 
   const navItems = [
@@ -101,29 +123,40 @@ const Header = () => {
         top={scrolled ? '0' : '16px'}
         left="50%"
         transform="translateX(-50%)"
-        w={scrolled ? '100%' : { base: '95%', md: '90%', lg: '85%' }}
-        maxW="1400px"
+        w={expanded ? '100vw' : { base: '95%', md: '90%', lg: '85%' }}
+        maxW={expanded ? '100vw' : '1400px'}
         zIndex={100}
-        transition="all 0.3s ease"
+        transition="top 0.25s ease, width 0.3s ease 0.1s, max-width 0.3s ease 0.1s"
       >
         <Flex
           bg={scrolled ? 'rgba(15, 23, 42, 0.95)' : 'rgba(30, 41, 59, 0.8)'}
           backdropFilter="blur(20px)"
-          borderRadius={scrolled ? '0' : '16px'}
-          border={scrolled ? 'none' : '1px solid rgba(255, 255, 255, 0.1)'}
+          borderRadius={expanded ? '0' : '16px'}
+          border={expanded ? 'none' : '1px solid rgba(255, 255, 255, 0.1)'}
           px={{ base: 4, md: 6 }}
           py={3}
           justify="space-between"
           align="center"
           boxShadow={scrolled ? '0 4px 30px rgba(0,0,0,0.3)' : 'none'}
+          transition="all 0.3s ease"
         >
           {/* Logo/Name */}
           <Text
+            as="button"
+            onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
             fontFamily="'Space Grotesk', sans-serif"
             fontWeight="700"
             fontSize={{ base: 'lg', md: 'xl' }}
             color="white"
             letterSpacing="-0.02em"
+            cursor="pointer"
+            bg="transparent"
+            border="none"
+            outline="none"
+            _hover={{ opacity: 0.8 }}
+            _focus={{ outline: 'none', boxShadow: 'none' }}
+            _focusVisible={{ outline: 'none', boxShadow: 'none' }}
+            transition="opacity 0.2s ease"
           >
             DR<Box as="span" color="#3B82F6">.</Box>
           </Text>
