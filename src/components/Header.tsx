@@ -26,9 +26,9 @@ const Header = () => {
     const currentMonth = date.getMonth() + 1;
     const currentYear = date.getFullYear();
     
-    let myAge = currentYear - 2006;
+    let myAge = currentYear - 2002;
     if (currentMonth > 8 || (currentMonth === 8 && currentDate >= 16)) {
-      myAge = currentYear - 2005;
+      myAge = currentYear - 2001;
     }
     setAge(myAge);
 
