@@ -30,7 +30,7 @@ const Contacts = () => {
       description: email
     },
     { 
-      href: 'https://www.linkedin.com/in/daniel-alexssander-667933148', 
+      href: 'https://www.linkedin.com/in/daniel-rossinatti-667933148/', 
       icon: FaLinkedinIn, 
       label: 'LinkedIn',
       color: '#0A66C2',
