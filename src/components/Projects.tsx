@@ -1,8 +1,16 @@
 import { useState, useMemo } from 'react';
 import { Box, Heading, Text, Image, Link, Flex, SimpleGrid, Input, Button } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { Blocks } from 'lucide-react';
 import { FaArrowUp, FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight, FaSearch, FaCode, FaLock, FaHtml5, FaCss3Alt, FaReact, FaJs, FaSass, FaNodeJs, FaPython, FaAws } from 'react-icons/fa';
-import { SiTypescript, SiFlutter, SiFirebase, SiNextdotjs, SiTailwindcss, SiRedux, SiExpress } from 'react-icons/si';
+import {
+  SiAmazondynamodb, SiExpress, SiFastapi, SiFirebase, SiFlutter, SiMui, SiNextdotjs, SiPostgresql,
+  SiRedhatopenshift, SiRedux, SiTableau, SiTailwindcss, SiTypescript, SiVite, SiWebcomponentsdotorg, SiYaml,
+} from 'react-icons/si';
+import { VscAzureDevops } from 'react-icons/vsc';
+import playwrightIcon from '../assets/tech-icons/playwright.svg';
+import powerBiIcon from '../assets/tech-icons/power-bi.svg';
+import sharePointIcon from '../assets/tech-icons/sharepoint.svg';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const MotionBox = motion.create(Box as React.ComponentType<any>);
@@ -25,20 +33,21 @@ const cardVariants = {
 interface Project {
   app?: boolean;
   urlGif: string;
+  imageFit?: 'cover' | 'contain' | 'fill';
   nameProject: string;
   liTec: string;
   informations: string;
+  showFullDescription?: boolean;
   urlSite?: string;
   urlCod?: string;
   private?: boolean;
 }
 
-interface TechIconConfig {
-  icon: React.ComponentType<{ size?: number; color?: string }>;
-  color: string;
-}
+type TechIconConfig =
+  | { icon: React.ComponentType<{ size?: number; color?: string }>; color: string }
+  | { src: string };
 
-const techIconsConfig: Record<string, TechIconConfig> = {
+const techIconsConfig: Partial<Record<string, TechIconConfig>> = {
   HTML: { icon: FaHtml5, color: '#E34F26' },
   CSS: { icon: FaCss3Alt, color: '#1572B6' },
   JavaScript: { icon: FaJs, color: '#F7DF1E' },
@@ -54,6 +63,21 @@ const techIconsConfig: Record<string, TechIconConfig> = {
   Express: { icon: SiExpress, color: '#FFFFFF' },
   Python: { icon: FaPython, color: '#3776AB' },
   AWS: { icon: FaAws, color: '#FF9900' },
+  Vite: { icon: SiVite, color: '#A78BFA' },
+  MUI: { icon: SiMui, color: '#007FFF' },
+  FastAPI: { icon: SiFastapi, color: '#009688' },
+  PostgreSQL: { icon: SiPostgresql, color: '#669BC3' },
+  DynamoDB: { icon: SiAmazondynamodb, color: '#6F9AFF' },
+  'Web Components': { icon: SiWebcomponentsdotorg, color: '#63CDE8' },
+  SharePoint: { src: sharePointIcon },
+  SPFx: { icon: Blocks, color: '#39C6BE' },
+  Tableau: { icon: SiTableau, color: '#E97627' },
+  'Power BI': { src: powerBiIcon },
+  'Azure DevOps': { icon: VscAzureDevops, color: '#57A7F2' },
+  GitHub: { icon: FaGithub, color: '#FFFFFF' },
+  YAML: { icon: SiYaml, color: '#FF6B81' },
+  OpenShift: { icon: SiRedhatopenshift, color: '#EE3D48' },
+  Playwright: { src: playwrightIcon },
 };
 
 
@@ -70,6 +94,30 @@ const Projects = () => {
       nameProject: "Tiago ONS",
       liTec: "React, TypeScript, Python, AWS",
       informations: t('tiagoOnsDesc'),
+      private: true,
+    },
+    {
+      urlGif: "./insight-ons.svg",
+      nameProject: "Insight ONS",
+      liTec: "React, TypeScript, Vite, MUI, Python, FastAPI, PostgreSQL, DynamoDB, Web Components, SharePoint, SPFx",
+      informations: t('insightOnsDesc'),
+      showFullDescription: true,
+      private: true,
+    },
+    {
+      urlGif: "./migracao-tableau-power-bi.webp",
+      imageFit: 'fill',
+      nameProject: t('tableauPowerBiTitle'),
+      liTec: "Tableau, Power BI",
+      informations: t('tableauPowerBiDesc'),
+      private: true,
+    },
+    {
+      urlGif: "./migracao-azure-devops-github.jpg",
+      imageFit: 'fill',
+      nameProject: t('azureDevOpsGithubTitle'),
+      liTec: "Azure DevOps, GitHub, YAML, AWS, OpenShift, Playwright",
+      informations: t('azureDevOpsGithubDesc'),
       private: true,
     },
     {
@@ -167,7 +215,6 @@ const Projects = () => {
   const renderTechBadges = (techs: string) => {
     return techs.split(', ').map((tech, index) => {
       const config = techIconsConfig[tech];
-      const IconComponent = config?.icon;
       return (
         <Flex
           key={index}
@@ -179,7 +226,11 @@ const Projects = () => {
           borderRadius="6px"
           border="1px solid rgba(59, 130, 246, 0.15)"
         >
-          {IconComponent && <IconComponent size={14} color={config.color} />}
+          {config && ('src' in config ? (
+            <Image src={config.src} alt="" boxSize="14px" objectFit="contain" flexShrink={0} />
+          ) : (
+            <config.icon size={14} color={config.color} aria-hidden="true" />
+          ))}
           <Text fontSize="xs" color="#94A3B8" fontWeight="500">{tech}</Text>
         </Flex>
       );
@@ -330,7 +381,7 @@ const Projects = () => {
                     alt={project.nameProject}
                     w="100%"
                     h="100%"
-                    objectFit={project.app ? 'contain' : 'cover'}
+                    objectFit={project.imageFit ?? (project.app ? 'contain' : 'cover')}
                     transition="transform 0.5s ease"
                     _groupHover={{ transform: 'scale(1.05)' }}
                   />
@@ -376,7 +427,7 @@ const Projects = () => {
                     color="#94A3B8"
                     lineHeight="1.7"
                     mb={4}
-                    noOfLines={5}
+                    noOfLines={project.showFullDescription ? undefined : 5}
                   >
                     {project.informations}
                   </Text>

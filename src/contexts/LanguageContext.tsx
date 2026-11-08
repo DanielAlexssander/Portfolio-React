@@ -47,8 +47,13 @@ const translations = {
     backToTop: 'Voltar ao topo',
     searchPlaceholder: 'Pesquisar nome do projeto...',
     allTechnologies: 'Todas as tecnologias',
+    tableauPowerBiTitle: 'Migração de Tableau para Power BI',
+    azureDevOpsGithubTitle: 'Migração do Azure DevOps (TFS) para o GitHub',
     
     // Project descriptions
+    insightOnsDesc: 'Desenvolvi um widget para monitorar telas críticas do ONS com heatmaps de cliques e captura de tela. O widget aceita integração via npm, CDN, Web Components e SharePoint (SPFx). O projeto também prevê pageviews, sessões de usuário, detecção de bots, eventos personalizados, gravação de sessões com captura de erros, feedback e surveys.',
+    tableauPowerBiDesc: 'Participei da migração corporativa de Tableau para Power BI no ONS, atuando nas interfaces dos painéis e nos dados que os alimentam.',
+    azureDevOpsGithubDesc: 'Participei da migração do Azure DevOps (TFS) para o GitHub. Criei pipelines de deploy em YAML para AWS e OpenShift e automatizei testes com Playwright.',
     tiagoOnsDesc: 'Participei do desenvolvimento front-end do Tiago, a plataforma de IA Generativa do ONS. Contribuí para criar uma experiência moderna e intuitiva, facilitando o acesso inteligente a informações e aprimorando a tomada de decisões dos usuários.',
     exchangeRateDesc: 'Desenvolvido em Flutter, é um projeto que fiz para uso pessoal. O propósito do projeto é acompanhar os valores atuais das conversões das criptomoedas.',
     hubgramDesc: 'Desenvolvido em React, inspirado no Instagram, e com uma série de funcionalidades semelhantes.',
@@ -58,7 +63,7 @@ const translations = {
     checklistDesc: 'Funcionalidades: Adicionar/Remover tarefas e editar nomes. Dados salvos no LocalStorage do navegador para persistência.',
     strataDesc: 'O projeto Strata foi desenvolvido com base no design da "HTML5 UP".',
     rangeHotelsDesc: 'A Range Hotels é um projeto responsivo. Compatível com computador, tablet e celular.',
-    
+
     // Contacts
     contactsTitle: 'Contatos:',
     copied: 'Copiado',
@@ -104,8 +109,13 @@ const translations = {
     backToTop: 'Back to top',
     searchPlaceholder: 'Search a project...',
     allTechnologies: 'All technologies',
+    tableauPowerBiTitle: 'Tableau to Power BI Migration',
+    azureDevOpsGithubTitle: 'Azure DevOps (TFS) to GitHub Migration',
     
     // Project descriptions
+    insightOnsDesc: 'I built a widget to monitor critical ONS screens with click heatmaps and screenshots. It integrates via npm, CDN, Web Components, and SharePoint (SPFx). Planned features include pageviews, user sessions, bot detection, custom events, session recording with error capture, feedback, and surveys.',
+    tableauPowerBiDesc: 'I contributed to the organization-wide migration from Tableau to Power BI at ONS, working on dashboard interfaces and their underlying data.',
+    azureDevOpsGithubDesc: 'I contributed to the migration from Azure DevOps (TFS) to GitHub. I built YAML deployment pipelines for AWS and OpenShift and automated tests with Playwright.',
     tiagoOnsDesc: 'I participated in the front-end development of Tiago, the ONS Generative AI platform. I contributed to creating a modern and intuitive experience, facilitating intelligent access to information and enhancing user decision-making.',
     exchangeRateDesc: 'Developed in Flutter, it is a project I made for personal use. The purpose of the project is to track the current values of cryptocurrency conversions.',
     hubgramDesc: 'Developed in React, inspired by Instagram, and with a series of similar functionalities.',
@@ -115,7 +125,7 @@ const translations = {
     checklistDesc: 'Features: Add/Remove tasks and edit names. Data saved in browser LocalStorage for persistence.',
     strataDesc: 'The Strata project was developed based on the "HTML5 UP" design.',
     rangeHotelsDesc: 'Range Hotels is a responsive project. Compatible with computer, tablet and mobile.',
-    
+
     // Contacts
     contactsTitle: 'Contacts:',
     copied: 'Copied',
@@ -161,8 +171,13 @@ const translations = {
     backToTop: 'Volver arriba',
     searchPlaceholder: 'Buscar nombre del proyecto...',
     allTechnologies: 'Todas las tecnologías',
+    tableauPowerBiTitle: 'Migración de Tableau a Power BI',
+    azureDevOpsGithubTitle: 'Migración de Azure DevOps (TFS) a GitHub',
     
     // Project descriptions
+    insightOnsDesc: 'Desarrollé un widget para monitorizar pantallas críticas del ONS con mapas de calor de clics y capturas de pantalla. Se integra mediante npm, CDN, Web Components y SharePoint (SPFx), y se configura con atributos data-*. El proyecto también contempla visitas a páginas, sesiones de usuario, detección de bots, eventos personalizados, grabación de sesiones con captura de errores, comentarios y encuestas.',
+    tableauPowerBiDesc: 'Participé en la migración corporativa de Tableau a Power BI en el ONS, trabajando en las interfaces de los paneles y en los datos que los alimentan.',
+    azureDevOpsGithubDesc: 'Participé en la migración de Azure DevOps (TFS) a GitHub. Creé pipelines de despliegue en YAML para AWS y OpenShift y automaticé pruebas con Playwright.',
     tiagoOnsDesc: 'Participé en el desarrollo front-end de Tiago, la plataforma de IA Generativa del ONS. Contribuí a crear una experiencia moderna e intuitiva, facilitando el acceso inteligente a información y mejorando la toma de decisiones de los usuarios.',
     exchangeRateDesc: 'Desarrollado en Flutter, es un proyecto que hice para uso personal. El propósito del proyecto es seguir los valores actuales de las conversiones de criptomonedas.',
     hubgramDesc: 'Desarrollado en React, inspirado en Instagram, y con una serie de funcionalidades similares.',
@@ -172,7 +187,7 @@ const translations = {
     checklistDesc: 'Funcionalidades: Agregar/Eliminar tareas y editar nombres. Datos guardados en LocalStorage del navegador para persistencia.',
     strataDesc: 'El proyecto Strata fue desarrollado basado en el diseño de "HTML5 UP".',
     rangeHotelsDesc: 'Range Hotels es un proyecto responsivo. Compatible con computadora, tablet y celular.',
-    
+
     // Contacts
     contactsTitle: 'Contactos:',
     copied: 'Copiado',

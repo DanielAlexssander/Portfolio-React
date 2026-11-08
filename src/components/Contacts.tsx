@@ -96,10 +96,11 @@ const Contacts = () => {
             display="inline-block"
           >
             <Image
-              src="./logo.png"
+              src="./daniel-rossinatti-linkedin.png"
               alt="Daniel Rossinatti"
               w={{ base: '120px', md: '150px' }}
               h={{ base: '120px', md: '150px' }}
+              objectFit="cover"
               borderRadius="full"
               border="3px solid rgba(59, 130, 246, 0.3)"
               transition="all 0.3s ease"
