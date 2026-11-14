@@ -1,0 +1,39 @@
+name = "portfolio-chatbot"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Qualquer API compatível com OpenAI (/chat/completions). Padrão: Gemini, com plano gratuito.
+AI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai"
+AI_MODEL = "gemini-3.5-flash-lite"
+# Deixe vazio ("") para provedores que não aceitam reasoning_effort.
+AI_REASONING_EFFORT = "minimal"
+# Sites que podem chamar o Worker (separados por vírgula).
+ALLOWED_ORIGINS = "https://danielrossinatti.site,https://www.danielrossinatti.site,http://localhost:5173"
+# AI_API_KEY é secreta: npx wrangler secret put AI_API_KEY
+
+# Protegem a cota gratuita da IA. Os dois são obrigatórios: sem eles o Worker responde 503.
+# Os limites valem por data center da Cloudflare.
+
+# No máximo 10 perguntas por minuto por visitante (IPv4, ou bloco /64 do IPv6).
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 10
+  period = 60
+
+# No máximo 30 perguntas por minuto somando todos os visitantes.
+[[ratelimits]]
+name = "GLOBAL_LIMITER"
+namespace_id = "1002"
+
+  [ratelimits.simple]
+  limit = 30
+  period = 60
+
+# Contagem diária de perguntas à IA por visitante (máximo 20 por dia, em src/usageQuota.ts).
+# Sem "id": o `wrangler deploy` cria o namespace sozinho na primeira vez.
+[[kv_namespaces]]
+binding = "AI_USAGE"

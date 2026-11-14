@@ -22,14 +22,21 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '24'
         cache: 'npm'
         
     - name: Install dependencies
       run: npm ci
       
+    - name: Test
+      run: npm test
+
     - name: Build
       run: npm run build
+      env:
+        # URL do chatbot-worker (Settings → Secrets and variables → Actions → Variables).
+        # Vazia = chatbot só com palavras-chave.
+        VITE_CHATBOT_API_URL: ${{ vars.CHATBOT_API_URL }}
       
     - name: Setup Pages
       uses: actions/configure-pages@v4

@@ -1,3 +1,5 @@
+export type Language = 'pt' | 'en' | 'es';
+
 export interface Project {
   app?: boolean;
   urlGif: string;

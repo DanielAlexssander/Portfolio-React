@@ -3,6 +3,7 @@ import { Box, Flex, Heading, Text, Button, Image, Menu, MenuButton, MenuList, Me
 import { motion } from 'framer-motion';
 import { FaBars, FaChevronDown, FaArrowRight, FaGithub } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
+import { getAge } from '../utils/age';
 import BrazilIcon from './Icons/BrazilIcon';
 import UsaIcon from './Icons/UsaIcon';
 import SpainIcon from './Icons/SpainIcon';
@@ -22,15 +23,7 @@ const Header = () => {
 
   useEffect(() => {
     const date = new Date();
-    const currentDate = date.getDate();
-    const currentMonth = date.getMonth() + 1;
-    const currentYear = date.getFullYear();
-    
-    let myAge = currentYear - 2006;
-    if (currentMonth > 8 || (currentMonth === 8 && currentDate >= 16)) {
-      myAge = currentYear - 2005;
-    }
-    setAge(myAge);
+    setAge(getAge(date));
 
     const currentHour = date.getHours();
     if (currentHour >= 5 && currentHour < 12) {

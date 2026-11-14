@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 
 .kiro
+
+# Cloudflare Worker (chatbot-worker)
+.wrangler
+.dev.vars
+
+# Serena MCP (cache local)
+.serena/
