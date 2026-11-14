@@ -7,14 +7,15 @@ export const TECH_TOPICS: readonly ChatTopic[] = [
     tier: 'general',
     keywords: [
       'skill', 'habilidade', 'competencia', 'tecnologia', 'stack', 'ferramenta', 'linguagens de programacao',
+      'linguagem', 'linguagens', 'cpp', 'lenguaje', 'lenguajes',
       'o que ele sabe', 'sabe fazer', 'conhecimento', 'domina',
       'technology', 'technologies', 'tech stack', 'tool', 'programming language', 'what does he know',
       'habilidad', 'herramienta', 'lenguajes de programacion', 'que sabe', 'conocimiento',
     ],
     answer: {
-      pt: 'Principais skills do Daniel:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI e MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL e APIs REST\n• IA: engenharia de prompt, agentes de IA, RAG, LLMs e engenharia de harness\n• Dados e BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB e DynamoDB\n• DevOps e cloud: GitHub Actions, Azure DevOps, AWS (Lambda e API Gateway) e OpenShift\n• Mobile: React Native e Flutter\nPergunte sobre uma tecnologia específica para saber mais.',
-      en: "Daniel's main skills:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI and MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL and REST APIs\n• AI: prompt engineering, AI agents, RAG, LLMs and harness engineering\n• Data and BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB and DynamoDB\n• DevOps and cloud: GitHub Actions, Azure DevOps, AWS (Lambda and API Gateway) and OpenShift\n• Mobile: React Native and Flutter\nAsk about a specific technology to learn more.",
-      es: 'Principales habilidades de Daniel:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI y MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL y APIs REST\n• IA: ingeniería de prompts, agentes de IA, RAG, LLMs e ingeniería de harness\n• Datos y BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB y DynamoDB\n• DevOps y cloud: GitHub Actions, Azure DevOps, AWS (Lambda y API Gateway) y OpenShift\n• Mobile: React Native y Flutter\nPregunta por una tecnología específica para saber más.',
+      pt: 'Principais skills do Daniel:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI e MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL e APIs REST\n• IA: engenharia de prompt, agentes de IA, RAG, LLMs e engenharia de harness\n• Dados e BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB e DynamoDB\n• DevOps e cloud: GitHub Actions, Azure DevOps, AWS (Lambda e API Gateway) e OpenShift\n• Mobile: React Native e Flutter\n• Linguagens: TypeScript, JavaScript, Python, Java, C#, C++, Dart e Rust (avançado) e PHP (intermediário)\n• Metodologias: Scrum e Kanban\nPergunte sobre uma tecnologia específica para saber mais.',
+      en: "Daniel's main skills:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI and MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL and REST APIs\n• AI: prompt engineering, AI agents, RAG, LLMs and harness engineering\n• Data and BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB and DynamoDB\n• DevOps and cloud: GitHub Actions, Azure DevOps, AWS (Lambda and API Gateway) and OpenShift\n• Mobile: React Native and Flutter\n• Languages: TypeScript, JavaScript, Python, Java, C#, C++, Dart and Rust (advanced) and PHP (intermediate)\n• Methodologies: Scrum and Kanban\nAsk about a specific technology to learn more.",
+      es: 'Principales habilidades de Daniel:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI y MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL y APIs REST\n• IA: ingeniería de prompts, agentes de IA, RAG, LLMs e ingeniería de harness\n• Datos y BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB y DynamoDB\n• DevOps y cloud: GitHub Actions, Azure DevOps, AWS (Lambda y API Gateway) y OpenShift\n• Mobile: React Native y Flutter\n• Lenguajes: TypeScript, JavaScript, Python, Java, C#, C++, Dart y Rust (avanzado) y PHP (intermedio)\n• Metodologías: Scrum y Kanban\nPregunta por una tecnología específica para saber más.',
     },
   },
   {
@@ -23,12 +24,12 @@ export const TECH_TOPICS: readonly ChatTopic[] = [
     keywords: [
       'front end', 'frontend', 'react', 'reactjs', 'nextjs', 'next js', 'angular', 'angularjs', 'vue', 'vuejs',
       'html', 'css', 'javascript', 'js', 'typescript', 'ts', 'vite', 'chakra', 'chakra ui', 'mui', 'material ui',
-      'shadcn', 'microfrontend', 'micro frontend', 'interface', 'figma', 'ui design', 'portfolio', 'interfaz',
+      'shadcn', 'tailwind', 'tailwindcss', 'microfrontend', 'micro frontend', 'interface', 'figma', 'ui design', 'portfolio', 'interfaz',
     ],
     answer: {
-      pt: 'No front-end, Daniel tem nível avançado em React, Next.js, Angular, AngularJS, Vue.js, TypeScript, JavaScript, HTML e CSS, além de Vite, Chakra UI, MUI, shadcn, microfrontends e Figma. No ONS, usou React e TypeScript na interface conversacional do Tiago e no widget Insight ONS. Este portfólio também foi feito com React, Vite e Chakra UI.',
-      en: 'On the front-end, Daniel has advanced skills in React, Next.js, Angular, AngularJS, Vue.js, TypeScript, JavaScript, HTML and CSS, plus Vite, Chakra UI, MUI, shadcn, microfrontends and Figma. At ONS, he used React and TypeScript in the Tiago conversational interface and in the Insight ONS widget. This portfolio was also built with React, Vite and Chakra UI.',
-      es: 'En el front-end, Daniel tiene nivel avanzado en React, Next.js, Angular, AngularJS, Vue.js, TypeScript, JavaScript, HTML y CSS, además de Vite, Chakra UI, MUI, shadcn, microfrontends y Figma. En el ONS, usó React y TypeScript en la interfaz conversacional de Tiago y en el widget Insight ONS. Este portafolio también fue hecho con React, Vite y Chakra UI.',
+      pt: 'No front-end, Daniel tem nível avançado em React, Next.js, Angular, AngularJS, Vue.js, TypeScript, JavaScript, HTML e CSS, além de Vite, Chakra UI, MUI, shadcn, microfrontends e Figma. No ONS, usou React e TypeScript na interface conversacional do Tiago e no widget Insight ONS, e fez a homologação de frameworks usados com React, como Tailwind e Chakra UI. Este portfólio também foi feito com React, Vite e Chakra UI.',
+      en: 'On the front-end, Daniel has advanced skills in React, Next.js, Angular, AngularJS, Vue.js, TypeScript, JavaScript, HTML and CSS, plus Vite, Chakra UI, MUI, shadcn, microfrontends and Figma. At ONS, he used React and TypeScript in the Tiago conversational interface and in the Insight ONS widget, and evaluated frameworks used with React, such as Tailwind and Chakra UI. This portfolio was also built with React, Vite and Chakra UI.',
+      es: 'En el front-end, Daniel tiene nivel avanzado en React, Next.js, Angular, AngularJS, Vue.js, TypeScript, JavaScript, HTML y CSS, además de Vite, Chakra UI, MUI, shadcn, microfrontends y Figma. En el ONS, usó React y TypeScript en la interfaz conversacional de Tiago y en el widget Insight ONS, e hizo la homologación de frameworks usados con React, como Tailwind y Chakra UI. Este portafolio también fue hecho con React, Vite y Chakra UI.',
     },
   },
   {
@@ -36,14 +37,14 @@ export const TECH_TOPICS: readonly ChatTopic[] = [
     tier: 'specific',
     keywords: [
       'back end', 'backend', 'node', 'nodejs', 'express', 'expressjs', 'fastapi', '.net', 'dotnet', 'c#',
-      'graphql', 'hotchocolate', 'rust', 'cargo', 'rest api', 'restful', 'api', 'swagger', 'openapi', 'java', 'spring', 'python',
+      'graphql', 'hotchocolate', 'rust', 'cargo', 'postman', 'rest api', 'restful', 'api', 'swagger', 'openapi', 'java', 'spring', 'python',
       'php', 'clean architecture', 'design patterns', 'padroes de projeto', 'arquitetura de software',
       'servidor', 'server', 'patrones de diseno',
     ],
     answer: {
-      pt: 'No back-end, Daniel tem nível avançado em Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), APIs REST, Python, Java e Rust, e intermediário em Spring e PHP. Trabalha com Clean Architecture, Design Patterns e documentação de APIs com OpenAPI/Swagger. No ONS, participou do desenvolvimento de serviços e integrações de APIs em soluções corporativas.',
-      en: 'On the back-end, Daniel has advanced skills in Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), REST APIs, Python, Java and Rust, and intermediate skills in Spring and PHP. He works with Clean Architecture, Design Patterns and API documentation with OpenAPI/Swagger. At ONS, he took part in building services and API integrations for corporate solutions.',
-      es: 'En el back-end, Daniel tiene nivel avanzado en Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), APIs REST, Python, Java y Rust, e intermedio en Spring y PHP. Trabaja con Clean Architecture, Design Patterns y documentación de APIs con OpenAPI/Swagger. En el ONS, participó en el desarrollo de servicios e integraciones de APIs en soluciones corporativas.',
+      pt: 'No back-end, Daniel tem nível avançado em Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), APIs REST, Python, Java e Rust, e intermediário em Spring e PHP. Trabalha com Clean Architecture, Design Patterns e documentação e testes de APIs com OpenAPI/Swagger e Postman. No ONS, participou do desenvolvimento de serviços e integrações de APIs em soluções corporativas.',
+      en: 'On the back-end, Daniel has advanced skills in Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), REST APIs, Python, Java and Rust, and intermediate skills in Spring and PHP. He works with Clean Architecture, Design Patterns and API documentation and testing with OpenAPI/Swagger and Postman. At ONS, he took part in building services and API integrations for corporate solutions.',
+      es: 'En el back-end, Daniel tiene nivel avanzado en Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), APIs REST, Python, Java y Rust, e intermedio en Spring y PHP. Trabaja con Clean Architecture, Design Patterns y documentación y pruebas de APIs con OpenAPI/Swagger y Postman. En el ONS, participó en el desarrollo de servicios e integraciones de APIs en soluciones corporativas.',
     },
   },
   {
@@ -68,12 +69,12 @@ export const TECH_TOPICS: readonly ChatTopic[] = [
     tier: 'specific',
     keywords: [
       'harness', 'engenharia de harness', 'harness engineering', 'ingenieria de harness', 'skills de ia',
-      'ia skills', 'ai skills', 'rules', 'agentic',
+      'ia skills', 'ai skills', 'rules', 'agentic', 'claude code',
     ],
     answer: {
-      pt: 'Daniel tem nível intermediário em engenharia de harness: a configuração do ambiente em que agentes de IA trabalham, com instruções, skills, rules, ferramentas e automações que guiam o agente. Nesse contexto, tem nível avançado em skills de IA, rules e agentes de IA, e intermediário em LLMs e automações com IA.',
-      en: 'Daniel has intermediate skills in harness engineering: setting up the environment AI agents work in, with the instructions, skills, rules, tools and automations that guide the agent. In this area, he has advanced skills in AI skills, rules and AI agents, and intermediate skills in LLMs and AI automation.',
-      es: 'Daniel tiene nivel intermedio en ingeniería de harness: la configuración del entorno en el que trabajan los agentes de IA, con instrucciones, skills, rules, herramientas y automatizaciones que guían al agente. En este ámbito, tiene nivel avanzado en skills de IA, rules y agentes de IA, e intermedio en LLMs y automatizaciones con IA.',
+      pt: 'Daniel tem nível intermediário em engenharia de harness: a configuração do ambiente em que agentes de IA trabalham, com instruções, skills, rules, ferramentas e automações que guiam o agente. Nesse contexto, tem nível avançado em skills de IA, rules e agentes de IA, e intermediário em LLMs e automações com IA. No ONS, criou skills e harness de IA agêntica para o Claude Code.',
+      en: 'Daniel has intermediate skills in harness engineering: setting up the environment AI agents work in, with the instructions, skills, rules, tools and automations that guide the agent. In this area, he has advanced skills in AI skills, rules and AI agents, and intermediate skills in LLMs and AI automation. At ONS, he built agentic AI skills and harness for Claude Code.',
+      es: 'Daniel tiene nivel intermedio en ingeniería de harness: la configuración del entorno en el que trabajan los agentes de IA, con instrucciones, skills, rules, herramientas y automatizaciones que guían al agente. En este ámbito, tiene nivel avanzado en skills de IA, rules y agentes de IA, e intermedio en LLMs y automatizaciones con IA. En el ONS, creó skills y harness de IA agéntica para Claude Code.',
     },
   },
   {
@@ -141,6 +142,22 @@ export const TECH_TOPICS: readonly ChatTopic[] = [
       pt: 'Daniel tem nível avançado em Playwright, axe-core e Lighthouse CI. No ONS, automatizou testes com Playwright e incluiu verificações automatizadas de acessibilidade nos pipelines CI/CD do GitHub Actions e do Azure DevOps.',
       en: 'Daniel has advanced skills in Playwright, axe-core and Lighthouse CI. At ONS, he automated tests with Playwright and added automated accessibility checks to the CI/CD pipelines in GitHub Actions and Azure DevOps.',
       es: 'Daniel tiene nivel avanzado en Playwright, axe-core y Lighthouse CI. En el ONS, automatizó pruebas con Playwright e incluyó verificaciones automatizadas de accesibilidad en los pipelines CI/CD de GitHub Actions y Azure DevOps.',
+    },
+  },
+  {
+    id: 'softskills',
+    tier: 'specific',
+    keywords: [
+      'soft skill', 'soft skills', 'pontos fortes', 'ponto forte', 'qualidades', 'comportamental',
+      'trabalhar em equipe', 'trabalho em equipe', 'equipe', 'metodologia', 'metodologias', 'scrum', 'kanban',
+      'agil', 'ageis', 'aprende rapido', 'responsabilidade', 'responsabilidades', 'lideranca', 'iniciativa',
+      'strengths', 'strength', 'teamwork', 'team', 'agile', 'fast learner', 'learns fast', 'leadership',
+      'initiative', 'fortalezas', 'equipo', 'trabajo en equipo', 'agiles', 'liderazgo', 'iniciativa propia',
+    ],
+    answer: {
+      pt: 'Sobre o jeito de trabalhar do Daniel:\n• Aprende rápido, gosta de assumir novas responsabilidades e de ver o projeto chegar até o usuário final.\n• Trabalha com metodologias ágeis (Scrum e Kanban) em equipes multidisciplinares; no ONS, participava toda semana das reuniões de acompanhamento.\n• No Tiago, teve contato direto com o fornecedor e organizou sprints e cards de backlog; na migração para o Power BI, conversou com os usuários dos painéis.\n• Toma iniciativa: criou por conta própria o widget Insight ONS.',
+      en: "How Daniel works:\n• He learns fast, likes taking on new responsibilities and seeing a project reach the end user.\n• He works with agile methodologies (Scrum and Kanban) in multidisciplinary teams; at ONS, he attended the weekly follow-up meetings.\n• On Tiago, he worked directly with the vendor and organized sprints and backlog cards; in the Power BI migration, he talked with the dashboard users.\n• He takes initiative: he created the Insight ONS widget on his own.",
+      es: 'Sobre la forma de trabajar de Daniel:\n• Aprende rápido, le gusta asumir nuevas responsabilidades y ver el proyecto llegar al usuario final.\n• Trabaja con metodologías ágiles (Scrum y Kanban) en equipos multidisciplinarios; en el ONS, participaba cada semana en las reuniones de seguimiento.\n• En Tiago, tuvo contacto directo con el proveedor y organizó sprints y tarjetas de backlog; en la migración a Power BI, habló con los usuarios de los paneles.\n• Toma la iniciativa: creó por cuenta propia el widget Insight ONS.',
     },
   },
 ];
