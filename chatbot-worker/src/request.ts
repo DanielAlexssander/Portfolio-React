@@ -1,4 +1,4 @@
-import { sanitizeQuestion } from '../../src/features/chatbot/answer.ts';
+import { MIN_QUESTION_LENGTH, sanitizeQuestion, visibleLength } from '../../src/features/chatbot/answer.ts';
 import type { Language } from '../../src/types/index.ts';
 
 export interface ChatRequest {
@@ -36,6 +36,10 @@ export function parseChatRequest(rawBody: string): ParseResult {
   const cleanQuestion = sanitizeQuestion(question);
   if (!cleanQuestion) {
     return { ok: false, error: '"question" must not be empty' };
+  }
+
+  if (visibleLength(cleanQuestion) < MIN_QUESTION_LENGTH) {
+    return { ok: false, error: '"question" is too short' };
   }
 
   if (!isLanguage(language)) {

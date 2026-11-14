@@ -68,7 +68,15 @@ describe('parseChatRequest', () => {
   });
 
   it('rejects invalid input', () => {
-    const invalid = ['not json', '[]', '{"language":"pt"}', '{"question":"   ","language":"pt"}', '{"question":"oi","language":"fr"}'];
+    const invalid = [
+      'not json',
+      '[]',
+      '{"language":"pt"}',
+      '{"question":"   ","language":"pt"}',
+      '{"question":"oi","language":"fr"}',
+      '{"question":"a","language":"pt"}',
+      '{"question":"👍","language":"pt"}',
+    ];
     for (const raw of invalid) {
       assert.equal(parseChatRequest(raw).ok, false, raw);
     }

@@ -11,6 +11,8 @@ export interface ChatTexts {
   readonly typing: string;
   readonly outOfScope: string;
   readonly unavailable: string;
+  /** Automatic reply to a single-character message. */
+  readonly tooShort: string;
   /** Shown when the visitor used up today's AI questions (keyword answers keep working). */
   readonly limitReached: string;
   /** Counter under the input. `{remaining}` and `{limit}` are replaced. */
@@ -33,6 +35,8 @@ export const CHAT_TEXTS: Readonly<Record<Language, ChatTexts>> = {
       'Desculpe, não respondo esse tipo de pergunta. Só falo sobre o Daniel: experiência, skills, projetos, formação e contato.',
     unavailable:
       'Não consegui responder agora. Tente perguntar sobre experiência, skills, projetos, formação ou contato do Daniel.',
+    tooShort:
+      'Sua mensagem ficou curta demais. Escreva uma pergunta sobre o Daniel, por exemplo: "Quais são as skills dele?"',
     limitReached:
       'Você atingiu o limite de perguntas livres de hoje. Ainda respondo sobre experiência, skills, projetos, formação e contato do Daniel, ou fale com ele pela seção Contatos.',
     aiQuota: '{remaining} de {limit} perguntas para a IA (fora de escopo básicos) livres hoje',
@@ -52,6 +56,8 @@ export const CHAT_TEXTS: Readonly<Record<Language, ChatTexts>> = {
       "Sorry, I don't answer that kind of question. I only talk about Daniel: experience, skills, projects, education and contact.",
     unavailable:
       "I couldn't answer right now. Try asking about Daniel's experience, skills, projects, education or contact.",
+    tooShort:
+      'Your message is too short. Ask a question about Daniel, for example: "What are his skills?"',
     limitReached:
       "You've reached today's limit of open questions. I can still answer about Daniel's experience, skills, projects, education and contact, or reach him through the Contacts section.",
     aiQuota: '{remaining} of {limit} open questions left today',
@@ -71,6 +77,8 @@ export const CHAT_TEXTS: Readonly<Record<Language, ChatTexts>> = {
       'Lo siento, no respondo ese tipo de preguntas. Solo hablo sobre Daniel: experiencia, habilidades, proyectos, formación y contacto.',
     unavailable:
       'No pude responder ahora. Intenta preguntar sobre la experiencia, habilidades, proyectos, formación o contacto de Daniel.',
+    tooShort:
+      'Tu mensaje es demasiado corto. Escribe una pregunta sobre Daniel, por ejemplo: "¿Cuáles son sus habilidades?"',
     limitReached:
       'Alcanzaste el límite de preguntas libres de hoy. Aún respondo sobre la experiencia, habilidades, proyectos, formación y contacto de Daniel, o contáctalo en la sección Contactos.',
     aiQuota: '{remaining} de {limit} preguntas libres hoy',

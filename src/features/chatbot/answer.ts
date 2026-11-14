@@ -6,6 +6,8 @@ import { CHAT_TEXTS } from './texts.ts';
 import { AiLimitReachedError, type AskAi, type ChatTopic } from './types.ts';
 
 export const MAX_QUESTION_LENGTH = 300;
+/** Shorter messages ("a", "?", "👍") get an automatic reply and never reach the AI. */
+export const MIN_QUESTION_LENGTH = 2;
 
 const ANSWER_SEPARATOR = '\n\n';
 /** "Oi, ele sabe Docker?" has a real question after the greeting; "Oi, tudo bem?" does not. */
@@ -18,6 +20,11 @@ export interface AnswerDeps {
   readonly askAi?: AskAi;
   readonly now?: () => Date;
   readonly topics?: readonly ChatTopic[];
+}
+
+/** Length in characters as people see them, so an emoji counts as one. */
+export function visibleLength(text: string): number {
+  return [...text].length;
 }
 
 /** Single-line, trimmed and capped question, safe to show and to send. */
@@ -64,6 +71,9 @@ export async function resolveAnswer(rawQuestion: string, language: Language, dep
   const question = sanitizeQuestion(rawQuestion);
   if (!question) {
     return texts.outOfScope;
+  }
+  if (visibleLength(question) < MIN_QUESTION_LENGTH) {
+    return texts.tooShort;
   }
 
   const today = deps.now ? deps.now() : new Date();

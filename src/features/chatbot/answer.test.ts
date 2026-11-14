@@ -172,6 +172,20 @@ describe('resolveAnswer', () => {
     assert.equal(answer, answerOf('about', 'pt').replace('{age}', '21'));
   });
 
+  it('asks for a real question when the message has a single character', async () => {
+    const askAi = mock.fn<AskAi>(async () => 'IA');
+    for (const language of LANGUAGES) {
+      for (const message of ['a', ' ? ', '👍']) {
+        assert.equal(await resolveAnswer(message, language, { askAi }), CHAT_TEXTS[language].tooShort, message);
+      }
+    }
+    assert.equal(askAi.mock.callCount(), 0);
+  });
+
+  it('still answers two-character messages normally', async () => {
+    assert.equal(await resolveAnswer('oi', 'pt'), answerOf('greeting', 'pt'));
+  });
+
   it('ignores blank questions without calling the AI', async () => {
     const askAi = mock.fn(async () => 'IA');
     assert.equal(await resolveAnswer('   ', 'pt', { askAi }), CHAT_TEXTS.pt.outOfScope);
