@@ -43,6 +43,8 @@ describe('knowledge base', () => {
       ['O que ele sabe sobre PowerBI?', ['bi']],
       ['Quantos anos de experiência ele tem?', ['experience']],
       ['Ele trabalha com React?', ['frontend']],
+      ['Ele sabe Rust?', ['backend']],
+      ['Ele fez algum widget de usage do Claude ou do Codex?', ['projects']],
       ['Qual o email dele?', ['contact']],
       ['Ele fala inglês?', ['languages']],
       ['Onde ele estudou?', ['education']],
@@ -114,9 +116,9 @@ describe('resolveAnswer', () => {
 
   it('asks the AI when no keyword matches', async () => {
     const askAi = mock.fn<AskAi>(async () => 'resposta da IA');
-    const answer = await resolveAnswer('  Ele sabe Rust? ', 'en', { askAi });
+    const answer = await resolveAnswer('  Ele sabe Haskell? ', 'en', { askAi });
     assert.equal(answer, 'resposta da IA');
-    assert.deepEqual(askAi.mock.calls[0]?.arguments, ['Ele sabe Rust?', 'en']);
+    assert.deepEqual(askAi.mock.calls[0]?.arguments, ['Ele sabe Haskell?', 'en']);
   });
 
   it('sends a greeting followed by an unknown question to the AI', async () => {
@@ -137,14 +139,14 @@ describe('resolveAnswer', () => {
 
   it('returns the unavailable message when the AI has no answer', async () => {
     const askAi = async (): Promise<string | null> => null;
-    assert.equal(await resolveAnswer('Ele sabe Rust?', 'pt', { askAi }), CHAT_TEXTS.pt.unavailable);
+    assert.equal(await resolveAnswer('Ele sabe Haskell?', 'pt', { askAi }), CHAT_TEXTS.pt.unavailable);
   });
 
   it('returns the unavailable message when the AI throws', async () => {
     const askAi = async (): Promise<string | null> => {
       throw new Error('boom');
     };
-    assert.equal(await resolveAnswer('Ele sabe Rust?', 'es', { askAi }), CHAT_TEXTS.es.unavailable);
+    assert.equal(await resolveAnswer('Ele sabe Haskell?', 'es', { askAi }), CHAT_TEXTS.es.unavailable);
   });
 
   it('explains the daily limit when the AI quota is used up', async () => {
@@ -152,7 +154,7 @@ describe('resolveAnswer', () => {
       throw new AiLimitReachedError();
     };
     for (const language of ['pt', 'en', 'es'] as const) {
-      assert.equal(await resolveAnswer('Ele sabe Rust?', language, { askAi }), CHAT_TEXTS[language].limitReached);
+      assert.equal(await resolveAnswer('Ele sabe Haskell?', language, { askAi }), CHAT_TEXTS[language].limitReached);
     }
   });
 

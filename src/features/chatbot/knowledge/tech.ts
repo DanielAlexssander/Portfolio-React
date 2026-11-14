@@ -12,9 +12,9 @@ export const TECH_TOPICS: readonly ChatTopic[] = [
       'habilidad', 'herramienta', 'lenguajes de programacion', 'que sabe', 'conocimiento',
     ],
     answer: {
-      pt: 'Principais skills do Daniel:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI e MUI\n• Back-end: Node.js, Express, FastAPI, .NET, GraphQL e APIs REST\n• IA: engenharia de prompt, agentes de IA, RAG, LLMs e engenharia de harness\n• Dados e BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB e DynamoDB\n• DevOps e cloud: GitHub Actions, Azure DevOps, AWS (Lambda e API Gateway) e OpenShift\n• Mobile: React Native e Flutter\nPergunte sobre uma tecnologia específica para saber mais.',
-      en: "Daniel's main skills:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI and MUI\n• Back-end: Node.js, Express, FastAPI, .NET, GraphQL and REST APIs\n• AI: prompt engineering, AI agents, RAG, LLMs and harness engineering\n• Data and BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB and DynamoDB\n• DevOps and cloud: GitHub Actions, Azure DevOps, AWS (Lambda and API Gateway) and OpenShift\n• Mobile: React Native and Flutter\nAsk about a specific technology to learn more.",
-      es: 'Principales habilidades de Daniel:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI y MUI\n• Back-end: Node.js, Express, FastAPI, .NET, GraphQL y APIs REST\n• IA: ingeniería de prompts, agentes de IA, RAG, LLMs e ingeniería de harness\n• Datos y BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB y DynamoDB\n• DevOps y cloud: GitHub Actions, Azure DevOps, AWS (Lambda y API Gateway) y OpenShift\n• Mobile: React Native y Flutter\nPregunta por una tecnología específica para saber más.',
+      pt: 'Principais skills do Daniel:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI e MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL e APIs REST\n• IA: engenharia de prompt, agentes de IA, RAG, LLMs e engenharia de harness\n• Dados e BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB e DynamoDB\n• DevOps e cloud: GitHub Actions, Azure DevOps, AWS (Lambda e API Gateway) e OpenShift\n• Mobile: React Native e Flutter\nPergunte sobre uma tecnologia específica para saber mais.',
+      en: "Daniel's main skills:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI and MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL and REST APIs\n• AI: prompt engineering, AI agents, RAG, LLMs and harness engineering\n• Data and BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB and DynamoDB\n• DevOps and cloud: GitHub Actions, Azure DevOps, AWS (Lambda and API Gateway) and OpenShift\n• Mobile: React Native and Flutter\nAsk about a specific technology to learn more.",
+      es: 'Principales habilidades de Daniel:\n• Front-end: React, Next.js, Angular, Vue.js, TypeScript, Vite, Chakra UI y MUI\n• Back-end: Node.js, Express, FastAPI, .NET, Rust, GraphQL y APIs REST\n• IA: ingeniería de prompts, agentes de IA, RAG, LLMs e ingeniería de harness\n• Datos y BI: Power BI, DAX, Tableau, PostgreSQL, MongoDB y DynamoDB\n• DevOps y cloud: GitHub Actions, Azure DevOps, AWS (Lambda y API Gateway) y OpenShift\n• Mobile: React Native y Flutter\nPregunta por una tecnología específica para saber más.',
     },
   },
   {
@@ -36,14 +36,14 @@ export const TECH_TOPICS: readonly ChatTopic[] = [
     tier: 'specific',
     keywords: [
       'back end', 'backend', 'node', 'nodejs', 'express', 'expressjs', 'fastapi', '.net', 'dotnet', 'c#',
-      'graphql', 'hotchocolate', 'rest api', 'restful', 'api', 'swagger', 'openapi', 'java', 'spring', 'python',
+      'graphql', 'hotchocolate', 'rust', 'cargo', 'rest api', 'restful', 'api', 'swagger', 'openapi', 'java', 'spring', 'python',
       'php', 'clean architecture', 'design patterns', 'padroes de projeto', 'arquitetura de software',
       'servidor', 'server', 'patrones de diseno',
     ],
     answer: {
-      pt: 'No back-end, Daniel tem nível avançado em Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), APIs REST, Python e Java, e intermediário em Spring e PHP. Trabalha com Clean Architecture, Design Patterns e documentação de APIs com OpenAPI/Swagger. No ONS, participou do desenvolvimento de serviços e integrações de APIs em soluções corporativas.',
-      en: 'On the back-end, Daniel has advanced skills in Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), REST APIs, Python and Java, and intermediate skills in Spring and PHP. He works with Clean Architecture, Design Patterns and API documentation with OpenAPI/Swagger. At ONS, he took part in building services and API integrations for corporate solutions.',
-      es: 'En el back-end, Daniel tiene nivel avanzado en Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), APIs REST, Python y Java, e intermedio en Spring y PHP. Trabaja con Clean Architecture, Design Patterns y documentación de APIs con OpenAPI/Swagger. En el ONS, participó en el desarrollo de servicios e integraciones de APIs en soluciones corporativas.',
+      pt: 'No back-end, Daniel tem nível avançado em Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), APIs REST, Python, Java e Rust, e intermediário em Spring e PHP. Trabalha com Clean Architecture, Design Patterns e documentação de APIs com OpenAPI/Swagger. No ONS, participou do desenvolvimento de serviços e integrações de APIs em soluções corporativas.',
+      en: 'On the back-end, Daniel has advanced skills in Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), REST APIs, Python, Java and Rust, and intermediate skills in Spring and PHP. He works with Clean Architecture, Design Patterns and API documentation with OpenAPI/Swagger. At ONS, he took part in building services and API integrations for corporate solutions.',
+      es: 'En el back-end, Daniel tiene nivel avanzado en Node.js, Express, FastAPI, .NET (C#), GraphQL (HotChocolate), APIs REST, Python, Java y Rust, e intermedio en Spring y PHP. Trabaja con Clean Architecture, Design Patterns y documentación de APIs con OpenAPI/Swagger. En el ONS, participó en el desarrollo de servicios e integraciones de APIs en soluciones corporativas.',
     },
   },
   {
